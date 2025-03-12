@@ -2,7 +2,19 @@
   description = "Karui’s nixOS configuration";
 
   inputs = {
+    # nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
+    # hardware modules
+    nixos-apple-silicon = {
+      url = "github:tpwrules/nixos-apple-silicon";
+    };
+    apple-silicon-firmware = {
+      url = "path:/boot/asahi";
+      flake = false;
+    };
+
+    # external modules
     lix-module = {
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.92.0.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -14,13 +26,6 @@
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    nixos-apple-silicon = {
-      url = "github:tpwrules/nixos-apple-silicon";
-    };
-    apple-silicon-firmware = {
-      url = "path:/boot/asahi";
-      flake = false;
     };
   };
 
