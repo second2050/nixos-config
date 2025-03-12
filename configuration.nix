@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./desktop
     ];
 
   # custom packages
@@ -75,18 +76,6 @@
     # extraLocaleSettings = {
     #   LC_TIME = "en_DK.UTF-8";
     # };
-    inputMethod = {
-      enable = true;
-      type = "fcitx5";
-      fcitx5 = {
-        plasma6Support = true;
-        waylandFrontend = true;
-        addons = with pkgs; [
-          fcitx5-mozc
-          fcitx5-gtk
-        ];
-      };
-    };
   };
   console = {
     # font = "Lat2-Terminus32";
@@ -113,26 +102,6 @@
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
-
-  # Enable sound.
-  services.pipewire = {
-    enable = true;
-    pulse.enable = true;
-  };
-
-  # Enable KDE
-  services.xserver.enable = true;
-  services.displayManager.sddm = {
-    enable = true;
-    wayland.enable = true;
-  };
-  services.desktopManager.plasma6.enable = true;
-  fonts = {
-    enableDefaultPackages = true;
-    packages = [
-      pkgs.cascadia-code
-    ];
-  };
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
