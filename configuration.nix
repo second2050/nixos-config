@@ -8,36 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./desktop
     ];
-
-  # custom packages
-  nixpkgs.overlays = [
-    (
-      final: prev: {
-        delugia-code = {
-          pname = "delugia-code";
-          version = "2404.23";
-          src = final.fetchzip {
-            url = "https://github.com/adam7/delugia-code/releases/download/v2404.23/delugia-complete.zip";
-            stripRoot = false;
-            hash = "sha256-0kl948agrzy300xl2ay0n4skm00i1axwd3n8s7qyzq44qm5j8nw7";
-          };
-          installPhase = ''
-            runHook preInstall
-            install -Dm644 delugia-complete/*.ttf -t $out/share/fonts/truetype
-            runHook postInstall
-          '';
-          meta = {
-            description = "customized cascadia-code";
-            homepage = "https://github.com/adam7/delugia-code";
-            license = lib.licenses.ofl;
-            maintainers = with lib.maintainers; [  ];
-          };
-        };
-      }
-    )
-  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -45,6 +16,7 @@
   boot.kernelParams = [
     "apple_dcp.show_notch=1"
   ];
+  boot.initrd.systemd.enable = true;
   boot.extraModprobeConfig = ''
     options hid_apple fnmode=2
   '';
@@ -60,6 +32,9 @@
     graphics.enable = true;
   };
 
+  # enable desktop
+  karui.desktop.enable = true;
+
   networking.hostName = "ringo";
   networking.hostId = "a0fb3fd3";
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
@@ -71,9 +46,23 @@
   i18n = {
     defaultLocale = "en_US.UTF-8";
     # supportedLocales = [
+    #   "de_DE.UTF-8/UTF-8"
     #   "en_DK.UTF-8/UTF-8"
+    #   "ja_JP.UTF-8/UTF-8"
     # ];
     # extraLocaleSettings = {
+    #   LANGUAGE = "en_US.UTF-8";
+    #   LC_ADDRESS = "en_US.UTF-8";
+    #   LC_COLLATE = "en_US.UTF-8";
+    #   LC_CTYPE = "en_US.UTF-8";
+    #   LC_IDENTIFICATION = "en_US.UTF-8";
+    #   LC_MEASUREMENT = "en_US.UTF-8";
+    #   LC_MESSAGES = "en_US.UTF-8";
+    #   LC_MONETARY = "en_US.UTF-8";
+    #   LC_NAME = "en_US.UTF-8";
+    #   LC_NUMERIC = "en_US.UTF-8";
+    #   LC_PAPER = "en_US.UTF-8";
+    #   LC_TELEPHONE = "en_US.UTF-8";
     #   LC_TIME = "en_DK.UTF-8";
     # };
   };
@@ -82,6 +71,18 @@
     keyMap = "uk";
     useXkbConfig = false; # use xkb.options in tty.
   };
+  # services.kmscon = {
+  #   enable = true;
+  #   extraConfig = ''
+  #     xkb-layout=gb
+  #   '';
+  #   fonts = [
+  #     {
+  #       name = "Delugia";
+  #       package = pkgs.delugia-code;
+  #     }
+  #   ];
+  # };
 
   nix = {
     settings = {

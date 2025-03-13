@@ -1,6 +1,9 @@
 { config, pkgs, zen-browser, ... }:
 
 {
+  imports = [
+    ./plasma
+  ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "karui";
@@ -29,7 +32,7 @@
     vesktop
     zen-browser.packages.aarch64-linux.default
     goldwarden
-    pinentry
+    pinentry-qt
     nodejs
     python3
     go
