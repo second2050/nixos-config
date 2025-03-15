@@ -14,16 +14,11 @@
         theme = "breeze_cursors";
         size = 24;
       };
-      colorScheme = "Grey";
+      colorScheme = "Grey"; # Accent set in extra config.
       windowDecorations = {
         library = "org.kde.darkly";
         theme = "Darkly";
       };
-    };
-
-    # Application Style
-    configFile = {
-      "kdeglobals"."KDE"."widgetStyle" = "Darkly";
     };
 
     kwin = {
@@ -33,6 +28,7 @@
       };
       borderlessMaximizedWindows = true;
       effects = {
+        blur.enable = false; # I am using Better Blur
         dimAdminMode.enable = true;
         desktopSwitching.animation = "slide";
       };
@@ -69,19 +65,26 @@
       kwin = {
         "Window Maximize" = "Meta+Return";
         "Window Fullscreen" = "Meta+F";
+        "Walk Through Windows" = "Alt+Tab";
+        "Walk Through Windows (Reverse)" = "Alt+Shift+Tab";
+        "Walk Through Windows Alternative" = "Meta+Tab";
+        "Walk Through Windows Alternative (Reverse)" = "Meta+Shift+Tab";
       };
     };
 
     panels = [
       {
         location = "top";
+        height = 42;
         widgets = [
           {
             name = "org.kde.windowbuttons";
             config = {
               General = {
-                buttonSizePercentage = "55";
+                buttonSizePercentage = 55;
                 visibility = "ActiveMaximizedWindow";
+                selectedPlugin = "org.kde.darkly";
+                useCurrentDecoration = false;
               };
             };
           }
@@ -100,6 +103,19 @@
           }
           "org.kde.plasma.appmenu"
           "org.kde.plasma.panelspacer"
+          {
+            name = "org.dhruv8sh.kara";
+            config = {
+              general = {
+                animationDuration = 100;
+                highlightType = 2; # Text Indicator
+              };
+              type2 = {
+                fixedLen = 1;
+                labelSource = 7; # Chinese Numerals
+              };
+            };
+          }
           "org.kde.plasma.marginsseparator"
           "org.kde.plasma.kimpanel"
           {
@@ -160,14 +176,48 @@
       }
     ];
 
+    # Extra Config
     configFile = {
+      kdeglobals = {
+        KDE.widgetStyle = "Darkly"; # Application Style
+        General.AccentColor = "233,58,154";
+      };
       kwinrc = {
         Wayland."InputMethod" = "/run/current-system/sw/share/applications/org.fcitx.Fcitx5.desktop";
-        Effect-slide = {
-          HorizontalGap = "0";
-          SlideBackground = "false";
-          VerticalGap = "0";
+        # Additional Effect and Script Config
+        Plugins = {
+          forceblurEnabled = true;
+          temporary-virtual-desktopsEnabled = true;
         };
+        Effect-slide = {
+          HorizontalGap = 0;
+          SlideBackground = true;
+          VerticalGap = 0;
+        };
+        Effect-blurplus = {
+          BlurMatching = false;
+          BlurNonMatching = true;
+          BottomCornerRadius = 6;
+          MenuCornerRadius = 6;
+          TopCornerRadius = 6;
+        };
+        Script-temporary-virtual-desktops = {
+          oneSpare = true;
+        };
+
+        
+        # Task Switcher
+        TabBox = {
+          LayoutName = "sidebar";
+          DesktopMode = 1; # Show windows only from current desktop.
+          orderMinimizedMode = 1; # Order minimized windows last
+        };
+        TabBoxAlternative = {
+          LayoutName = "sidebar";
+          DesktopMode = 0; # Show windows from all desktops.
+          orderMinimizedMode = 1; # Order minimized windows last
+        };
+
         ElectricBorder = {};
       };
     };

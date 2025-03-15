@@ -31,7 +31,7 @@ let
   #     # platforms = platforms.all;
   #   };
   # };
-  applet-window-title6 = pkgs.stdenv.mkDerivation rec {
+  applet-window-title6 = pkgs.stdenvNoCC.mkDerivation rec {
     name = "applet-window-title6";
     version = "0.9.0";
     src = pkgs.fetchzip {
@@ -44,11 +44,42 @@ let
       mkdir -p "$out/share/plasma/plasmoids/org.kde.windowtitle"
       cp -r plasma6-window-title-applet-${version}/* "$out/share/plasma/plasmoids/org.kde.windowtitle"
       rm "$out/share/plasma/plasmoids/org.kde.windowtitle/README.md"
+      runHook postInstall
     '';
     meta = with lib; {
       description = "Plasma 6 applet that shows the application title and icon for active window";
       homepage = "https://github.com/dhruv8sh/plasma6-window-title-applet";
     };
+  };
+  kwin-effects-geometry-change = pkgs.stdenvNoCC.mkDerivation rec {
+    name = "kwin-effects-geometry-change";
+    version = "1.4";
+    src = pkgs.fetchzip {
+      url = "https://github.com/peterfajdiga/kwin4_effect_geometry_change/releases/download/v${version}/kwin4_effect_geometry_change_1_4.tar.gz";
+      stripRoot = false;
+      hash = "sha256-wPgB1ojLNNAnWA7916qBq12VdhEbwvRA1fwb27tZYQk=";
+    };
+    installPhase = ''
+      runHook preInstall
+      mkdir -p "$out/share/kwin/effects/kwin4_effect_geometry_change"
+      cp -r package/* "$out/share/kwin/effects/kwin4_effect_geometry_change"
+      runHook postInstall
+    '';
+  };
+  kwin-scripts-temporary-virtual-desktops = pkgs.stdenvNoCC.mkDerivation rec {
+    name = "";
+    version = "0.4.0";
+    src = pkgs.fetchgit {
+      url = "https://github.com/Ubiquitine/temporary-virtual-desktops.git";
+      rev = "refs/tags/v${version}";
+      hash = "sha256-PU3/FRa38/4bFMNSc7uhSYlHPqaZ9HMbjnTU9Z6O2JI=";
+    };
+    installPhase = ''
+      runHook preInstall
+      mkdir -p "$out/share/kwin/scripts/temporary-virtual-desktops"
+      cp -r * "$out/share/kwin/scripts/temporary-virtual-desktops"
+      runHook postInstall
+    '';
   };
 in {
   options.karui.desktop = {
@@ -113,14 +144,36 @@ in {
       };
     };
 
+    # Exclude Default Packages
+    environment.plasma6.excludePackages = with pkgs; [
+      kdePackages.gwenview
+    ];
+
     # Extra Packages
+    programs.kde-pim = {
+      enable = true;
+      merkuro = true;
+    };
     environment.systemPackages = with pkgs; [
-      kdePackages.yakuake
+      # KDE Applications
+      kdePackages.yakuake # Drop-Down Terminal
+      kdePackages.koko # Photos
+      kdePackages.calligra # Office Suite
+      quasselClient # IRC
+
+      # Applets
       kdePackages.applet-window-buttons6
       kdePackages.kdecoration
       applet-window-title6
+
+      # Themes
       inputs.darkly-qt.packages.${pkgs.system}.darkly-qt5
       inputs.darkly-qt.packages.${pkgs.system}.darkly-qt6
+
+      # KWin Effects + Scripts
+      inputs.kwin-effects-forceblur.packages.${pkgs.system}.default
+      kwin-effects-geometry-change
+      kwin-scripts-temporary-virtual-desktops
     ];
 
     # Fancy Boot
