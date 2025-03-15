@@ -39,6 +39,9 @@
   networking.hostId = "a0fb3fd3";
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 
+  # enable usage of run0
+  security.pam.services.systemd-run0 = {};
+
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
 
@@ -109,8 +112,12 @@
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.karui = {
+    description = "karui (>‿◕)~♥";
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFlAc7SsDm9n72StyPmm6CJsLFCd14SOb/cXDoLxiKRN 0001 second2050@vault"
+    ];
     packages = with pkgs; [
       
     ];
@@ -130,6 +137,10 @@
     viAlias = true;
   };
   programs.git.enable = true;
+  programs.nh = {
+    enable = true;
+    flake = "/etc/nixos";
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
