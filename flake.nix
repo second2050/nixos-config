@@ -70,7 +70,7 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.sharedModules = [ plasma-manager.homeManagerModules.plasma-manager ];
-          home-manager.users.karui = import ./home;
+          home-manager.users.karui = import ./modules/home;
           home-manager.extraSpecialArgs = { inherit zen-browser; };
         }
       ];
