@@ -101,7 +101,6 @@
 
   # Allow Unfree
   nixpkgs.config.allowUnfree = true;
-  # nixpkgs.overlays = [ inputs.karuipkgs ];
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
