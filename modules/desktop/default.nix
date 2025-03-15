@@ -133,5 +133,13 @@ in {
       ];
       # loader.timeout = 0;
     };
+
+    # OoM Killer, KDE already starts apps in their own CGroup
+    # so we can just use systemd-oomd and fedora-like defaults.
+    systemd.oomd = {
+      enable = true;
+      enableSystemSlice = true;
+      enableUserSlices = true;
+    };
   };
 }

@@ -32,6 +32,9 @@
     graphics.enable = true;
   };
 
+  # enable zram
+  zramSwap.enable = true;
+
   # enable desktop
   karui.desktop.enable = true;
 
