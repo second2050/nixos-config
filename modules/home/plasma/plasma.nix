@@ -9,7 +9,7 @@
     overrideConfig = false;
 
     workspace = {
-      # lookAndFeel = "org.kde.breezedark.desktop";
+      wallpaper = ./wallpaper;
       cursor = {
         theme = "breeze_cursors";
         size = 24;
@@ -19,6 +19,11 @@
         library = "org.kde.darkly";
         theme = "Darkly";
       };
+    };
+
+    kscreenlocker.appearance = {
+      wallpaper = ./wallpaper;
+      alwaysShowClock = true;
     };
 
     kwin = {
