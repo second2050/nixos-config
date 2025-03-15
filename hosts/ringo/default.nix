@@ -16,7 +16,6 @@
   boot.kernelParams = [
     "apple_dcp.show_notch=1"
   ];
-  boot.initrd.systemd.enable = true;
   boot.extraModprobeConfig = ''
     options hid_apple fnmode=2
   '';
@@ -32,51 +31,15 @@
     graphics.enable = true;
   };
 
-  # enable zram
-  zramSwap.enable = true;
-
-  # enable desktop
+  # enable modules
+  karui.base.enable = true;
   karui.desktop.enable = true;
 
   networking.hostName = "ringo";
   networking.hostId = "a0fb3fd3";
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
-
-  # enable usage of run0
-  security.pam.services.systemd-run0 = {};
 
   # Set your time zone.
-  time.timeZone = "Europe/Berlin";
 
-  # Select internationalisation properties.
-  i18n = {
-    defaultLocale = "en_US.UTF-8";
-    # supportedLocales = [
-    #   "de_DE.UTF-8/UTF-8"
-    #   "en_DK.UTF-8/UTF-8"
-    #   "ja_JP.UTF-8/UTF-8"
-    # ];
-    # extraLocaleSettings = {
-    #   LANGUAGE = "en_US.UTF-8";
-    #   LC_ADDRESS = "en_US.UTF-8";
-    #   LC_COLLATE = "en_US.UTF-8";
-    #   LC_CTYPE = "en_US.UTF-8";
-    #   LC_IDENTIFICATION = "en_US.UTF-8";
-    #   LC_MEASUREMENT = "en_US.UTF-8";
-    #   LC_MESSAGES = "en_US.UTF-8";
-    #   LC_MONETARY = "en_US.UTF-8";
-    #   LC_NAME = "en_US.UTF-8";
-    #   LC_NUMERIC = "en_US.UTF-8";
-    #   LC_PAPER = "en_US.UTF-8";
-    #   LC_TELEPHONE = "en_US.UTF-8";
-    #   LC_TIME = "en_DK.UTF-8";
-    # };
-  };
-  console = {
-    # font = "Lat2-Terminus32";
-    keyMap = "uk";
-    useXkbConfig = false; # use xkb.options in tty.
-  };
   # services.kmscon = {
   #   enable = true;
   #   extraConfig = ''
@@ -89,18 +52,6 @@
   #     }
   #   ];
   # };
-
-  nix = {
-    settings = {
-      experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
-    };
-  };
-
-  # Allow Unfree
-  nixpkgs.config.allowUnfree = true;
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
@@ -127,22 +78,9 @@
   };
 
   # Shell config
-  programs.fish.enable = true;
-  environment.shellAliases = lib.mkForce {}; # disable default shell aliases
 
   # Applications
   # programs.firefox.enable = true;
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-    vimAlias = true;
-    viAlias = true;
-  };
-  programs.git.enable = true;
-  programs.nh = {
-    enable = true;
-    flake = "/etc/nixos";
-  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -162,7 +100,6 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

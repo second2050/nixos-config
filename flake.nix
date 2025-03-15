@@ -65,8 +65,9 @@
       specialArgs = { inherit self inputs system; };
       modules = [
         (inputs.nixos-apple-silicon + /apple-silicon-support)
-        ./configuration.nix
+        ./hosts/ringo
         ./modules/desktop
+        ./modules/base
         delugia-code.nixosModules.default
         # This is the important part -- add this line to your module list!
         lix-module.nixosModules.default
