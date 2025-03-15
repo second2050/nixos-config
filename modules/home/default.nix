@@ -1,13 +1,14 @@
 { config, pkgs, zen-browser, ... }:
-
-{
+let
+  homeDirectory = "/home/karui";
+in {
   imports = [
     ./plasma
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "karui";
-  home.homeDirectory = "/home/karui";
+  home.homeDirectory = "${homeDirectory}";
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -71,9 +72,10 @@
   # or
   #
   #  /etc/profiles/per-user/karui/etc/profile.d/hm-session-vars.sh
-  #
-  home.sessionVariables = {
-    # EDITOR = "emacs";
+  systemd.user.sessionVariables = {
+    GOLDWARDEN_SOCKET_PATH = "${homeDirectory}/.goldwarden.sock";
+    GOLDWARDEN_SSH_AUTH_SOCKET = "${homeDirectory}/.goldwarden-ssh-agent.sock";
+    SSH_AUTH_SOCK = "${homeDirectory}/.goldwarden-ssh-agent.sock";
   };
 
   # Let Home Manager install and manage itself.

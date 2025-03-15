@@ -47,6 +47,29 @@
         family = "Delugia";
         pointSize = 10;
       };
+      small = {
+        family = "Comfortaa";
+        pointSize = 8;
+      };
+      toolbar = {
+        family = "Comfortaa";
+        pointSize = 10;
+      };
+      menu = {
+        family = "Comfortaa";
+        pointSize = 10;
+      };
+      windowTitle = {
+        family = "Comfortaa";
+        pointSize = 10;
+      };
+    };
+
+    shortcuts = {
+      kwin = {
+        "Window Maximize" = "Meta+Return";
+        "Window Fullscreen" = "Meta+F";
+      };
     };
 
     panels = [
