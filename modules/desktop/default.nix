@@ -174,6 +174,7 @@ in {
       inputs.kwin-effects-forceblur.packages.${pkgs.system}.default
       kwin-effects-geometry-change
       kwin-scripts-temporary-virtual-desktops
+      kde-rounded-corners
     ];
 
     # Fancy Boot

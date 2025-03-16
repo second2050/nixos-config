@@ -191,8 +191,9 @@
         Wayland."InputMethod" = "/run/current-system/sw/share/applications/org.fcitx.Fcitx5.desktop";
         # Additional Effect and Script Config
         Plugins = {
-          forceblurEnabled = true;
+          forceblurEnabled = true; # Effect-blurplus
           temporary-virtual-desktopsEnabled = true;
+          kwin4_effect_shapecornersEnabled = true; # Round-Corners
         };
         Effect-slide = {
           HorizontalGap = 0;
@@ -205,6 +206,19 @@
           BottomCornerRadius = 6;
           MenuCornerRadius = 6;
           TopCornerRadius = 6;
+        };
+        Round-Corners = {
+          Size = 6; # ActiveCornerRadius
+          ActiveOutlineAlpha = 255;
+          ActiveOutlineUseCustom = false;
+          ActiveOutlineUsePalette = true;
+          OutlineThickness = 1.00;
+          InactiveCornerRadius = 6;
+          InactiveOutlineAlpha = 63;
+          InactiveOutlineUseCustom = true;
+          InactiveOutlineColor = "255,255,255";
+          InactiveOutlineThickness = 1.00;
+          SecondOutlineThickness = 0; 
         };
         Script-temporary-virtual-desktops = {
           oneSpare = true;
