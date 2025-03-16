@@ -81,6 +81,23 @@ in {
       flake = "/etc/nixos";
     };
 
+    # Define a user account. Don't forget to set a password with ‘passwd’.
+    users.users.karui = {
+      description = "karui (>‿◕)~♥";
+      isNormalUser = true;
+      extraGroups = [
+        "wheel" # Enable ‘sudo’ for the user.
+        "networkmanager"
+      ];
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFlAc7SsDm9n72StyPmm6CJsLFCd14SOb/cXDoLxiKRN 0001 second2050@vault"
+      ];
+      packages = with pkgs; [
+        
+      ];
+      shell = pkgs.fish;
+    };
+
     # misc. config
     environment.shellAliases = lib.mkForce {}; # disable default shell aliases
   };
