@@ -144,6 +144,9 @@ in {
       };
     };
 
+    # Power Profiles Daemon
+    services.power-profiles-daemon.enable = true;
+
     # Exclude Default Packages
     environment.plasma6.excludePackages = with pkgs; [
       kdePackages.gwenview
