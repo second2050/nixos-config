@@ -140,6 +140,15 @@
               date.format = "isoDate";
             };
           }
+          {
+            name = "org.kde.plasma.userswitcher";
+            config = {
+              General = {
+                showFace = true;
+                showName = false;
+              };
+            };
+          }
         ];
       }
       {
@@ -201,11 +210,15 @@
           VerticalGap = 0;
         };
         Effect-blurplus = {
-          BlurMatching = false;
-          BlurNonMatching = true;
+          BlurMatching = true;
+          BlurNonMatching = false;
+          FakeBlur = true; # fake blur is easier on the gpu
+          FakeBlurDisableWhenWindowBehind = true;
+          FakeBlurImageSourceDesktopWallpaper = false;
           BottomCornerRadius = 6;
           MenuCornerRadius = 6;
           TopCornerRadius = 6;
+          WindowClasses = "zen"; # these will be force blurred
         };
         Round-Corners = {
           Size = 6; # ActiveCornerRadius
