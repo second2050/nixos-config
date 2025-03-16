@@ -28,7 +28,7 @@
 
     kwin = {
       titlebarButtons = {
-        left = [ "close" "minimize" "maximize" ];
+        left = [ "close" "minimize" "maximize" "more-window-actions" ];
         right = [ "on-all-desktops" "keep-above-windows" ];
       };
       borderlessMaximizedWindows = true;
@@ -203,6 +203,9 @@
           forceblurEnabled = true; # Effect-blurplus
           temporary-virtual-desktopsEnabled = true;
           kwin4_effect_shapecornersEnabled = true; # Round-Corners
+          kwin4_effect_geometry_changeEnabled = true;
+          contrastEnabled = false;
+          hidecursorEnabled = true;
         };
         Effect-slide = {
           HorizontalGap = 0;
@@ -251,6 +254,11 @@
         };
 
         ElectricBorder = {};
+      };
+      darklyrc = {
+        Windeco = {
+          TitleAlignment = "AlignLeft";
+        };
       };
     };
 
