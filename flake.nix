@@ -68,6 +68,7 @@
         ./hosts/ringo
         ./modules/desktop
         ./modules/base
+        ./modules/games
         delugia-code.nixosModules.default
         # This is the important part -- add this line to your module list!
         lix-module.nixosModules.default

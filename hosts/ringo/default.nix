@@ -37,6 +37,10 @@
   karui = {
     base.enable = true;
     desktop.enable = true;
+    games = {
+      enable = true;
+      patch = true;
+    };
   };
 
   # networking options
