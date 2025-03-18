@@ -130,6 +130,7 @@
                 "org.kde.plasma.bluetooth"
                 "org.kde.plasma.networkmanagement"
                 "org.kde.plasma.volume"
+                "martchus.syncthingplasmoid"
               ];
             };
           }

@@ -1,6 +1,7 @@
 {
   lib,
   pkgs,
+  pkgs-2411,
   config,
   inputs,
   system,
@@ -144,7 +145,7 @@ in {
       };
     };
 
-    # Power Profiles Daemon
+    # Extra Services
     services.power-profiles-daemon.enable = true;
 
     # Exclude Default Packages
@@ -157,16 +158,16 @@ in {
       enable = true;
       merkuro = true;
     };
-    environment.systemPackages = with pkgs; [
+    environment.systemPackages = [
       # KDE Applications
-      kdePackages.yakuake # Drop-Down Terminal
-      kdePackages.koko # Photos
-      kdePackages.calligra # Office Suite
-      quasselClient # IRC
+      pkgs.kdePackages.yakuake # Drop-Down Terminal
+      pkgs.kdePackages.koko # Photos
+      pkgs.kdePackages.calligra # Office Suite
+      pkgs.quasselClient # IRC
 
       # Applets
-      kdePackages.applet-window-buttons6
-      kdePackages.kdecoration
+      pkgs.kdePackages.applet-window-buttons6
+      pkgs.kdePackages.kdecoration
       applet-window-title6
 
       # Themes
@@ -177,8 +178,13 @@ in {
       inputs.kwin-effects-forceblur.packages.${pkgs.system}.default
       kwin-effects-geometry-change
       kwin-scripts-temporary-virtual-desktops
-      kde-rounded-corners
+      pkgs.kde-rounded-corners
+
+      # Misc. Applications
+      pkgs.syncthing
+      pkgs.syncthingtray
     ];
+    services.flatpak.enable = true;
 
     # Fancy Boot
     boot.plymouth = {
@@ -198,5 +204,7 @@ in {
       enableSystemSlice = true;
       enableUserSlices = true;
     };
+
+    karui.hardware.pen-input = true;
   };
 }
