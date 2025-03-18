@@ -8,7 +8,8 @@
 
     # hardware modules
     nixos-apple-silicon = {
-      url = "github:tpwrules/nixos-apple-silicon";
+      #url = "github:tpwrules/nixos-apple-silicon";
+      url = "github:marcin-serwin/nixos-apple-silicon/push-nwvktpxoswts";
     };
     apple-silicon-firmware = {
       url = "path:/boot/asahi";
@@ -32,8 +33,8 @@
       url = "github:Bali10050/Darkly";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    delugia-code = {
-      url = "gitlab:evysnix/delugia-code-flake";
+    evyspkgs = {
+      url = "gitlab:evysnix/evyspkgs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     plasma-manager = {
@@ -57,7 +58,7 @@
     nixos-apple-silicon,
     apple-silicon-firmware,
     darkly-qt,
-    delugia-code,
+    evyspkgs,
     plasma-manager,
     kwin-effects-forceblur
   } @ inputs: {
@@ -70,7 +71,7 @@
         (inputs.nixos-apple-silicon + /apple-silicon-support)
         ./hosts/ringo
         ./modules
-        delugia-code.nixosModules.default
+        evyspkgs.nixosModules.default
         # This is the important part -- add this line to your module list!
         lix-module.nixosModules.default
         home-manager.nixosModules.home-manager
