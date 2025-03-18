@@ -49,6 +49,11 @@
     hostId = "a0fb3fd3";
   };
 
+  # host specific packages
+  environment.systemPackages = [
+    pkgs.asahi-bless
+  ];
+
   # Initial NixOS Version, do *not* change.
   # For more information, see `man configuration.nix`
   # or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion
