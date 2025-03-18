@@ -31,6 +31,12 @@ in {
     environment.systemPackages = with pkgs; [
       srb2kart
       ringracers
+      (prismlauncher.override {
+        jdks = [
+          graalvmPackages.graalvm-oracle
+          graalvmPackages.graalvm-oracle_17
+        ];
+      })
     ];
   };
 }
