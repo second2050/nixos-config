@@ -1,7 +1,13 @@
-{ config, pkgs, zen-browser, ... }:
+{
+  config,
+  pkgs,
+  zen-browser,
+  ...
+}:
 let
   homeDirectory = "/home/karui";
-in {
+in
+{
   imports = [
     ./plasma
   ];

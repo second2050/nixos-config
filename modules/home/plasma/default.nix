@@ -4,8 +4,8 @@
   ...
 }:
 {
- imports = [
-  ./plasma.nix
-  ./konsole.nix
- ];
+  imports = [
+    ./plasma.nix
+    ./konsole.nix
+  ];
 }

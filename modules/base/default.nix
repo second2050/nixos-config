@@ -9,7 +9,8 @@
 let
   inherit (lib) mkIf mkEnableOption mkDefault;
   cfg = config.karui.base;
-in {
+in
+{
   options.karui.base = {
     enable = mkEnableOption "karui’s base configuration";
   };
@@ -28,8 +29,8 @@ in {
     zramSwap.enable = mkDefault true;
 
     # enable usage of run0
-    security.pam.services.systemd-run0 = mkDefault {};
-    
+    security.pam.services.systemd-run0 = mkDefault { };
+
     # networking
     networking.networkmanager.enable = mkDefault true;
     services.resolved = mkDefault {
@@ -93,12 +94,12 @@ in {
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFlAc7SsDm9n72StyPmm6CJsLFCd14SOb/cXDoLxiKRN 0001 second2050@vault"
       ];
       packages = with pkgs; [
-        
+
       ];
       shell = pkgs.fish;
     };
 
     # misc. config
-    environment.shellAliases = lib.mkForce {}; # disable default shell aliases
+    environment.shellAliases = lib.mkForce { }; # disable default shell aliases
   };
 }

@@ -82,7 +82,8 @@ let
       runHook postInstall
     '';
   };
-in {
+in
+{
   options.karui.desktop = {
     enable = mkEnableOption "karui’s desktop configuration";
   };

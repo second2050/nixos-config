@@ -48,41 +48,51 @@
     };
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    nixpkgs-2411,
-    lix-module,
-    home-manager,
-    zen-browser,
-    nixos-apple-silicon,
-    apple-silicon-firmware,
-    darkly-qt,
-    evyspkgs,
-    plasma-manager,
-    kwin-effects-forceblur
-  } @ inputs: {
-    nixosConfigurations.ringo =
-    let
-      system = "aarch64-linux";
-      pkgs-2411 = import nixpkgs-2411 { inherit system; };
-      specialArgs = { inherit self inputs system pkgs-2411; };
-      modules = [
-        (inputs.nixos-apple-silicon + /apple-silicon-support)
-        ./hosts/ringo
-        ./modules
-        evyspkgs.nixosModules.default
-        # This is the important part -- add this line to your module list!
-        lix-module.nixosModules.default
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.sharedModules = [ plasma-manager.homeManagerModules.plasma-manager ];
-          home-manager.users.karui = import ./modules/home;
-          home-manager.extraSpecialArgs = { inherit zen-browser; };
-        }
-      ];
-    in nixpkgs.lib.nixosSystem { inherit system modules specialArgs; };
-  };
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nixpkgs-2411,
+      lix-module,
+      home-manager,
+      zen-browser,
+      nixos-apple-silicon,
+      apple-silicon-firmware,
+      darkly-qt,
+      evyspkgs,
+      plasma-manager,
+      kwin-effects-forceblur,
+    }@inputs:
+    {
+      nixosConfigurations.ringo =
+        let
+          system = "aarch64-linux";
+          pkgs-2411 = import nixpkgs-2411 { inherit system; };
+          specialArgs = {
+            inherit
+              self
+              inputs
+              system
+              pkgs-2411
+              ;
+          };
+          modules = [
+            (inputs.nixos-apple-silicon + /apple-silicon-support)
+            ./hosts/ringo
+            ./modules
+            evyspkgs.nixosModules.default
+            # This is the important part -- add this line to your module list!
+            lix-module.nixosModules.default
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.sharedModules = [ plasma-manager.homeManagerModules.plasma-manager ];
+              home-manager.users.karui = import ./modules/home;
+              home-manager.extraSpecialArgs = { inherit zen-browser; };
+            }
+          ];
+        in
+        nixpkgs.lib.nixosSystem { inherit system modules specialArgs; };
+    };
 }

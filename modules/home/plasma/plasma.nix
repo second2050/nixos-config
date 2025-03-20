@@ -28,8 +28,16 @@
 
     kwin = {
       titlebarButtons = {
-        left = [ "close" "minimize" "maximize" "more-window-actions" ];
-        right = [ "on-all-desktops" "keep-above-windows" ];
+        left = [
+          "close"
+          "minimize"
+          "maximize"
+          "more-window-actions"
+        ];
+        right = [
+          "on-all-desktops"
+          "keep-above-windows"
+        ];
       };
       borderlessMaximizedWindows = true;
       effects = {
@@ -235,13 +243,12 @@
           InactiveOutlineUseCustom = true;
           InactiveOutlineColor = "255,255,255";
           InactiveOutlineThickness = 1.00;
-          SecondOutlineThickness = 0; 
+          SecondOutlineThickness = 0;
         };
         Script-temporary-virtual-desktops = {
           oneSpare = true;
         };
 
-        
         # Task Switcher
         TabBox = {
           LayoutName = "sidebar";
@@ -254,7 +261,7 @@
           orderMinimizedMode = 1; # Order minimized windows last
         };
 
-        ElectricBorder = {};
+        ElectricBorder = { };
       };
       darklyrc = {
         Windeco = {

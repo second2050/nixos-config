@@ -12,7 +12,8 @@
 let
   inherit (lib) mkIf mkEnableOption mkDefault;
   cfg = config.karui.hardware;
-in {
+in
+{
   options.karui.hardware = {
     razer = mkEnableOption "razer hardware configuration";
     pen-input = mkEnableOption "graphic tablet configuration";

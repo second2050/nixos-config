@@ -12,7 +12,8 @@
 let
   inherit (lib) mkIf mkEnableOption mkDefault;
   cfg = config.karui.games;
-in {
+in
+{
   options.karui.games = {
     enable = mkEnableOption "karui’s game collection";
     patch = mkEnableOption "use customized game versions";
