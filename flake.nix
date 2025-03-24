@@ -46,6 +46,10 @@
       url = "github:taj-ny/kwin-effects-forceblur";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    flake-programs-sqlite = {
+      url = "github:wamserma/flake-programs-sqlite";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -62,6 +66,7 @@
       evyspkgs,
       plasma-manager,
       kwin-effects-forceblur,
+      flake-programs-sqlite,
     }@inputs:
     {
       nixosConfigurations.ringo =
@@ -91,6 +96,7 @@
               home-manager.users.karui = import ./modules/home;
               home-manager.extraSpecialArgs = { inherit zen-browser; };
             }
+            inputs.flake-programs-sqlite.nixosModules.programs-sqlite
           ];
         in
         nixpkgs.lib.nixosSystem { inherit system modules specialArgs; };
