@@ -53,7 +53,7 @@
         pointSize = 10;
       };
       fixedWidth = {
-        family = "Delugia";
+        family = "Maple Mono NF";
         pointSize = 10;
       };
       small = {

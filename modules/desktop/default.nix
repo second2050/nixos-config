@@ -134,13 +134,14 @@ in
         pkgs.cascadia-code
         pkgs.delugia-code
         pkgs.comfortaa
+        pkgs.maple-mono-NF
       ];
       fontconfig = {
         enable = true;
         defaultFonts = {
           serif = [ "Noto Serif" ];
           sansSerif = [ "Noto Sans" ];
-          monospace = [ "Delugia" ];
+          monospace = [ "Maple Mono NF" ];
           emoji = [ "Noto Color Emoji" ];
         };
       };
@@ -164,6 +165,7 @@ in
       pkgs.kdePackages.yakuake # Drop-Down Terminal
       pkgs.kdePackages.koko # Photos
       pkgs.kdePackages.calligra # Office Suite
+      pkgs.kdePackages.neochat # Matrix
       pkgs.quasselClient # IRC
 
       # Applets
@@ -186,6 +188,9 @@ in
       pkgs.syncthingtray
     ];
     services.flatpak.enable = true;
+    nixpkgs.config.permittedInsecurePackages = [
+      "olm-3.2.16" # dependency of neochat
+    ];
 
     # Fancy Boot
     boot.plymouth = {
