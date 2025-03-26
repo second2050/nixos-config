@@ -95,6 +95,7 @@
             config = {
               General = {
                 buttonSizePercentage = 55;
+                buttons = "5|3|4|10|2|9";
                 visibility = "ActiveMaximizedWindow";
                 selectedPlugin = "org.kde.darkly";
                 useCurrentDecoration = false;
@@ -138,6 +139,8 @@
                 "org.kde.plasma.bluetooth"
                 "org.kde.plasma.networkmanagement"
                 "org.kde.plasma.volume"
+              ];
+              extra = [
                 "martchus.syncthingplasmoid"
               ];
             };
