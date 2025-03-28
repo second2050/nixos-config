@@ -18,7 +18,7 @@
 
     # third party modules
     lix-module = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.92.0.tar.gz";
+      url = "git+https://git.lix.systems/lix-project/nixos-module?ref=release-2.92";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {

@@ -134,7 +134,7 @@ in
         pkgs.cascadia-code
         pkgs.delugia-code
         pkgs.comfortaa
-        pkgs.maple-mono-NF
+        pkgs.maple-mono.NF
       ];
       fontconfig = {
         enable = true;
