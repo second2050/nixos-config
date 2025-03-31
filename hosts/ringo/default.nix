@@ -37,6 +37,7 @@
       # experimentalGPUInstallMode = "replace";
     };
     graphics.enable = true;
+    bluetooth.enable = true;
   };
 
   # enable modules

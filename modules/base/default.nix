@@ -14,6 +14,7 @@ in
   options.karui.base = {
     enable = mkEnableOption "karui’s base configuration";
   };
+  options.system.nixos.codeName = lib.mkOption { apply = _: "Cuddly Cuties"; };
   config = mkIf (cfg.enable) {
     # nix configuration
     nix.settings.experimental-features = mkDefault [
