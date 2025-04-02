@@ -10,28 +10,6 @@
 let
   inherit (lib) mkIf mkEnableOption;
   cfg = config.karui.desktop;
-  # delugia-code = pkgs.stdenvNoCC.mkDerivation rec {
-  #   name = "delugia-code";
-  #   version = "2404.23";
-  #   src = pkgs.fetchzip {
-  #     url = "https://github.com/adam7/delugia-code/releases/download/v${version}/delugia-complete.zip";
-  #     stripRoot = false;
-  #     hash = "sha256-2jIHkkAUDtW0CVwakEzZGHgbMByh/00F5jlZ55RGIag=";
-  #   };
-  #
-  #   installPhase = ''
-  #     runHook preInstall
-  #     install -Dm644 delugia-complete/*.ttf -t $out/share/fonts/truetype
-  #     runHook postInstall
-  #   '';
-  #
-  #   meta = with lib; {
-  #     description = "Monospaced font that includes programming ligatures and is designed to enhance the modern look and feel of the Windows Terminal";
-  #     homepage = "https://github.com/adam7/delugia-code";
-  #     # license = licenses.ofl;
-  #     # platforms = platforms.all;
-  #   };
-  # };
   applet-window-title6 = pkgs.stdenvNoCC.mkDerivation rec {
     name = "applet-window-title6";
     version = "0.9.0";
@@ -79,6 +57,22 @@ let
       runHook preInstall
       mkdir -p "$out/share/kwin/scripts/temporary-virtual-desktops"
       cp -r * "$out/share/kwin/scripts/temporary-virtual-desktops"
+      runHook postInstall
+    '';
+  };
+  kosugi-maru = pkgs.stdenvNoCC.mkDerivation rec {
+    name = "kosugi-maru";
+    version = "4.001";
+    src = pkgs.fetchgit {
+      url = "https://github.com/googlefonts/kosugi-maru.git";
+      rev = "bd22c671a9ffc10cc4313e6f2fd75f2b86d6b14b";
+      hash = "sha256-gMilWV4t/yB3TtMe30IXHUlmSJDkD2THYUfbt3eT+h0=";
+    };
+    installPhase = ''
+      runHook preInstall
+      mkdir -p $out/share/X11/fonts
+      cp -r fonts/ttf/*.ttf $out/share/X11/fonts/
+      cp -r fonts/otf/*.otf $out/share/X11/fonts/
       runHook postInstall
     '';
   };
@@ -135,6 +129,7 @@ in
         pkgs.delugia-code
         pkgs.comfortaa
         pkgs.maple-mono.NF
+        kosugi-maru
       ];
       fontconfig = {
         enable = true;
