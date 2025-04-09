@@ -189,7 +189,7 @@
                 unhideOnAttentionNeeded = true;
               };
               launchers = [
-                "applications:zen.desktop"
+                "applications:zen-beta.desktop"
                 "applications:org.kde.dolphin.desktop"
               ];
             };
