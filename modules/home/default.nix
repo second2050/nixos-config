@@ -66,6 +66,7 @@ in
     go
     wl-clipboard
     pokemon-colorscripts
+    logseq
   ];
 
   programs.direnv.enable = true;
