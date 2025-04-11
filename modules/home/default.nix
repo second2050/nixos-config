@@ -1,11 +1,14 @@
 {
   config,
+  nixosConfig,
   pkgs,
   zen-browser,
   ...
 }:
 let
-  homeDirectory = "/home/karui";
+  karuiOpts = nixosConfig.karui;
+  usersOpts = nixosConfig.users.users.${karuiOpts.base.user.username};
+  homeDirectory = "${usersOpts.home}";
   # packages
   pokemon-colorscripts = pkgs.stdenvNoCC.mkDerivation rec {
     name = "pokemon-colorscripts";
@@ -34,7 +37,7 @@ in
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "karui";
+  home.username = "${karuiOpts.base.user.username}";
   home.homeDirectory = "${homeDirectory}";
 
   # This value determines the Home Manager release that your configuration is

@@ -7,12 +7,25 @@
   ...
 }:
 let
-  inherit (lib) mkIf mkEnableOption mkDefault;
+  inherit (lib)
+    mkIf
+    mkEnableOption
+    mkDefault
+    mkOption
+    ;
   cfg = config.karui.base;
 in
 {
   options.karui.base = {
     enable = mkEnableOption "karui’s base configuration";
+    user.username = mkOption {
+      default = "karui";
+      description = "Username for the main user.";
+    };
+    user.fullname = mkOption {
+      default = "karui (>‿◕)~♥";
+      description = "Display name for the main user.";
+    };
   };
   options.system.nixos.codeName = lib.mkOption { apply = _: "Cuddly Cuties"; };
   config = mkIf (cfg.enable) {
@@ -84,8 +97,8 @@ in
     };
 
     # Define a user account. Don't forget to set a password with ‘passwd’.
-    users.users.karui = {
-      description = "karui (>‿◕)~♥";
+    users.users.${cfg.user.username} = {
+      description = cfg.user.username;
       isNormalUser = true;
       extraGroups = [
         "wheel" # Enable ‘sudo’ for the user.
