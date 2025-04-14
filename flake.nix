@@ -9,7 +9,7 @@
     # hardware modules
     nixos-apple-silicon = {
       #url = "github:tpwrules/nixos-apple-silicon";
-      url = "github:marcin-serwin/nixos-apple-silicon/push-nwvktpxoswts";
+      url = "github:second2050/nixos-apple-silicon";
     };
     apple-silicon-firmware = {
       url = "path:/boot/asahi";
