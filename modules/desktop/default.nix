@@ -190,6 +190,7 @@ in
     # Fancy Boot
     boot.plymouth = {
       enable = true;
+      theme = "breeze";
     };
     boot = {
       kernelParams = [
