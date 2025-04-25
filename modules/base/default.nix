@@ -12,6 +12,7 @@ let
     mkEnableOption
     mkDefault
     mkOption
+    mkForce
     ;
   cfg = config.karui.base;
 in
@@ -23,11 +24,11 @@ in
       description = "Username for the main user.";
     };
     user.fullname = mkOption {
-      default = "karui (>‿◕)~♥";
+      default = "${cfg.user.username} (>‿◕)~♥";
       description = "Display name for the main user.";
     };
   };
-  options.system.nixos.codeName = lib.mkOption { apply = _: "Cuddly Cuties"; };
+  options.system.nixos.codeName = mkOption { apply = _: "Cuddly Cuties"; };
   config = mkIf (cfg.enable) {
     # nix configuration
     nix.settings.experimental-features = mkDefault [
@@ -58,7 +59,7 @@ in
       ];
       extraConfig = "DNS=1.1.1.1#one.one.one.one";
     };
-    services.avahi = {
+    services.avahi = mkDefault {
       enable = true;
       nssmdns4 = true;
       publish.enable = true;
@@ -98,7 +99,7 @@ in
 
     # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.${cfg.user.username} = {
-      description = cfg.user.username;
+      description = cfg.user.fullname;
       isNormalUser = true;
       extraGroups = [
         "wheel" # Enable ‘sudo’ for the user.
@@ -114,6 +115,6 @@ in
     };
 
     # misc. config
-    environment.shellAliases = lib.mkForce { }; # disable default shell aliases
+    environment.shellAliases = mkForce { }; # disable default shell aliases
   };
 }
