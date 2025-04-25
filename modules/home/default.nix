@@ -70,6 +70,7 @@ in
     wl-clipboard
     pokemon-colorscripts
     logseq
+    jq
   ];
 
   programs.direnv.enable = true;
