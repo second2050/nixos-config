@@ -139,6 +139,21 @@ in
           monospace = [ "Maple Mono NF" ];
           emoji = [ "Noto Color Emoji" ];
         };
+        localConf = ''
+          <?xml version="1.0"?>
+          <!DOCTYPE fontconfig SYSTEM "urn:fontconfig:fonts.dtd">
+          <fontconfig>
+            <!-- enable stylistic sets for maple-mono -->
+            <match target="font">
+              <test name="family" compare="eq" ignore-blanks="true">
+                <string>Maple Mono NF</string>
+              </test>
+              <edit name="fontfeatures" mode="append">
+                <string>calt on</string>
+              </edit>
+            </match>
+          </fontconfig>
+        '';
       };
     };
 

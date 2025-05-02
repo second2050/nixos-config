@@ -24,6 +24,8 @@
           };
           "Appearance" = {
             "BoldIntense" = "false";
+            "WordMode" = true;
+            "WordModeAscii" = true;
           };
           "Scrolling" = {
             "HighlightScrolledLines" = "false";
@@ -41,12 +43,14 @@
           size = 10;
         };
         extraConfig = {
-          "Appearance" = {
-            "BoldIntense" = "false";
-          };
           "General" = {
             "TerminalCenter" = "true";
             "TerminalMargin" = "2";
+          };
+          "Appearance" = {
+            "BoldIntense" = "false";
+            "WordMode" = true;
+            "WordModeAscii" = true;
           };
         };
       };
