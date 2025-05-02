@@ -10,6 +10,7 @@
     nixos-apple-silicon = {
       #url = "github:tpwrules/nixos-apple-silicon";
       url = "github:second2050/nixos-apple-silicon";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     apple-silicon-firmware = {
       url = "path:/boot/asahi";
