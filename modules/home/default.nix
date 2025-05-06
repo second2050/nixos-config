@@ -52,25 +52,26 @@ in
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
-    starship
-    lsd
-    ripgrep
     bat
-    zellij
-    trash-cli
     difftastic
-    mommy
-    vesktop
-    zen-browser.packages.aarch64-linux.default
-    goldwarden
-    pinentry-qt
-    nodejs
-    python3
     go
-    wl-clipboard
-    pokemon-colorscripts
-    logseq
+    goldwarden
     jq
+    logseq
+    lsd
+    mommy
+    nodejs
+    pinentry-qt
+    pokemon-colorscripts
+    python3
+    ripgrep
+    signal-desktop
+    starship
+    trash-cli
+    vesktop
+    wl-clipboard
+    zellij
+    zen-browser.packages.aarch64-linux.default
   ];
 
   programs.direnv.enable = true;
