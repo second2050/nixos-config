@@ -34,6 +34,7 @@ in
     nix.settings.experimental-features = mkDefault [
       "nix-command"
       "flakes"
+      "repl-flake"
     ];
     nixpkgs.config.allowUnfree = mkDefault true;
 
@@ -116,5 +117,6 @@ in
 
     # misc. config
     environment.shellAliases = mkForce { }; # disable default shell aliases
+    services.getty.greetingLine = "[1;96mNixOS ${config.system.nixos.release}[0m on \\m [\\l]"; # first line on getty login
   };
 }
