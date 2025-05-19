@@ -25,7 +25,7 @@
           "Appearance" = {
             "BoldIntense" = "false";
             "WordMode" = true;
-            "WordModeAscii" = true;
+            "WordModeAscii" = false;
           };
           "Scrolling" = {
             "HighlightScrolledLines" = "false";
@@ -50,7 +50,7 @@
           "Appearance" = {
             "BoldIntense" = "false";
             "WordMode" = true;
-            "WordModeAscii" = true;
+            "WordModeAscii" = false;
           };
         };
       };

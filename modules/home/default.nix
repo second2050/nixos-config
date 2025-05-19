@@ -53,6 +53,7 @@ in
   # environment.
   home.packages = with pkgs; [
     bat
+    btop
     difftastic
     go
     goldwarden
@@ -68,6 +69,7 @@ in
     signal-desktop
     starship
     trash-cli
+    tree-sitter
     vesktop
     wl-clipboard
     zellij
@@ -110,6 +112,8 @@ in
     GOLDWARDEN_SOCKET_PATH = "${homeDirectory}/.goldwarden.sock";
     GOLDWARDEN_SSH_AUTH_SOCKET = "${homeDirectory}/.goldwarden-ssh-agent.sock";
     SSH_AUTH_SOCK = "${homeDirectory}/.goldwarden-ssh-agent.sock";
+    MOZ_ENABLE_WAYLAND = 1;
+    MOX_REMOTE_DBUS = 1;
   };
 
   # Let Home Manager install and manage itself.
