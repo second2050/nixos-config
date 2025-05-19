@@ -1,10 +1,8 @@
 {
   lib,
   pkgs,
-  pkgs-2411,
   config,
   inputs,
-  system,
   ...
 }:
 let
@@ -25,7 +23,7 @@ let
       rm "$out/share/plasma/plasmoids/org.kde.windowtitle/README.md"
       runHook postInstall
     '';
-    meta = with lib; {
+    meta = {
       description = "Plasma 6 applet that shows the application title and icon for active window";
       homepage = "https://github.com/dhruv8sh/plasma6-window-title-applet";
     };
@@ -60,7 +58,7 @@ let
       runHook postInstall
     '';
   };
-  kosugi-maru = pkgs.stdenvNoCC.mkDerivation rec {
+  kosugi-maru = pkgs.stdenvNoCC.mkDerivation {
     name = "kosugi-maru";
     version = "4.001";
     src = pkgs.fetchgit {

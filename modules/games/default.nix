@@ -2,15 +2,10 @@
   lib,
   pkgs,
   config,
-  inputs,
-  system,
-  stdenv,
-  fetchzip,
-  fetchFromGithub,
   ...
 }:
 let
-  inherit (lib) mkIf mkEnableOption mkDefault;
+  inherit (lib) mkIf mkEnableOption;
   cfg = config.karui.games;
 in
 {
