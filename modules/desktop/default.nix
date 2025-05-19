@@ -83,7 +83,7 @@ in
   };
   config = mkIf (cfg.enable) {
     # KDE
-    services.xserver.enable = true;
+    programs.xwayland.enable = true;
     services.displayManager = {
       autoLogin.user = "karui";
       sddm = {
@@ -128,7 +128,8 @@ in
         pkgs.cascadia-code
         pkgs.delugia-code
         pkgs.comfortaa
-        pkgs.maple-mono.NF
+        pkgs.maple-mono.NF-unhinted
+        pkgs.maple-mono.NF-CN-unhinted
         kosugi-maru
       ];
       fontconfig = {
