@@ -13,6 +13,14 @@ let
     mkForce
     ;
   cfg = config.karui.base;
+  en_xx = pkgs.fetchzip {
+    url = "https://xyne.dev/projects/locale-en_xx/src/locale-en_xx-2017.tar.xz";
+    hash = "sha256-EgvEZ5RVNMlDyzIPIpfr8hBD6lGbljtXhE4IjzJDq9I=";
+  };
+  en_de = pkgs.fetchurl {
+    url = "https://raw.githubusercontent.com/leander-j/en_DE/8b172dde948f16cd8ec5966661e2c5b96c7ca983/en_DE";
+    hash = "sha256-I/u1I55tkQTv6SoF/1fSAysnhNnMlUX1QPPnJvoovvQ=";
+  };
 in
 {
   options.karui.base = {
@@ -67,12 +75,40 @@ in
     # time, date and i18n
     time.timeZone = mkDefault "Europe/Berlin";
     i18n = mkDefault {
-      defaultLocale = "en_US.UTF-8";
-      supportedLocales = [
-        "en_US.UTF-8/UTF-8"
+      defaultLocale = "en_XX.UTF-8";
+      extraLocaleSettings = {
+        LC_CTYPE = "en_US.UTF-8";
+        LC_NUMERIC = "en_XX.UTF-8";
+        LC_TIME = "en_XX.UTF-8";
+        LC_COLLATE = "en_DE.UTF-8";
+        LC_MONETARY = "en_DE.UTF-8";
+        LC_PAPER = "en_DE.UTF-8";
+        LC_NAME = "en_DE.UTF-8";
+        LC_ADDRESS = "en_DE.UTF-8";
+        LC_TELEPHONE = "en_DE.UTF-8";
+        LC_MEASUREMENT = "en_DE.UTF-8";
+        LC_IDENTIFICATION = "en_DE.UTF-8";
+      };
+      extraLocales = [
         "de_DE.UTF-8/UTF-8"
         "ja_JP.UTF-8/UTF-8"
+        "en_DE.UTF-8/UTF-8"
+        "en_XX.UTF-8/UTF-8"
       ];
+      glibcLocales =
+        (pkgs.glibcLocales.override {
+          allLocales = false;
+          locales = config.i18n.supportedLocales;
+        }).overrideAttrs
+          (_: {
+            postUnpack = ''
+              cp ${en_de} $sourceRoot/localedata/locales/en_DE
+              cp ${en_xx}/en_XX@POSIX $sourceRoot/localedata/locales/en_XX
+              echo 'en_DE.UTF-8/UTF-8 \' >> $sourceRoot/localedata/SUPPORTED
+              echo 'en_XX.UTF-8/UTF-8 \' >> $sourceRoot/localedata/SUPPORTED
+              cat $sourceRoot/localedata/SUPPORTED
+            '';
+          });
     };
     console = mkDefault {
       keyMap = "uk";
