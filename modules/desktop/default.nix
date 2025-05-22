@@ -165,6 +165,7 @@ in
     ];
 
     # Extra Packages
+    programs.kdeconnect.enable = true;
     programs.kde-pim = {
       enable = true;
       merkuro = true;
