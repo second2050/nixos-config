@@ -4,12 +4,11 @@
   inputs = {
     # nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-2411.url = "github:nixos/nixpkgs/nixos-24.11";
 
     # hardware modules
     nixos-apple-silicon = {
-      #url = "github:tpwrules/nixos-apple-silicon";
-      url = "github:second2050/nixos-apple-silicon";
+      url = "github:tpwrules/nixos-apple-silicon";
+      # url = "github:second2050/nixos-apple-silicon";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     apple-silicon-firmware = {
@@ -58,7 +57,6 @@
     {
       self,
       nixpkgs,
-      nixpkgs-2411,
       lix-module,
       home-manager,
       zen-browser,
@@ -74,13 +72,11 @@
       nixosConfigurations.ringo =
         let
           system = "aarch64-linux";
-          pkgs-2411 = import nixpkgs-2411 { inherit system; };
           specialArgs = {
             inherit
               self
               inputs
               system
-              pkgs-2411
               ;
           };
           modules = [
