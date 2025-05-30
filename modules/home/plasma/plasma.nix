@@ -229,7 +229,10 @@
           BottomCornerRadius = 6;
           MenuCornerRadius = 6;
           TopCornerRadius = 6;
-          WindowClasses = "zen"; # these will be force blurred
+          WindowClasses = ''
+            zen
+            contour
+          ''; # these will be force blurred
         };
         Round-Corners = {
           Size = 6; # ActiveCornerRadius

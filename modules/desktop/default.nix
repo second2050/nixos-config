@@ -135,7 +135,7 @@ in
         defaultFonts = {
           serif = [ "Noto Serif" ];
           sansSerif = [ "Noto Sans" ];
-          monospace = [ "Maple Mono NF" ];
+          monospace = [ "Maple Mono NF CN" ];
           emoji = [ "Noto Color Emoji" ];
         };
         localConf = ''
@@ -146,6 +146,13 @@ in
             <match target="font">
               <test name="family" compare="eq" ignore-blanks="true">
                 <string>Maple Mono NF</string>
+              </test>
+              <edit name="fontfeatures" mode="append">
+                <string>calt on</string>
+              </edit>
+            <match target="font">
+              <test name="family" compare="eq" ignore-blanks="true">
+                <string>Maple Mono NF CN</string>
               </test>
               <edit name="fontfeatures" mode="append">
                 <string>calt on</string>
@@ -176,6 +183,7 @@ in
       pkgs.kdePackages.koko # Photos
       pkgs.kdePackages.calligra # Office Suite
       pkgs.kdePackages.neochat # Matrix
+      pkgs.kdePackages.partitionmanager
       pkgs.quasselClient # IRC
 
       # Applets
@@ -194,6 +202,7 @@ in
       pkgs.kde-rounded-corners
 
       # Misc. Applications
+      pkgs.contour # Alternative Terminal
       pkgs.syncthing
       pkgs.syncthingtray
     ];
@@ -221,6 +230,8 @@ in
       enableSystemSlice = true;
       enableUserSlices = true;
     };
+
+    powerManagement.enable = true;
 
     karui.hardware.pen-input = true;
   };
