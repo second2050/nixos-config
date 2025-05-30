@@ -5,6 +5,7 @@
 {
   pkgs,
   inputs,
+  lib,
   ...
 }:
 
@@ -35,6 +36,7 @@
       # experimentalGPUInstallMode = "replace";
     };
     graphics.enable = true;
+    graphics.package = lib.mkForce pkgs.mesa;
     bluetooth.enable = true;
   };
 
