@@ -150,6 +150,7 @@ in
               <edit name="fontfeatures" mode="append">
                 <string>calt on</string>
               </edit>
+            </match>
             <match target="font">
               <test name="family" compare="eq" ignore-blanks="true">
                 <string>Maple Mono NF CN</string>
@@ -165,6 +166,9 @@ in
 
     # Extra Services
     services.power-profiles-daemon.enable = true;
+    hardware.sane.enable = true;
+    hardware.sane.netConf = "192.168.2.8";
+    services.printing.enable = true;
 
     # Exclude Default Packages
     environment.plasma6.excludePackages = with pkgs; [
