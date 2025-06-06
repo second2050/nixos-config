@@ -34,7 +34,7 @@ in
       description = "Display name for the main user.";
     };
   };
-  options.system.nixos.codeName = mkOption { apply = _: "Cuddly Cuties"; };
+  options.system.nixos.codeName = mkOption { apply = _: "Phym"; };
   config = mkIf (cfg.enable) {
     # nix configuration
     nix.settings.experimental-features = mkDefault [
