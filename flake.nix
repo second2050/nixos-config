@@ -68,7 +68,24 @@
       kwin-effects-forceblur,
       flake-programs-sqlite,
     }@inputs:
+    let
+      eachSystem =
+        f:
+        nixpkgs.lib.genAttrs nixpkgs.lib.systems.flakeExposed (system: f nixpkgs.legacyPackages.${system});
+    in
     {
+      # nix development shell
+      devShells = eachSystem (pkgs: {
+        default = pkgs.mkShellNoCC {
+          name = "nix-configuration";
+          packages = [
+            pkgs.nixfmt-rfc-style
+            pkgs.nh
+          ];
+        };
+      });
+
+      # system configurations
       nixosConfigurations.ringo =
         let
           system = "aarch64-linux";
