@@ -154,7 +154,7 @@ in
     home-manager.useUserPackages = true;
     home-manager.sharedModules = [ inputs.plasma-manager.homeManagerModules.plasma-manager ];
     home-manager.users.${cfg.user.username} = import ../home;
-    home-manager.extraSpecialArgs = { 
+    home-manager.extraSpecialArgs = {
       inherit inputs;
       userName = cfg.user.username;
       userHome = config.users.users.${cfg.user.username}.home;
