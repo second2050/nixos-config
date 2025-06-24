@@ -48,6 +48,7 @@
       enable = true;
       patch = true;
     };
+    hardware.extra = true;
   };
 
   # networking options

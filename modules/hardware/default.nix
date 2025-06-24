@@ -11,6 +11,7 @@ in
   options.karui.hardware = {
     razer = mkEnableOption "razer hardware configuration";
     pen-input = mkEnableOption "graphic tablet configuration";
+    extra = mkEnableOption "extra udev rules and packages";
   };
   config = {
     # razer
@@ -24,5 +25,10 @@ in
       enable = true;
       daemon.enable = true;
     };
+    services.udev.extraRules = mkIf (cfg.extra) ''
+      # led name badge
+      SUBSYSTEM=="usb",  ATTRS{idVendor}=="0416", ATTRS{idProduct}=="5020", MODE="0666"
+      KERNEL=="hidraw*", ATTRS{idVendor}=="0416", ATTRS{idProduct}=="5020", ATTRS{busnum}=="1", MODE="0666"
+    '';
   };
 }
