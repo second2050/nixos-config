@@ -104,16 +104,25 @@
             # This is the important part -- add this line to your module list!
             lix-module.nixosModules.default
             home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.sharedModules = [ plasma-manager.homeManagerModules.plasma-manager ];
-              home-manager.users.karui = import ./modules/home;
-              home-manager.extraSpecialArgs = { inherit zen-browser; };
-            }
             inputs.flake-programs-sqlite.nixosModules.programs-sqlite
           ];
         in
         nixpkgs.lib.nixosSystem { inherit system modules specialArgs; };
+
+      # home configurations
+      homeConfigurations = eachSystem (
+        pkgs:
+        home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          extraSpecialArgs = {
+            inherit inputs;
+            userName = builtins.getEnv "USER";
+            userHome = builtins.getEnv "HOME";
+          };
+          modules = [
+            ./modules/home
+          ];
+        }
+      );
     };
 }

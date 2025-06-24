@@ -2,6 +2,7 @@
   lib,
   pkgs,
   config,
+  inputs,
   ...
 }:
 let
@@ -146,6 +147,17 @@ in
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFlAc7SsDm9n72StyPmm6CJsLFCd14SOb/cXDoLxiKRN 0001 second2050@vault"
       ];
       shell = pkgs.fish;
+    };
+
+    # home-manager
+    home-manager.useGlobalPkgs = true;
+    home-manager.useUserPackages = true;
+    home-manager.sharedModules = [ inputs.plasma-manager.homeManagerModules.plasma-manager ];
+    home-manager.users.${cfg.user.username} = import ../home;
+    home-manager.extraSpecialArgs = { 
+      inherit inputs;
+      userName = cfg.user.username;
+      userHome = config.users.users.${cfg.user.username}.home;
     };
 
     # misc. config

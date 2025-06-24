@@ -1,13 +1,11 @@
-{
-  nixosConfig,
+args@{
   pkgs,
-  zen-browser,
+  inputs,
+  userName,
+  userHome,
   ...
 }:
 let
-  karuiOpts = nixosConfig.karui;
-  usersOpts = nixosConfig.users.users.${karuiOpts.base.user.username};
-  homeDirectory = "${usersOpts.home}";
   # packages
   pokemon-colorscripts = pkgs.stdenvNoCC.mkDerivation {
     name = "pokemon-colorscripts";
@@ -31,12 +29,9 @@ let
   };
 in
 {
-  imports = [
-    ./plasma
-  ];
   # User informations for Home Manager
-  home.username = "${karuiOpts.base.user.username}";
-  home.homeDirectory = "${homeDirectory}";
+  home.username = userName;
+  home.homeDirectory = userHome;
 
   # Packages
   home.packages = with pkgs; [
@@ -61,16 +56,16 @@ in
     vesktop
     wl-clipboard
     zellij
-    zen-browser.packages.aarch64-linux.default
+    inputs.zen-browser.packages.${pkgs.system}.default
   ];
 
   programs.direnv.enable = true;
 
   # Environment Variables
   systemd.user.sessionVariables = {
-    GOLDWARDEN_SOCKET_PATH = "${homeDirectory}/.goldwarden.sock";
-    GOLDWARDEN_SSH_AUTH_SOCKET = "${homeDirectory}/.goldwarden-ssh-agent.sock";
-    SSH_AUTH_SOCK = "${homeDirectory}/.goldwarden-ssh-agent.sock";
+    GOLDWARDEN_SOCKET_PATH = "${userHome}/.goldwarden.sock";
+    GOLDWARDEN_SSH_AUTH_SOCKET = "${userHome}/.goldwarden-ssh-agent.sock";
+    SSH_AUTH_SOCK = "${userHome}/.goldwarden-ssh-agent.sock";
     MOZ_ENABLE_WAYLAND = 1;
     MOX_REMOTE_DBUS = 1;
   };

@@ -3,6 +3,7 @@
   pkgs,
   config,
   inputs,
+  self,
   ...
 }:
 let
@@ -90,6 +91,11 @@ in
       };
     };
     services.desktopManager.plasma6.enable = true;
+
+    # KDE Home-Manager configuration
+    home-manager.users.${config.karui.base.user.username}.imports = [
+      "${self}/modules/home/plasma"
+    ];
 
     # Sound Server
     services.pipewire = {
