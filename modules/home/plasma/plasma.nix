@@ -24,6 +24,8 @@
       alwaysShowClock = true;
     };
 
+    session.sessionRestore.restoreOpenApplicationsOnLogin = "startWithEmptySession";
+
     kwin = {
       titlebarButtons = {
         left = [
@@ -80,6 +82,15 @@
         "Walk Through Windows (Reverse)" = "Alt+Shift+Tab";
         "Walk Through Windows Alternative" = "Meta+Tab";
         "Walk Through Windows Alternative (Reverse)" = "Meta+Shift+Tab";
+      };
+    };
+
+    krunner = {
+      shortcuts = {
+        launch = [
+          "Search"
+          "Meta+Space"
+        ];
       };
     };
 
@@ -272,11 +283,13 @@
       };
     };
 
-    input.keyboard = {
-      options = [
-        "shift:both_capslock_cancel"
-        "compose:caps"
-      ];
+    input = {
+      keyboard = {
+        options = [
+          "shift:both_capslock_cancel"
+          "compose:caps"
+        ];
+      };
     };
   };
 }

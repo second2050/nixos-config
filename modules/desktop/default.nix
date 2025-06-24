@@ -211,6 +211,12 @@ in
       kwin-scripts-temporary-virtual-desktops
       pkgs.kde-rounded-corners
 
+      # Spellchecker
+      pkgs.hunspell
+      pkgs.hunspellDicts.de_DE
+      pkgs.hunspellDicts.en_GB-large
+      pkgs.hunspellDicts.en_US-large
+
       # Misc. Applications
       pkgs.contour # Alternative Terminal
       pkgs.syncthing
