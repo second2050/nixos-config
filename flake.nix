@@ -101,7 +101,6 @@
             ./hosts/ringo
             ./modules
             evyspkgs.nixosModules.default
-            # This is the important part -- add this line to your module list!
             lix-module.nixosModules.default
             home-manager.nixosModules.home-manager
             inputs.flake-programs-sqlite.nixosModules.programs-sqlite

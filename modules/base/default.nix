@@ -132,6 +132,7 @@ in
       enable = true;
       flake = "/etc/nixos";
     };
+    programs.command-not-found.enable = true;
 
     # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.${cfg.user.username} = {
