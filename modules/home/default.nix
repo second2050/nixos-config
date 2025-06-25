@@ -60,6 +60,15 @@ in
   ];
 
   programs.direnv.enable = true;
+  programs.neovim = {
+    enable = true;
+    vimAlias = true;
+    viAlias = true;
+    extraPackages = [
+      pkgs.clang
+      pkgs.luarocks
+    ];
+  };
 
   # Environment Variables
   systemd.user.sessionVariables = {
