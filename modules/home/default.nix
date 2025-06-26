@@ -39,24 +39,18 @@ in
     btop
     difftastic
     go
-    goldwarden
     jq
-    logseq
     lsd
     mommy
     nodejs
-    pinentry-qt
     pokemon-colorscripts
     python3
     ripgrep
-    signal-desktop
     starship
     trash-cli
     tree-sitter
-    vesktop
     wl-clipboard
     zellij
-    inputs.zen-browser.packages.${pkgs.system}.default
   ];
 
   programs.direnv.enable = true;
@@ -72,11 +66,6 @@ in
 
   # Environment Variables
   systemd.user.sessionVariables = {
-    GOLDWARDEN_SOCKET_PATH = "${userHome}/.goldwarden.sock";
-    GOLDWARDEN_SSH_AUTH_SOCKET = "${userHome}/.goldwarden-ssh-agent.sock";
-    SSH_AUTH_SOCK = "${userHome}/.goldwarden-ssh-agent.sock";
-    MOZ_ENABLE_WAYLAND = 1;
-    MOX_REMOTE_DBUS = 1;
   };
 
   # Let Home Manager install and manage itself.

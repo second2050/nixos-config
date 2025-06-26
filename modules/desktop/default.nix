@@ -95,6 +95,7 @@ in
     # KDE Home-Manager configuration
     home-manager.users.${config.karui.base.user.username}.imports = [
       "${self}/modules/home/plasma"
+      "${self}/modules/home/desktop"
     ];
 
     # Sound Server
