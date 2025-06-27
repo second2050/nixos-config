@@ -1,18 +1,5 @@
 {
   "nodes": {
-    "apple-silicon-firmware": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1741621822,
-        "narHash": "sha256-RzSJbRSoNUT0vcvGhYnmY48y34kN1y+xFoumDe+S0RA=",
-        "path": "/boot/asahi",
-        "type": "path"
-      },
-      "original": {
-        "path": "/boot/asahi",
-        "type": "path"
-      }
-    },
     "darkly-qt": {
       "inputs": {
         "nixpkgs": [
@@ -287,7 +274,6 @@
     },
     "root": {
       "inputs": {
-        "apple-silicon-firmware": "apple-silicon-firmware",
         "darkly-qt": "darkly-qt",
         "evyspkgs": "evyspkgs",
         "flake-programs-sqlite": "flake-programs-sqlite",

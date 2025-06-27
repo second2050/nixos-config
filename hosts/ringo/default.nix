@@ -30,7 +30,12 @@
   # hardware stuff
   hardware = {
     asahi = {
-      peripheralFirmwareDirectory = inputs.apple-silicon-firmware;
+      peripheralFirmwareDirectory = pkgs.requireFile {
+        name = "apple-silicon-firmware-ringo";
+        url = "file:///boot/asahi";
+        sha256 = "046ijbphv9lb2sqjzmqdi7gk53v3ws4qbinbpps48dd82inqjd27";
+        hashMode = "recursive";
+      };
       withRust = true;
       useExperimentalGPUDriver = true;
       # experimentalGPUInstallMode = "replace";

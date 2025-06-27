@@ -11,10 +11,6 @@
       # url = "github:second2050/nixos-apple-silicon";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    apple-silicon-firmware = {
-      url = "path:/boot/asahi";
-      flake = false;
-    };
 
     # third party modules
     lix-module = {
@@ -61,7 +57,6 @@
       home-manager,
       zen-browser,
       nixos-apple-silicon,
-      apple-silicon-firmware,
       darkly-qt,
       evyspkgs,
       plasma-manager,
@@ -121,7 +116,9 @@
           };
           modules = [
             ./modules/home
-            { home.packages = [ pkgs.fish ]; }
+            {
+              home.packages = [ pkgs.fish ];
+            }
           ];
         }
       );
