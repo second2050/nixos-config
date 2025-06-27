@@ -81,6 +81,7 @@
           packages = [
             pkgs.nixfmt-rfc-style
             pkgs.nh
+            pkgs.git
           ];
         };
       });
@@ -120,6 +121,7 @@
           };
           modules = [
             ./modules/home
+            { home.packages = [ pkgs.fish ]; }
           ];
         }
       );

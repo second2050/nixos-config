@@ -38,6 +38,7 @@ in
     bat
     btop
     difftastic
+    git
     go
     jq
     lsd
