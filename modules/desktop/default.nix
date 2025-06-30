@@ -195,6 +195,7 @@ in
       pkgs.kdePackages.calligra # Office Suite
       pkgs.kdePackages.neochat # Matrix
       pkgs.kdePackages.partitionmanager
+      pkgs.haruna # Video Player
       pkgs.quasselClient # IRC
 
       # Applets
