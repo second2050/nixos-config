@@ -155,15 +155,15 @@
     "lix": {
       "flake": false,
       "locked": {
-        "lastModified": 1750762236,
-        "narHash": "sha256-D7YepvFkGE4K1rOkEYA1P6wGj/eFbQXb03nLdBRjjwA=",
-        "rev": "21317ce9658b028cd918171393afe378de783818",
+        "lastModified": 1751235704,
+        "narHash": "sha256-Jzm3KPZ2gL+0Nl3Mw/2E0B3vqDDi1Xt5+9VCXghUDZ8=",
+        "rev": "f3a7bbe5f8d1a8504ddb6362d50106904523e440",
         "type": "tarball",
-        "url": "https://git.lix.systems/api/v1/repos/lix-project/lix/archive/21317ce9658b028cd918171393afe378de783818.tar.gz?rev=21317ce9658b028cd918171393afe378de783818"
+        "url": "https://git.lix.systems/api/v1/repos/lix-project/lix/archive/f3a7bbe5f8d1a8504ddb6362d50106904523e440.tar.gz?rev=f3a7bbe5f8d1a8504ddb6362d50106904523e440"
       },
       "original": {
         "type": "tarball",
-        "url": "https://git.lix.systems/lix-project/lix/archive/release-2.92.tar.gz"
+        "url": "https://git.lix.systems/lix-project/lix/archive/release-2.93.tar.gz"
       }
     },
     "lix-module": {
@@ -176,16 +176,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1750776709,
-        "narHash": "sha256-h9vRkc/RIIuo1fDisx8WX1mGYfryWUOhrOvnI8DGYeI=",
-        "ref": "release-2.92",
-        "rev": "f84e0257d1125715e3eb4800a6f36376583984a3",
-        "revCount": 135,
+        "lastModified": 1751240025,
+        "narHash": "sha256-SXUAlxpjPRkArRMHy5+Hdi+PiC+ND9yzzIjiaHmTvQU=",
+        "ref": "release-2.93",
+        "rev": "8b1094356f4723d6e89d3f8a95b333ee16d9ab02",
+        "revCount": 147,
         "type": "git",
         "url": "https://git.lix.systems/lix-project/nixos-module"
       },
       "original": {
-        "ref": "release-2.92",
+        "ref": "release-2.93",
         "type": "git",
         "url": "https://git.lix.systems/lix-project/nixos-module"
       }
@@ -425,11 +425,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1750649182,
-        "narHash": "sha256-beNAQ63SY8HxBsFdMGv/fdLzjQMYgifMh1DcmaIzMjo=",
+        "lastModified": 1751224527,
+        "narHash": "sha256-Mihe18dBS7y13//qPn2LVnSMZdZXI1vvnpKpRCmJcfw=",
         "owner": "0xc000022070",
         "repo": "zen-browser-flake",
-        "rev": "c0785a69fe3988b4ef44c74575f4a2f698f91f32",
+        "rev": "ee2ecf872fe6b7aa14ec90796ba610eeafdd17da",
         "type": "github"
       },
       "original": {

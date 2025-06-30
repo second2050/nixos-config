@@ -41,7 +41,6 @@ in
     nix.settings.experimental-features = mkDefault [
       "nix-command"
       "flakes"
-      "repl-flake"
     ];
     nixpkgs.config.allowUnfree = mkDefault true;
 
