@@ -22,6 +22,10 @@ let
     url = "https://raw.githubusercontent.com/leander-j/en_DE/8b172dde948f16cd8ec5966661e2c5b96c7ca983/en_DE";
     hash = "sha256-I/u1I55tkQTv6SoF/1fSAysnhNnMlUX1QPPnJvoovvQ=";
   };
+  dn42_ca = pkgs.fetchurl {
+    url = "https://ca.dn42.us/crt/root-ca.crt";
+    hash = "sha256-wsMeC9/tlppSNZGrqfZFLAjv3AMj1KwIAWeh2XBpiYs=";
+  };
 in
 {
   options.karui.base = {
@@ -71,6 +75,10 @@ in
       nssmdns4 = true;
       publish.enable = true;
     };
+    security.pki.certificateFiles = [
+      "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"
+      "${dn42_ca}"
+    ];
 
     # time, date and i18n
     time.timeZone = mkDefault "Europe/Berlin";
@@ -161,6 +169,7 @@ in
     };
 
     # misc. config
+    environment.systemPackages = [ pkgs.p11-kit ];
     environment.shellAliases = mkForce { }; # disable default shell aliases
     services.getty.greetingLine = "[1;96mNixOS ${config.system.nixos.release}[0m on \\m [\\l]"; # first line on getty login
   };

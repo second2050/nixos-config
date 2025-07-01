@@ -249,8 +249,15 @@ in
       enableUserSlices = true;
     };
 
-    powerManagement.enable = true;
+    # Firefox use CA store
+    environment.etc = {
+      "zen/policies/policies.json".text = builtins.toJSON {
+        policies.SecurityDevices.Add.p11-kit-trust = "${pkgs.p11-kit}/lib/pkcs11/p11-kit-trust.so";
+      };
+    };
 
+    # Hardware
+    powerManagement.enable = true;
     karui.hardware.pen-input = true;
   };
 }
