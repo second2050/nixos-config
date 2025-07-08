@@ -233,6 +233,17 @@ in
     boot.plymouth = {
       enable = true;
       theme = "breeze";
+      themePackages = [
+        (pkgs.kdePackages.breeze-plymouth.override {
+          logoFile = pkgs.fetchurl {
+            url = "https://i.second2050.me/miku_bordered@5x.png";
+            hash = "sha256-+om4V0ctmy/qb+cGElCxw9RBoDjygVOIcoMSoKLZZnU=";
+          };
+          logoName = "nixos";
+          osName = "MikuOS for Workgroups"; # using NBSP (0x00a0) instead of regular spaces (0x0020)
+          osVersion = config.system.nixos.release;
+        })
+      ];
     };
     boot = {
       kernelParams = [
