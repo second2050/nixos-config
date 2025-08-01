@@ -8,7 +8,6 @@
     # hardware modules
     nixos-apple-silicon = {
       url = "github:tpwrules/nixos-apple-silicon";
-      # url = "github:second2050/nixos-apple-silicon";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -67,42 +66,51 @@
       eachSystem =
         f:
         nixpkgs.lib.genAttrs nixpkgs.lib.systems.flakeExposed (system: f nixpkgs.legacyPackages.${system});
+      mkOsConfig =
+        {
+          system,
+          hostModule,
+          extraModules ? [ ],
+        }:
+        let
+          specialArgs = { inherit self inputs system; };
+          modules = [
+            ./hosts/${hostModule}
+          ]
+          ++ [
+            ./modules
+            evyspkgs.nixosModules.default
+            lix-module.nixosModules.default
+            home-manager.nixosModules.home-manager
+            flake-programs-sqlite.nixosModules.programs-sqlite
+          ]
+          ++ extraModules;
+        in
+        nixpkgs.lib.nixosSystem { inherit system modules specialArgs; };
     in
     {
       # nix development shell
       devShells = eachSystem (pkgs: {
         default = pkgs.mkShellNoCC {
           name = "nix-configuration";
-          packages = [
-            pkgs.nixfmt-rfc-style
-            pkgs.nh
-            pkgs.git
+          packages = with pkgs; [
+            nixfmt-rfc-style
+            nh
+            git
           ];
         };
       });
 
       # system configurations
-      nixosConfigurations.ringo =
-        let
+      nixosConfigurations = {
+        ringo = mkOsConfig {
           system = "aarch64-linux";
-          specialArgs = {
-            inherit
-              self
-              inputs
-              system
-              ;
-          };
-          modules = [
+          hostModule = "ringo";
+          extraModules = [
             (inputs.nixos-apple-silicon + /apple-silicon-support)
-            ./hosts/ringo
-            ./modules
-            evyspkgs.nixosModules.default
-            lix-module.nixosModules.default
-            home-manager.nixosModules.home-manager
-            inputs.flake-programs-sqlite.nixosModules.programs-sqlite
           ];
-        in
-        nixpkgs.lib.nixosSystem { inherit system modules specialArgs; };
+        };
+      };
 
       # home configurations
       homeConfigurations = eachSystem (
