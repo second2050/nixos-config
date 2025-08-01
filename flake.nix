@@ -110,6 +110,11 @@
             (inputs.nixos-apple-silicon + /apple-silicon-support)
           ];
         };
+        stargazer = mkOsConfig {
+          system = "x86_64-linux";
+          hostModule = "stargazer";
+          extraModules = [ ];
+        };
       };
 
       # home configurations
