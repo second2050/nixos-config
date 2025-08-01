@@ -63,6 +63,15 @@
     pkgs.asahi-bless
   ];
 
+  # machine information
+  environment.etc.machine-info = {
+    text = ''
+      ICON_NAME=laptop
+      CHASSIS=laptop
+    '';
+    mode = "0440";
+  };
+
   # Initial NixOS Version, do *not* change.
   # For more information, see `man configuration.nix`
   # or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion
