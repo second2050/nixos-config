@@ -87,6 +87,24 @@
           ++ extraModules;
         in
         nixpkgs.lib.nixosSystem { inherit system modules specialArgs; };
+      mkHomeConfig =
+        {
+          system ? null,
+          pkgs ? nixpkgs.legacyPackages.${system},
+          userName,
+          userHome,
+          extraModules ? [ ],
+        }:
+        let
+          inherit pkgs;
+          extraSpecialArgs = { inherit inputs userName userHome; };
+          modules = [
+            ./modules/home
+            { home.packages = [ pkgs.fish ]; }
+          ]
+          ++ extraModules;
+        in
+        home-manager.lib.homeManagerConfiguration { inherit pkgs extraSpecialArgs modules; };
     in
     {
       # nix development shell
@@ -118,21 +136,24 @@
       };
 
       # home configurations
-      homeConfigurations = eachSystem (
+      homeConfigurations = {
+        "second2050@airhead" = mkHomeConfig {
+          system = "aarch64-darwin";
+          userName = "second2050";
+          userHome = "/Users/second2050";
+        };
+        "second2050@rddbn" = mkHomeConfig {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          userName = "second2050";
+          userHome = "/home/second2050";
+        };
+      }
+      // eachSystem (
         pkgs:
-        home-manager.lib.homeManagerConfiguration {
+        mkHomeConfig {
           inherit pkgs;
-          extraSpecialArgs = {
-            inherit inputs;
-            userName = builtins.getEnv "USER";
-            userHome = builtins.getEnv "HOME";
-          };
-          modules = [
-            ./modules/home
-            {
-              home.packages = [ pkgs.fish ];
-            }
-          ];
+          userName = builtins.getEnv "USER";
+          userHome = builtins.getEnv "HOME";
         }
       );
     };
