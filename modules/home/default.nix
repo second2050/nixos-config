@@ -27,6 +27,11 @@ let
       runHook postInstall
     '';
   };
+  difftastic-aarch64-fixed = pkgs.difftastic.overrideAttrs (oldAttrs: {
+    preBuild = (oldAttrs.preBuild or "") + ''
+      export JEMALLOC_SYS_WITH_LG_PAGE=16
+    '';
+  });
 in
 {
   # User informations for Home Manager
@@ -37,7 +42,7 @@ in
   home.packages = with pkgs; [
     bat
     btop
-    difftastic
+    difftastic-aarch64-fixed
     git
     go
     jq
