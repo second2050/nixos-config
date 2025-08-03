@@ -52,15 +52,8 @@
     {
       self,
       nixpkgs,
-      lix-module,
       home-manager,
-      zen-browser,
-      nixos-apple-silicon,
-      darkly-qt,
-      evyspkgs,
-      plasma-manager,
-      kwin-effects-forceblur,
-      flake-programs-sqlite,
+      ...
     }@inputs:
     let
       eachSystem =
@@ -68,8 +61,8 @@
         nixpkgs.lib.genAttrs nixpkgs.lib.systems.flakeExposed (system: f nixpkgs.legacyPackages.${system});
       mkOsConfig =
         {
-          system,
-          hostModule,
+          system ? builtins.throw "system is undefined!",
+          hostModule ? builtins.throw "hostModule is undefined!",
           extraModules ? [ ],
         }:
         let
@@ -79,20 +72,20 @@
           ]
           ++ [
             ./modules
-            evyspkgs.nixosModules.default
-            lix-module.nixosModules.default
-            home-manager.nixosModules.home-manager
-            flake-programs-sqlite.nixosModules.programs-sqlite
+            inputs.evyspkgs.nixosModules.default
+            inputs.lix-module.nixosModules.default
+            inputs.home-manager.nixosModules.home-manager
+            inputs.flake-programs-sqlite.nixosModules.programs-sqlite
           ]
           ++ extraModules;
         in
         nixpkgs.lib.nixosSystem { inherit system modules specialArgs; };
       mkHomeConfig =
         {
-          system ? null,
+          system ? builtins.throw "system is undefined!",
           pkgs ? nixpkgs.legacyPackages.${system},
-          userName,
-          userHome,
+          userName ? builtins.throw "username is undefined!",
+          userHome ? builtins.throw "home directory is undefined!",
           extraModules ? [ ],
         }:
         let
