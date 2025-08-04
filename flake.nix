@@ -118,7 +118,7 @@
           system = "aarch64-linux";
           hostModule = "ringo";
           extraModules = [
-            (inputs.nixos-apple-silicon + /apple-silicon-support)
+            inputs.nixos-apple-silicon.nixosModules.default
           ];
         };
         stargazer = mkOsConfig {
