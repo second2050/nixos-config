@@ -10,11 +10,13 @@
       url = "github:tpwrules/nixos-apple-silicon";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
 
     # third party modules
     lix-module = {
       url = "git+https://git.lix.systems/lix-project/nixos-module?ref=release-2.93";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.lix.url = "git+https://git.lix.systems/lix-project/lix.git?ref=release-2.93";
     };
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -67,17 +69,17 @@
         }:
         let
           specialArgs = { inherit self inputs system; };
-          modules = [
-            ./hosts/${hostModule}
-          ]
-          ++ [
-            ./modules
-            inputs.evyspkgs.nixosModules.default
-            inputs.lix-module.nixosModules.default
-            inputs.home-manager.nixosModules.home-manager
-            inputs.flake-programs-sqlite.nixosModules.programs-sqlite
-          ]
-          ++ extraModules;
+          modules =
+            with inputs;
+            [
+              ./hosts/${hostModule}
+              ./modules
+              evyspkgs.nixosModules.default
+              lix-module.nixosModules.default
+              home-manager.nixosModules.home-manager
+              flake-programs-sqlite.nixosModules.programs-sqlite
+            ]
+            ++ extraModules;
         in
         nixpkgs.lib.nixosSystem { inherit system modules specialArgs; };
       mkHomeConfig =
@@ -124,7 +126,10 @@
         stargazer = mkOsConfig {
           system = "x86_64-linux";
           hostModule = "stargazer";
-          extraModules = [ ];
+          extraModules = with inputs; [
+            nixos-hardware.nixosModules.common-cpu-amd-pstate
+            nixos-hardware.nixosModules.common-cpu-amd-zenpower
+          ];
         };
       };
 
