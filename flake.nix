@@ -13,10 +13,13 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
     # third party modules
+    lix = {
+      url = "git+https://git.lix.systems/lix-project/lix.git?ref=release-2.93";
+    };
     lix-module = {
       url = "git+https://git.lix.systems/lix-project/nixos-module?ref=release-2.93";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.lix.url = "git+https://git.lix.systems/lix-project/lix.git?ref=release-2.93";
+      inputs.lix.follows = "lix";
     };
     home-manager = {
       url = "github:nix-community/home-manager";
