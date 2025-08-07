@@ -121,6 +121,7 @@ in
     programs.kde-pim = {
       enable = true;
       merkuro = true;
+      kmail = true;
     };
     environment.systemPackages = [
       # KDE Applications

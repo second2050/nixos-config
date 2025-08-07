@@ -8,7 +8,7 @@ args@{
 let
   # packages
   difftastic' =
-    if pkgs.stdenv.hostPlatform.isAarch then
+    if pkgs.stdenv.targetPlatform.isAarch then
       pkgs.difftastic.overrideAttrs (oldAttrs: {
         preBuild = (oldAttrs.preBuild or "") + ''
           export JEMALLOC_SYS_WITH_LG_PAGE=16

@@ -19,6 +19,7 @@
   boot = {
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = false;
+    kernelPackages = pkgs.linuxPackages_xanmod_latest;
   };
 
   # hardware stuff
