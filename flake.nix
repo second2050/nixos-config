@@ -74,6 +74,7 @@
             [
               ./hosts/${hostModule}
               ./modules
+              self.nixosModules.default
               evyspkgs.nixosModules.default
               lix-module.nixosModules.default
               home-manager.nixosModules.home-manager
@@ -154,5 +155,20 @@
           userHome = builtins.getEnv "HOME";
         }
       );
+
+      # modules
+      nixosModules.default =
+        { ... }:
+        {
+          config.nixpkgs.overlays = [
+            self.overlays.default
+          ];
+        };
+
+      # overlays
+      overlays.default = final: prev: import ./pkgs final;
+
+      # packages
+      packages = eachSystem (pkgs: import ./pkgs pkgs);
     };
 }

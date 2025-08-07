@@ -9,72 +9,6 @@
 let
   inherit (lib) mkIf mkEnableOption;
   cfg = config.karui.desktop;
-  applet-window-title6 = pkgs.stdenvNoCC.mkDerivation rec {
-    name = "applet-window-title6";
-    version = "0.9.0";
-    src = pkgs.fetchzip {
-      url = "https://github.com/dhruv8sh/plasma6-window-title-applet/archive/refs/tags/v${version}.tar.gz";
-      stripRoot = false;
-      hash = "sha256-YUnIKX5VlgC8vUdGwYPkzupIUxudAsBcf5tpK0tt0n8=";
-    };
-    installPhase = ''
-      runHook preInstall
-      mkdir -p "$out/share/plasma/plasmoids/org.kde.windowtitle"
-      cp -r plasma6-window-title-applet-${version}/* "$out/share/plasma/plasmoids/org.kde.windowtitle"
-      rm "$out/share/plasma/plasmoids/org.kde.windowtitle/README.md"
-      runHook postInstall
-    '';
-    meta = {
-      description = "Plasma 6 applet that shows the application title and icon for active window";
-      homepage = "https://github.com/dhruv8sh/plasma6-window-title-applet";
-    };
-  };
-  kwin-effects-geometry-change = pkgs.stdenvNoCC.mkDerivation rec {
-    name = "kwin-effects-geometry-change";
-    version = "1.4";
-    src = pkgs.fetchzip {
-      url = "https://github.com/peterfajdiga/kwin4_effect_geometry_change/releases/download/v${version}/kwin4_effect_geometry_change_1_4.tar.gz";
-      stripRoot = false;
-      hash = "sha256-wPgB1ojLNNAnWA7916qBq12VdhEbwvRA1fwb27tZYQk=";
-    };
-    installPhase = ''
-      runHook preInstall
-      mkdir -p "$out/share/kwin/effects/kwin4_effect_geometry_change"
-      cp -r package/* "$out/share/kwin/effects/kwin4_effect_geometry_change"
-      runHook postInstall
-    '';
-  };
-  kwin-scripts-temporary-virtual-desktops = pkgs.stdenvNoCC.mkDerivation rec {
-    name = "";
-    version = "0.4.0";
-    src = pkgs.fetchgit {
-      url = "https://github.com/Ubiquitine/temporary-virtual-desktops.git";
-      rev = "refs/tags/v${version}";
-      hash = "sha256-PU3/FRa38/4bFMNSc7uhSYlHPqaZ9HMbjnTU9Z6O2JI=";
-    };
-    installPhase = ''
-      runHook preInstall
-      mkdir -p "$out/share/kwin/scripts/temporary-virtual-desktops"
-      cp -r * "$out/share/kwin/scripts/temporary-virtual-desktops"
-      runHook postInstall
-    '';
-  };
-  kosugi-maru = pkgs.stdenvNoCC.mkDerivation {
-    name = "kosugi-maru";
-    version = "4.001";
-    src = pkgs.fetchgit {
-      url = "https://github.com/googlefonts/kosugi-maru.git";
-      rev = "bd22c671a9ffc10cc4313e6f2fd75f2b86d6b14b";
-      hash = "sha256-gMilWV4t/yB3TtMe30IXHUlmSJDkD2THYUfbt3eT+h0=";
-    };
-    installPhase = ''
-      runHook preInstall
-      mkdir -p $out/share/X11/fonts
-      cp -r fonts/ttf/*.ttf $out/share/X11/fonts/
-      cp -r fonts/otf/*.otf $out/share/X11/fonts/
-      runHook postInstall
-    '';
-  };
 in
 {
   options.karui.desktop = {
@@ -135,7 +69,7 @@ in
         pkgs.comfortaa
         pkgs.maple-mono.NF-unhinted
         pkgs.maple-mono.NF-CN-unhinted
-        kosugi-maru
+        pkgs.kosugi-maru
       ];
       fontconfig = {
         enable = true;
@@ -201,7 +135,7 @@ in
       # Applets
       pkgs.kdePackages.applet-window-buttons6
       pkgs.kdePackages.kdecoration
-      applet-window-title6
+      pkgs.applet-window-title6
 
       # Themes
       inputs.darkly-qt.packages.${pkgs.system}.darkly-qt5
@@ -209,8 +143,8 @@ in
 
       # KWin Effects + Scripts
       inputs.kwin-effects-forceblur.packages.${pkgs.system}.default
-      kwin-effects-geometry-change
-      kwin-scripts-temporary-virtual-desktops
+      pkgs.kwin-effects-geometry-change
+      pkgs.kwin-scripts-temporary-virtual-desktops
       pkgs.kde-rounded-corners
 
       # Spellchecker
