@@ -12,6 +12,7 @@ let
     mkDefault
     mkOption
     mkForce
+    genAttrs
     ;
   cfg = config.karui.base;
   en_xx = pkgs.fetchzip {
@@ -42,10 +43,24 @@ in
   options.system.nixos.codeName = mkOption { apply = _: "Phym"; };
   config = mkIf (cfg.enable) {
     # nix configuration
-    nix.settings.experimental-features = mkDefault [
-      "nix-command"
-      "flakes"
-    ];
+    nix = {
+      settings.experimental-features = mkDefault [
+        "nix-command"
+        "flakes"
+      ];
+      # add my inputs to the system registry
+      registry = genAttrs (builtins.attrNames inputs) (input: {
+        exact = true;
+        from = {
+          id = input;
+          type = "indirect";
+        };
+        to = {
+          path = inputs.${input}.outPath;
+          type = "path";
+        };
+      });
+    };
     nixpkgs.config.allowUnfree = mkDefault true;
 
     # boot configuration
