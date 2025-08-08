@@ -8,5 +8,6 @@
     ./desktop
     ./games
     ./hardware
+    ./refind
   ];
 }

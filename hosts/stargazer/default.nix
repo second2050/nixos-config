@@ -17,7 +17,11 @@
 
   # setup device bootloader and kernel cmdline
   boot = {
-    loader.systemd-boot.enable = true;
+    loader.refind-stanza = {
+      enable = true;
+      volume = "arch";
+      subvolume = "@nix";
+    };
     loader.efi.canTouchEfiVariables = false;
     kernelPackages = pkgs.linuxPackages_xanmod_latest;
   };
