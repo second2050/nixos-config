@@ -112,12 +112,14 @@
         default = pkgs.mkShellNoCC {
           name = "nix-configuration";
           packages = with pkgs; [
-            nixfmt-rfc-style
+            nixfmt
+            nixfmt-tree
             nh
             git
           ];
         };
       });
+      formatter = eachSystem (pkgs: pkgs.nixfmt-tree);
 
       # system configurations
       nixosConfigurations = {
