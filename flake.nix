@@ -77,7 +77,7 @@
             [
               ./hosts/${hostModule}
               ./modules
-              self.nixosModules.default
+              self.nixosModules.packages
               evyspkgs.nixosModules.default
               lix-module.nixosModules.default
               home-manager.nixosModules.home-manager
@@ -99,6 +99,7 @@
           extraSpecialArgs = { inherit inputs userName userHome; };
           modules = [
             ./modules/home
+            self.homeManagerModules.packages
             { home.packages = [ pkgs.fish ]; }
           ]
           ++ extraModules;
@@ -159,17 +160,24 @@
         }
       );
 
-      # modules
-      nixosModules.default =
+      # exported modules
+      nixosModules.packages =
         { ... }:
         {
           config.nixpkgs.overlays = [
-            self.overlays.default
+            self.overlays.packages
+          ];
+        };
+      homeManagerModules.packages =
+        { ... }:
+        {
+          config.nixpkgs.overlays = [
+            self.overlays.packages
           ];
         };
 
       # overlays
-      overlays.default = final: prev: import ./pkgs final;
+      overlays.packages = final: prev: import ./pkgs final;
 
       # packages
       packages = eachSystem (pkgs: import ./pkgs pkgs);
