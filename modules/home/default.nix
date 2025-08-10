@@ -32,13 +32,11 @@ in
     jq
     lsd
     mommy
-    nodejs
     pokemon-colorscripts
     python3
     ripgrep
     starship
     trash-cli
-    tree-sitter
     wl-clipboard
     zellij
   ];
@@ -48,9 +46,11 @@ in
     enable = true;
     vimAlias = true;
     viAlias = true;
-    extraPackages = [
-      pkgs.clang
-      pkgs.luarocks
+    extraPackages = with pkgs; [
+      clang
+      luarocks
+      nodejs
+      tree-sitter
     ];
   };
 
