@@ -20,6 +20,6 @@ args@{
     GOLDWARDEN_SSH_AUTH_SOCKET = "${userHome}/.goldwarden-ssh-agent.sock";
     SSH_AUTH_SOCK = "${userHome}/.goldwarden-ssh-agent.sock";
     MOZ_ENABLE_WAYLAND = 1;
-    MOX_REMOTE_DBUS = 1;
+    MOZ_REMOTE_DBUS = 1;
   };
 }
