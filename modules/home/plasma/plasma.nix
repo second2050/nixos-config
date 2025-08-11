@@ -223,7 +223,6 @@ in
         General.AccentColor = "233,58,154";
       };
       kwinrc = {
-        Wayland."InputMethod" = "/run/current-system/sw/share/applications/org.fcitx.Fcitx5.desktop";
         # Additional Effect and Script Config
         Plugins = {
           forceblurEnabled = true; # Effect-blurplus
@@ -287,15 +286,6 @@ in
         Windeco = {
           TitleAlignment = "AlignLeft";
         };
-      };
-    };
-
-    input = {
-      keyboard = {
-        options = [
-          "shift:both_capslock_cancel"
-          "compose:caps"
-        ];
       };
     };
   };

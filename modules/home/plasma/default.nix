@@ -1,11 +1,8 @@
-{
-  config,
-  pkgs,
-  ...
-}:
+{ ... }:
 {
   imports = [
-    ./plasma.nix
+    ./input.nix
     ./konsole.nix
+    ./plasma.nix
   ];
 }
