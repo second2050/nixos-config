@@ -1,6 +1,7 @@
 {
   stdenvNoCC,
   fetchgit,
+  lib,
   ...
 }:
 stdenvNoCC.mkDerivation rec {
@@ -8,6 +9,7 @@ stdenvNoCC.mkDerivation rec {
   meta = {
     description = "KWin script to enable temporary virtual desktops";
     homepage = "https://github.com/Ubiquitine/temporary-virtual-desktops";
+    platforms = lib.platforms.linux;
   };
   version = "0.4.0";
   src = fetchgit {

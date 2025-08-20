@@ -1,6 +1,7 @@
 {
   stdenvNoCC,
   fetchgit,
+  lib,
   ...
 }:
 stdenvNoCC.mkDerivation {
@@ -8,6 +9,7 @@ stdenvNoCC.mkDerivation {
   meta = {
     description = "Font with a Gothic Rounded design, with low stroke contrast and monospaced metrics, and rounded terminals";
     homepage = "https://github.com/googlefonts/kosugi-maru";
+    platforms = lib.platforms.linux;
   };
   version = "4.001";
   src = fetchgit {

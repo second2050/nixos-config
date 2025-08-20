@@ -1,6 +1,7 @@
 {
   stdenvNoCC,
   fetchzip,
+  lib,
   ...
 }:
 stdenvNoCC.mkDerivation rec {
@@ -21,5 +22,6 @@ stdenvNoCC.mkDerivation rec {
   meta = {
     description = "Plasma 6 applet that shows the application title and icon for active window";
     homepage = "https://github.com/dhruv8sh/plasma6-window-title-applet";
+    platforms = lib.platforms.linux;
   };
 }

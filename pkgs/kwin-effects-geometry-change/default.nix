@@ -1,6 +1,7 @@
 {
   stdenvNoCC,
   fetchzip,
+  lib,
   ...
 }:
 stdenvNoCC.mkDerivation rec {
@@ -8,6 +9,7 @@ stdenvNoCC.mkDerivation rec {
   meta = {
     description = "KWin animation for windows moved or resized by programs or scripts";
     homepage = "https://github.com/peterfajdiga/kwin4_effect_geometry_change";
+    platforms = lib.platforms.linux;
   };
   version = "1.4";
   src = fetchzip {

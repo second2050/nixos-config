@@ -9,6 +9,7 @@ stdenvNoCC.mkDerivation {
   meta = {
     description = "CLI utility to print out images of pokemon to terminal";
     homepage = "https://gitlab.com/phoneybadger/pokemon-colorscripts";
+    platforms = lib.platforms.all;
     license = lib.licenses.mit;
   };
   version = "1";
