@@ -123,20 +123,21 @@ in
       merkuro = true;
       kmail = true;
     };
-    environment.systemPackages = [
+    environment.systemPackages = with pkgs; [
       # KDE Applications
-      pkgs.kdePackages.yakuake # Drop-Down Terminal
-      pkgs.kdePackages.koko # Photos
-      pkgs.kdePackages.calligra # Office Suite
-      pkgs.kdePackages.neochat # Matrix
-      pkgs.kdePackages.partitionmanager
-      pkgs.haruna # Video Player
-      pkgs.quasselClient # IRC
+      kdePackages.yakuake # Drop-Down Terminal
+      kdePackages.koko # Photos
+      kdePackages.calligra # Office Suite
+      kdePackages.neochat # Matrix
+      kdePackages.partitionmanager
+      haruna # Video Player
+      karp
+      quasselClient # IRC
 
       # Applets
-      pkgs.kdePackages.applet-window-buttons6
-      pkgs.kdePackages.kdecoration
-      pkgs.applet-window-title6
+      kdePackages.applet-window-buttons6
+      kdePackages.kdecoration
+      applet-window-title6
 
       # Themes
       inputs.darkly-qt.packages.${pkgs.system}.darkly-qt5
@@ -144,20 +145,20 @@ in
 
       # KWin Effects + Scripts
       inputs.kwin-effects-forceblur.packages.${pkgs.system}.default
-      pkgs.kwin-effects-geometry-change
-      pkgs.kwin-scripts-temporary-virtual-desktops
-      pkgs.kde-rounded-corners
+      kwin-effects-geometry-change
+      kwin-scripts-temporary-virtual-desktops
+      kde-rounded-corners
 
       # Spellchecker
-      pkgs.hunspell
-      pkgs.hunspellDicts.de_DE
-      pkgs.hunspellDicts.en_GB-large
-      pkgs.hunspellDicts.en_US-large
+      hunspell
+      hunspellDicts.de_DE
+      hunspellDicts.en_GB-large
+      hunspellDicts.en_US-large
 
       # Misc. Applications
-      pkgs.contour # Alternative Terminal
-      pkgs.syncthing
-      pkgs.syncthingtray
+      contour # Alternative Terminal
+      syncthing
+      syncthingtray
     ];
     services.flatpak.enable = true;
     nixpkgs.config.permittedInsecurePackages = [
