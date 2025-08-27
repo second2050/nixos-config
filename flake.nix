@@ -64,6 +64,11 @@
       eachSystem =
         f:
         nixpkgs.lib.genAttrs nixpkgs.lib.systems.flakeExposed (system: f nixpkgs.legacyPackages.${system});
+      eachSystemTested =
+        f:
+        nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-linux" "aarch64-darwin" ] (
+          system: f nixpkgs.legacyPackages.${system}
+        );
       mkOsConfig =
         {
           system ? builtins.throw "system is undefined!",
@@ -182,6 +187,6 @@
       overlays.packages = final: prev: import ./pkgs final;
 
       # packages
-      packages = eachSystem (pkgs: import ./pkgs pkgs);
+      packages = eachSystemTested (pkgs: import ./pkgs pkgs);
     };
 }
