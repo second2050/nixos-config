@@ -23,10 +23,6 @@ let
     url = "https://raw.githubusercontent.com/leander-j/en_DE/8b172dde948f16cd8ec5966661e2c5b96c7ca983/en_DE";
     hash = "sha256-I/u1I55tkQTv6SoF/1fSAysnhNnMlUX1QPPnJvoovvQ=";
   };
-  dn42_ca = pkgs.fetchurl {
-    url = "https://ca.dn42.us/crt/root-ca.crt";
-    hash = "sha256-wsMeC9/tlppSNZGrqfZFLAjv3AMj1KwIAWeh2XBpiYs=";
-  };
 in
 {
   options.karui.base = {
@@ -92,7 +88,7 @@ in
     };
     security.pki.certificateFiles = [
       "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"
-      "${dn42_ca}"
+      ./dn42.crt
     ];
 
     # time, date and i18n
