@@ -7,15 +7,11 @@ args@{
 }:
 let
   # packages
-  difftastic' =
-    if pkgs.stdenv.targetPlatform.isAarch then
-      pkgs.difftastic.overrideAttrs (oldAttrs: {
-        preBuild = (oldAttrs.preBuild or "") + ''
-          export JEMALLOC_SYS_WITH_LG_PAGE=16
-        '';
-      })
-    else
-      pkgs.difftastic;
+  difftastic' = pkgs.difftastic.overrideAttrs (oldAttrs: {
+    preBuild = (oldAttrs.preBuild or "") + ''
+      export JEMALLOC_SYS_WITH_LG_PAGE=16
+    '';
+  });
 in
 {
   # User informations for Home Manager
@@ -26,7 +22,7 @@ in
   home.packages = with pkgs; [
     bat
     btop
-    difftastic'
+    (if stdenv.targetPlatform.isAarch then difftastic' else difftastic)
     git
     go
     jq
