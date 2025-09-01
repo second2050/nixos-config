@@ -46,7 +46,6 @@ in
       enable = true;
       type = "fcitx5";
       fcitx5 = {
-        plasma6Support = true;
         waylandFrontend = true;
         addons = with pkgs; [
           kdePackages.fcitx5-qt
@@ -159,6 +158,7 @@ in
       contour # Alternative Terminal
       syncthing
       syncthingtray
+      xorg.xauth
     ];
     services.flatpak.enable = true;
     nixpkgs.config.permittedInsecurePackages = [
@@ -202,6 +202,9 @@ in
         policies.SecurityDevices.Add.p11-kit-trust = "${pkgs.p11-kit}/lib/pkcs11/p11-kit-trust.so";
       };
     };
+
+    # SSH options
+    programs.ssh.setXAuthLocation = true;
 
     # Hardware
     powerManagement.enable = true;
