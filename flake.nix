@@ -157,6 +157,11 @@
           userName = "second2050";
           userHome = "/home/second2050";
         };
+        "deck@karuis-deck" = mkHomeConfig {
+          system = "x86_64-linux";
+          userName = "deck";
+          userHome = "/home/deck";
+        };
       }
       // eachSystem (
         pkgs:
