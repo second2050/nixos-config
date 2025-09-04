@@ -168,7 +168,6 @@
           system = "x86_64-linux";
           userName = "deck";
           userHome = "/home/deck";
-          extraModules = [ ./hosts/karuis-deck/home.nix ];
         };
       }
       // eachSystem (
