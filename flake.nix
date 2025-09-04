@@ -101,7 +101,14 @@
         }:
         let
           inherit pkgs;
-          extraSpecialArgs = { inherit inputs userName userHome; };
+          extraSpecialArgs = {
+            inherit
+              self
+              inputs
+              userName
+              userHome
+              ;
+          };
           modules = [
             ./modules/home
             self.homeManagerModules.packages
