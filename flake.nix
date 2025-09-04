@@ -168,6 +168,7 @@
           system = "x86_64-linux";
           userName = "deck";
           userHome = "/home/deck";
+          extraModules = [ ./modules/home/desktop ];
         };
       }
       // eachSystem (
