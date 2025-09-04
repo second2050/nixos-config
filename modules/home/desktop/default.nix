@@ -12,6 +12,7 @@ args@{
     pinentry-qt
     signal-desktop
     vesktop
+    wl-clipboard
     youtube-music
     inputs.zen-browser.packages.${pkgs.system}.default
   ];

@@ -24,7 +24,6 @@ in
     btop
     (if stdenv.targetPlatform.isAarch then difftastic' else difftastic)
     git
-    go
     jq
     lsd
     mommy
@@ -33,7 +32,6 @@ in
     ripgrep
     starship
     trash-cli
-    wl-clipboard
     zellij
   ];
 
