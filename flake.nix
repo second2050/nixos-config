@@ -111,7 +111,7 @@
           };
           modules = [
             ./modules/home
-            self.homeManagerModules.packages
+            self.homeModules.packages
             { home.packages = [ pkgs.fish ]; }
           ]
           ++ extraModules;
@@ -188,7 +188,7 @@
             self.overlays.packages
           ];
         };
-      homeManagerModules.packages =
+      homeModules.packages =
         { ... }:
         {
           config.nixpkgs.overlays = [
