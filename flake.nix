@@ -97,6 +97,7 @@
           pkgs ? nixpkgs.legacyPackages.${system},
           userName ? builtins.throw "username is undefined!",
           userHome ? builtins.throw "home directory is undefined!",
+          flakeDir ? "${userHome}/.nixos-config",
           extraModules ? [ ],
         }:
         let
@@ -107,12 +108,13 @@
               inputs
               userName
               userHome
+              flakeDir
               ;
           };
           modules = [
-            ./modules/home
+            ./homeModules/base
+            ./homeModules/standalone
             self.homeModules.packages
-            { home.packages = [ pkgs.fish ]; }
           ]
           ++ extraModules;
         in
@@ -168,7 +170,7 @@
           system = "x86_64-linux";
           userName = "deck";
           userHome = "/home/deck";
-          extraModules = [ ./modules/home/desktop ];
+          extraModules = [ ./homeModules/desktop ];
         };
       }
       // eachSystem (

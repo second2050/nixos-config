@@ -3,6 +3,7 @@
   pkgs,
   config,
   inputs,
+  self,
   ...
 }:
 let
@@ -172,7 +173,7 @@ in
     home-manager.useGlobalPkgs = true;
     home-manager.useUserPackages = true;
     home-manager.sharedModules = [ inputs.plasma-manager.homeManagerModules.plasma-manager ];
-    home-manager.users.${cfg.user.username} = import ../home;
+    home-manager.users.${cfg.user.username} = import "${self}/homeModules/base";
     home-manager.extraSpecialArgs = {
       inherit inputs;
       userName = cfg.user.username;
