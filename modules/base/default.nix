@@ -70,7 +70,14 @@ in
     security.pam.services.systemd-run0 = mkDefault { };
 
     # networking
-    networking.networkmanager.enable = mkDefault true;
+    networking.networkmanager = {
+      enable = mkDefault true;
+      plugins = with pkgs; [
+        networkmanager-l2tp
+        networkmanager-openvpn
+        networkmanager-strongswan
+      ];
+    };
     services.resolved = mkDefault {
       enable = true;
       dnssec = "true";
