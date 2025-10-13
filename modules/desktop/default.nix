@@ -209,5 +209,8 @@ in
     # Hardware
     powerManagement.enable = true;
     karui.hardware.pen-input = true;
+
+    # kmscon
+    services.kmscon.enable = true;
   };
 }
