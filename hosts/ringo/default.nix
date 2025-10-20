@@ -45,7 +45,7 @@
   karui = {
     base.enable = true;
     desktop.enable = true;
-    games.enable = true;
+    games.enable = false;
     hardware.extra = true;
   };
 
@@ -58,57 +58,17 @@
   # host specific packages
   environment.systemPackages = with pkgs; [
     asahi-bless
-    fex
-    muvm
   ];
 
-  # x86 support
-  boot.binfmt.registrations = {
-    i386-linux = {
-      interpreter = "${pkgs.muvm}/bin/muvm --";
-      wrapInterpreterInShell = true;
-      magicOrExtension = ''\x7fELF\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x03\x00'';
-      mask = ''\xff\xff\xff\xff\xff\xfe\xfe\x00\xff\xff\xff\xff\xff\xff\xff\xff\xfe\xff\xff\xff'';
-    };
-    i486-linux = {
-      interpreter = "${pkgs.muvm}/bin/muvm --";
-      wrapInterpreterInShell = true;
-      magicOrExtension = ''\x7fELF\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x06\x00'';
-      mask = ''\xff\xff\xff\xff\xff\xfe\xfe\x00\xff\xff\xff\xff\xff\xff\xff\xff\xfe\xff\xff\xff'';
-    };
-    i586-linux = {
-      interpreter = "${pkgs.muvm}/bin/muvm --";
-      wrapInterpreterInShell = true;
-      magicOrExtension = ''\x7fELF\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x06\x00'';
-      mask = ''\xff\xff\xff\xff\xff\xfe\xfe\x00\xff\xff\xff\xff\xff\xff\xff\xff\xfe\xff\xff\xff'';
-    };
-    i686-linux = {
-      interpreter = "${pkgs.muvm}/bin/muvm --";
-      wrapInterpreterInShell = true;
-      magicOrExtension = ''\x7fELF\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x06\x00'';
-      mask = ''\xff\xff\xff\xff\xff\xfe\xfe\x00\xff\xff\xff\xff\xff\xff\xff\xff\xfe\xff\xff\xff'';
-    };
-    x86_64-linux = {
-      interpreter = "${pkgs.muvm}/bin/muvm --";
-      wrapInterpreterInShell = true;
-      magicOrExtension = ''\x7fELF\x02\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x3e\x00'';
-      mask = ''\xff\xff\xff\xff\xff\xfe\xfe\x00\xff\xff\xff\xff\xff\xff\xff\xff\xfe\xff\xff\xff'';
-    };
+  # asahi specific substituter
+  nix.settings = {
+    extra-substituters = [
+      "https://nixos-apple-silicon.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "nixos-apple-silicon.cachix.org-1:8psDu5SA5dAD7qA0zMy5UT292TxeEPzIz8VVEr2Js20="
+    ];
   };
-  nix.settings.extra-platforms = [
-    "x86_64-linux"
-    "i686-linux"
-  ];
-  nixpkgs.overlays = [
-    (final: prev: {
-      virglrenderer = prev.virglrenderer.overrideAttrs (old: {
-        src = prev.fetchzip {
-          url = "https://gitlab.freedesktop.org/virgl/virglrenderer/-/archive/b997bc18fafdcb8e563b7b07b54412ea61e12082/virglrenderer-b997bc18fafdcb8e563b7b07b54412ea61e12082.tar.bz2";
-          hash = "sha256-6o/A+rvbFVFrH6vKnXQzTAINwkn+OTIdo7dXSUFeCqY=";
-        };
-      });
-    })
-  ];
 
   # machine information
   environment.etc.machine-info = {
