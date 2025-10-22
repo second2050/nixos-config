@@ -14,6 +14,7 @@ let
     mkOption
     mkForce
     genAttrs
+    filter
     ;
   cfg = config.karui.base;
   en_xx = pkgs.fetchzip {
@@ -46,17 +47,31 @@ in
         "flakes"
       ];
       # add my inputs to the system registry
-      registry = genAttrs (builtins.attrNames inputs) (input: {
-        exact = true;
-        from = {
-          id = input;
-          type = "indirect";
+      registry =
+        genAttrs (filter (n: n != "self") (builtins.attrNames inputs)) (input: {
+          exact = true;
+          from = {
+            id = input;
+            type = "indirect";
+          };
+          to = {
+            path = inputs.${input}.outPath;
+            type = "path";
+          };
+        })
+        // {
+          karuipkgs = {
+            exact = true;
+            from = {
+              id = "karuipkgs";
+              type = "indirect";
+            };
+            to = {
+              path = inputs.self.outPath;
+              type = "path";
+            };
+          };
         };
-        to = {
-          path = inputs.${input}.outPath;
-          type = "path";
-        };
-      });
     };
     nixpkgs.config.allowUnfree = mkDefault true;
 
