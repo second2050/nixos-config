@@ -11,6 +11,7 @@ args@{
     logseq
     pinentry-qt
     signal-desktop
+    usbkvm
     vesktop
     wl-clipboard
     youtube-music

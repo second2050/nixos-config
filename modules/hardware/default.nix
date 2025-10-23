@@ -29,6 +29,8 @@ in
       # led name badge
       SUBSYSTEM=="usb",  ATTRS{idVendor}=="0416", ATTRS{idProduct}=="5020", MODE="0666"
       KERNEL=="hidraw*", ATTRS{idVendor}=="0416", ATTRS{idProduct}=="5020", ATTRS{busnum}=="1", MODE="0666"
+      # usbkvm / pro
+      KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{product}=="USBKVM", TAG+="uaccess"
     '';
   };
 }
