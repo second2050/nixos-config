@@ -45,6 +45,8 @@ in
       luarocks
       nodejs
       tree-sitter
+      xclip
+      wl-clipboard
     ];
   };
 
