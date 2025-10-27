@@ -127,7 +127,6 @@ in
       kdePackages.yakuake # Drop-Down Terminal
       kdePackages.koko # Photos
       kdePackages.calligra # Office Suite
-      kdePackages.neochat # Matrix
       kdePackages.partitionmanager
       haruna # Video Player
       karp
@@ -161,9 +160,6 @@ in
       xorg.xauth
     ];
     services.flatpak.enable = true;
-    nixpkgs.config.permittedInsecurePackages = [
-      "olm-3.2.16" # dependency of neochat
-    ];
 
     # Fancy Boot
     boot.plymouth = {
