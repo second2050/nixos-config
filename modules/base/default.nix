@@ -184,6 +184,7 @@ in
         "networkmanager"
         "scanner"
         "lp"
+        "libvirtd"
       ];
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFlAc7SsDm9n72StyPmm6CJsLFCd14SOb/cXDoLxiKRN 0001 second2050@vault"

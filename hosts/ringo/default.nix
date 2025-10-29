@@ -47,6 +47,7 @@
     desktop.enable = true;
     games.enable = false;
     hardware.extra = true;
+    vmHost.enable = true;
   };
 
   # networking options

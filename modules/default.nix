@@ -1,7 +1,4 @@
-{
-  ...
-}:
-
+{ ... }:
 {
   imports = [
     ./base
@@ -9,5 +6,6 @@
     ./games
     ./hardware
     ./refind
+    ./vmHost
   ];
 }
