@@ -44,7 +44,10 @@
   # enable modules
   karui = {
     base.enable = true;
-    desktop.enable = true;
+    desktop = {
+      enable = true;
+      autoLogin = true;
+    };
     games.enable = false;
     hardware.extra = true;
     vmHost.enable = true;

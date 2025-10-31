@@ -13,12 +13,13 @@ in
 {
   options.karui.desktop = {
     enable = mkEnableOption "karui’s desktop configuration";
+    autoLogin = mkEnableOption "enable autologin for encrypted systems";
   };
   config = mkIf (cfg.enable) {
     # KDE
     programs.xwayland.enable = true;
     services.displayManager = {
-      autoLogin.user = "karui";
+      autoLogin.user = mkIf cfg.autoLogin config.karui.base.user.username;
       sddm = {
         enable = true;
         wayland.enable = true;
@@ -124,10 +125,11 @@ in
     };
     environment.systemPackages = with pkgs; [
       # KDE Applications
-      kdePackages.yakuake # Drop-Down Terminal
-      kdePackages.koko # Photos
       kdePackages.calligra # Office Suite
+      kdePackages.kleopatra
+      kdePackages.koko # Photos
       kdePackages.partitionmanager
+      kdePackages.yakuake # Drop-Down Terminal
       haruna # Video Player
       karp
       quasselClient # IRC
@@ -143,9 +145,9 @@ in
 
       # KWin Effects + Scripts
       inputs.kwin-effects-forceblur.packages.${pkgs.system}.default
+      kde-rounded-corners
       kwin-effects-geometry-change
       kwin-scripts-temporary-virtual-desktops
-      kde-rounded-corners
 
       # Spellchecker
       hunspell
