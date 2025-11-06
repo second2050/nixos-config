@@ -1,20 +1,15 @@
 {
+  assets,
   pkgs,
   ...
 }:
-let
-  wallpaper = pkgs.fetchurl {
-    url = "https://w.wallhaven.cc/full/je/wallhaven-je5x6q.jpg";
-    hash = "sha256-vtTveKbU7afh/Sv9oEw/VY8GWyYCZN3erxk6Z6sNgHs=";
-  };
-in
 {
   programs.plasma = {
     enable = true;
     overrideConfig = false;
 
     workspace = {
-      wallpaper = wallpaper;
+      wallpaper = assets.currentWallpaper;
       cursor = {
         theme = "breeze_cursors";
         size = 24;
@@ -27,7 +22,7 @@ in
     };
 
     kscreenlocker.appearance = {
-      wallpaper = wallpaper;
+      wallpaper = assets.currentWallpaper;
       alwaysShowClock = true;
     };
 

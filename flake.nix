@@ -76,7 +76,10 @@
           extraModules ? [ ],
         }:
         let
-          specialArgs = { inherit self inputs system; };
+          specialArgs = {
+            inherit self inputs system;
+            assets = self.assets.${system};
+          };
           modules =
             with inputs;
             [
@@ -110,6 +113,7 @@
               userHome
               flakeDir
               ;
+            assets = self.assets.${pkgs.stdenv.hostPlatform.system};
           };
           modules = [
             ./homeModules/base
@@ -203,5 +207,18 @@
 
       # packages
       packages = eachSystemTested (pkgs: import ./pkgs pkgs);
+
+      # static assets
+      assets = eachSystem (pkgs: import ./assets.nix { inherit pkgs; });
+
+      # lib
+      lib = {
+        inherit
+          eachSystem
+          eachSystemTested
+          mkHomeConfig
+          mkOsConfig
+          ;
+      };
     };
 }

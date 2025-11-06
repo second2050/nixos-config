@@ -1,4 +1,5 @@
 {
+  assets,
   lib,
   pkgs,
   config,
@@ -198,7 +199,7 @@ in
     home-manager.sharedModules = [ inputs.plasma-manager.homeManagerModules.plasma-manager ];
     home-manager.users.${cfg.user.username} = import "${self}/homeModules/base";
     home-manager.extraSpecialArgs = {
-      inherit inputs;
+      inherit assets inputs;
       userName = cfg.user.username;
       userHome = config.users.users.${cfg.user.username}.home;
     };

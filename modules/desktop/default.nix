@@ -1,19 +1,24 @@
 {
-  lib,
-  pkgs,
+  assets,
   config,
   inputs,
+  lib,
+  pkgs,
   self,
   ...
 }:
 let
-  inherit (lib) mkIf mkEnableOption;
+  inherit (lib) mkIf mkEnableOption mkOption;
   cfg = config.karui.desktop;
 in
 {
   options.karui.desktop = {
     enable = mkEnableOption "karui’s desktop configuration";
     autoLogin = mkEnableOption "enable autologin for encrypted systems";
+    wallpaper = mkOption {
+      default = assets.currentWallpaper;
+      description = "wallpaper for this configuration";
+    };
   };
   config = mkIf (cfg.enable) {
     # KDE
@@ -160,6 +165,10 @@ in
       syncthing
       syncthingtray
       xorg.xauth
+      (pkgs.writeTextDir "share/sddm/themes/breeze/theme.conf.user" ''
+        [General]
+        background = "${assets.currentWallpaper}"
+      '')
     ];
     services.flatpak.enable = true;
 
