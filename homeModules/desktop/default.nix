@@ -12,10 +12,18 @@ args@{
     pinentry-qt
     signal-desktop
     usbkvm
-    vesktop
     wl-clipboard
     youtube-music
     inputs.zen-browser.packages.${pkgs.system}.default
+    (
+      if builtins.elem stdenv.targetPlatform.isAarch discord.meta.platforms then
+        discord.override {
+          withOpenASAR = true;
+          withVencord = true;
+        }
+      else
+        vesktop
+    )
   ];
 
   systemd.user.sessionVariables = {
