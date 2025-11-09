@@ -62,7 +62,7 @@ def describe_generation(generation_dir: str):
     except IOError:
         nixos_version = "Unknown"
 
-    kernel_dir = os.path.dirname(os.path.realpath("%s/kernel" % generation_dir))
+    kernel_dir = os.path.realpath("%s/kernel-modules" % generation_dir)
     module_dir = glob.glob("%s/lib/modules/*" % kernel_dir)[0]
     kernel_version = os.path.basename(module_dir)
 
