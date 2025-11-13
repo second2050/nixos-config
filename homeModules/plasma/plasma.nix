@@ -237,7 +237,7 @@
           BlurNonMatching = false;
           FakeBlur = true; # fake blur is easier on the gpu
           FakeBlurDisableWhenWindowBehind = true;
-          FakeBlurImageSourceDesktopWallpaper = false;
+          FakeBlurImageSourceDesktopWallpaper = true;
           BottomCornerRadius = 6;
           MenuCornerRadius = 6;
           TopCornerRadius = 6;
