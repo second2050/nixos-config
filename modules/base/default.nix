@@ -43,10 +43,13 @@ in
   config = mkIf (cfg.enable) {
     # nix configuration
     nix = {
-      settings.experimental-features = mkDefault [
-        "nix-command"
-        "flakes"
-      ];
+      settings = {
+        experimental-features = mkDefault [
+          "nix-command"
+          "flakes"
+        ];
+        trusted-users = [ "@wheel" ];
+      };
       # add my inputs to the system registry
       registry =
         genAttrs (filter (n: n != "self") (builtins.attrNames inputs)) (input: {
