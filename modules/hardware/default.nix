@@ -17,7 +17,7 @@ in
     # razer
     hardware.openrazer = mkIf (cfg.razer) {
       enable = true;
-      users = [ "karui" ];
+      users = [ "${config.karui.base.user.username}" ];
       keyStatistics = true;
     };
     # pen-input
