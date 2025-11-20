@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1761698061,
-        "narHash": "sha256-iyvYHJn9K+cnW2+icxGA3qm69W8RpCz1v8+rb2U/KzQ=",
+        "lastModified": 1763015923,
+        "narHash": "sha256-IJGWKVxztJT/NsonaRjWm5OaW07Rg+kBr6NMhfQiJzM=",
         "owner": "Bali10050",
         "repo": "Darkly",
-        "rev": "b9260d390fb8c673a37500f567b11e3b297216cc",
+        "rev": "5a323b775695f889b495d9f499eceb38ed538b42",
         "type": "github"
       },
       "original": {
@@ -81,11 +81,11 @@
         "utils": "utils_3"
       },
       "locked": {
-        "lastModified": 1762537951,
-        "narHash": "sha256-S+qMPPs0o6qP55DO/dz8Qxk5okxtt5TMTWWR+PoVQ7A=",
+        "lastModified": 1763475399,
+        "narHash": "sha256-loHvKAUCpR7r9CU7SfAetyin/g8iEgkFBsLHmpkvhEo=",
         "owner": "wamserma",
         "repo": "flake-programs-sqlite",
-        "rev": "6c6c3660d9fe14f523363fa6b22001199b8f7bc1",
+        "rev": "28758b765777bced763a0fa46f38e8b2060c51ca",
         "type": "github"
       },
       "original": {
@@ -134,11 +134,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1762463325,
-        "narHash": "sha256-33YUsWpPyeBZEWrKQ2a1gkRZ7i0XCC/2MYpU6BVeQSU=",
+        "lastModified": 1763416652,
+        "narHash": "sha256-8EBEEvtzQ11LCxpQHMNEBQAGtQiCu/pqP9zSovDSbNM=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "0562fef070a1027325dd4ea10813d64d2c967b39",
+        "rev": "ea164b7c9ccdc2321379c2ff78fd4317b4c41312",
         "type": "github"
       },
       "original": {
@@ -178,11 +178,11 @@
         "pre-commit-hooks": "pre-commit-hooks"
       },
       "locked": {
-        "lastModified": 1759940703,
-        "narHash": "sha256-/dXDCzYnQbkqCsvUDIxgIH4BS/fyxIu73m2v4ftJLXQ=",
+        "lastModified": 1763463483,
+        "narHash": "sha256-QWoiRyYb1Vf90aQikjo6G89wDa+FsHRQZtGE237D2LQ=",
         "ref": "release-2.93",
-        "rev": "75c03142049242a5687309e59e4f356fbc92789a",
-        "revCount": 17894,
+        "rev": "d76581dbcb6b32ef251ba98dc10dc1f5d5a1851d",
+        "revCount": 17908,
         "type": "git",
         "url": "https://git.lix.systems/lix-project/lix.git"
       },
@@ -308,11 +308,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1762421567,
-        "narHash": "sha256-i5GIUYgnlNozrsxDKZtRiCyJGbbAI6Queiu3OGcuf4Y=",
+        "lastModified": 1763329080,
+        "narHash": "sha256-S6eZaiRZPvSWv9d2kZO+HrYTelWqn++vsC/bUwOSQ7I=",
         "owner": "tpwrules",
         "repo": "nixos-apple-silicon",
-        "rev": "43db10b6bdc6f80097ddc3acf833ec828af50d40",
+        "rev": "bc52b0623f4367447347cbcc88522ec64486d710",
         "type": "github"
       },
       "original": {
@@ -323,11 +323,11 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1762463231,
-        "narHash": "sha256-hv1mG5j5PTbnWbtHHomzTus77pIxsc4x8VrMjc7+/YE=",
+        "lastModified": 1762847253,
+        "narHash": "sha256-BWWnUUT01lPwCWUvS0p6Px5UOBFeXJ8jR+ZdLX8IbrU=",
         "owner": "NixOS",
         "repo": "nixos-hardware",
-        "rev": "52113c4f5cfd1e823001310e56d9c8d0699a6226",
+        "rev": "899dc449bc6428b9ee6b3b8f771ca2b0ef945ab9",
         "type": "github"
       },
       "original": {
@@ -386,11 +386,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1762363567,
-        "narHash": "sha256-YRqMDEtSMbitIMj+JLpheSz0pwEr0Rmy5mC7myl17xs=",
+        "lastModified": 1763283776,
+        "narHash": "sha256-Y7TDFPK4GlqrKrivOcsHG8xSGqQx3A6c+i7novT85Uk=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "ae814fd3904b621d8ab97418f1d0f2eb0d3716f4",
+        "rev": "50a96edd8d0db6cc8db57dab6bb6d6ee1f3dc49a",
         "type": "github"
       },
       "original": {
@@ -410,11 +410,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1762274591,
-        "narHash": "sha256-Vbhluvk15qwiyNDyPd9tjJh9gxIfUjbKVT79c05Pd3I=",
+        "lastModified": 1762784320,
+        "narHash": "sha256-odsk96Erywk5hs0dhArF38zb7Oe0q6LZ70gXbxAPKno=",
         "owner": "nix-community",
         "repo": "plasma-manager",
-        "rev": "6296d7100cc84b2ff732b7c103a50c2856974cf6",
+        "rev": "7911a0f8a44c7e8b29d031be3149ee8943144321",
         "type": "github"
       },
       "original": {
@@ -594,11 +594,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1762525036,
-        "narHash": "sha256-vAY2vFmoGM47Fu+fVjOeW/xLJyAGAbd7e/4tB6Vt0QY=",
+        "lastModified": 1763457799,
+        "narHash": "sha256-33hJpIuqbn/PHf4VCZAktxDCUxnWLOtMAOyAFd75O9E=",
         "owner": "0xc000022070",
         "repo": "zen-browser-flake",
-        "rev": "5499dafb945eaf92d54374ec3f15053f908e2dc9",
+        "rev": "85bc80b9d8c8b22ed273163dd7c7adfad9287a5d",
         "type": "github"
       },
       "original": {
