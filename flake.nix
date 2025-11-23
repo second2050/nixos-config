@@ -51,6 +51,10 @@
       url = "github:wamserma/flake-programs-sqlite";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixgl = {
+      url = "github:nix-community/nixGL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -174,7 +178,10 @@
           system = "x86_64-linux";
           userName = "deck";
           userHome = "/home/deck";
-          extraModules = [ ./homeModules/desktop ];
+          extraModules = [
+            ./homeModules/deck
+            ./homeModules/desktop
+          ];
         };
       }
       // eachSystem (
