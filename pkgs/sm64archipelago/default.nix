@@ -1,15 +1,16 @@
 {
-  lib,
-  gcc15Stdenv,
+  SDL2,
+  audiofile,
+  cmake,
   fetchFromGitHub,
   fetchpatch,
-  python3,
-  pkg-config,
-  audiofile,
-  SDL2,
-  libGL,
-  cmake,
+  gcc15Stdenv,
   hexdump,
+  lib,
+  libGL,
+  openssl,
+  pkg-config,
+  python3,
   sm64baserom,
   region ? "us",
   _60fps ? true,
@@ -66,6 +67,7 @@ gcc15Stdenv.mkDerivation (finalAttrs: {
     SDL2
     libGL
     cmake
+    openssl
   ];
 
   enableParallelBuilding = true;
@@ -73,6 +75,9 @@ gcc15Stdenv.mkDerivation (finalAttrs: {
 
   makeFlags = [
     "VERSION=${region}"
+    "BETTERCAMERA=1"
+    "NODRAWINGDISTANCE=1"
+    "TEXTURE_FIX=1"
   ]
   ++ lib.optionals gcc15Stdenv.hostPlatform.isDarwin [
     "OSX_BUILD=1"
