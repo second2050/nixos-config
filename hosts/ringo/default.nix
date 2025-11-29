@@ -78,9 +78,9 @@
       name = "muvm-wrapper2";
       executable = true;
       text = ''
-        #!${pkgs.fish}/bin/fish
+        #!${lib.getExe pkgs.fish}
         set pwd (pwd)
-        exec ${pkgs.muvm}/bin/muvm -- ${pkgs.fish}/bin/fish -c "cd $pwd; exec $argv"
+        exec ${lib.getExe pkgs.muvm} -- ${lib.getExe pkgs.fish} -c "cd $pwd; exec $argv"
       '';
     }}";
     fixBinary = true;
