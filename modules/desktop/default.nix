@@ -130,7 +130,6 @@ in
     };
     environment.systemPackages = with pkgs; [
       # KDE Applications
-      kdePackages.calligra # Office Suite
       kdePackages.kleopatra
       kdePackages.koko # Photos
       kdePackages.partitionmanager
@@ -162,6 +161,7 @@ in
 
       # Misc. Applications
       contour # Alternative Terminal
+      libreoffice-qt
       syncthing
       syncthingtray
       xorg.xauth
