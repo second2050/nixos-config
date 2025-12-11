@@ -6,6 +6,10 @@ args@{
   ...
 }:
 {
+  imports = [
+    inputs.zen-browser.homeModules.beta
+  ];
+
   home.packages = with pkgs; [
     goldwarden
     logseq
@@ -14,7 +18,6 @@ args@{
     usbkvm
     wl-clipboard
     youtube-music
-    inputs.zen-browser.packages.${pkgs.system}.default
     (
       if builtins.elem stdenv.targetPlatform.isAarch discord.meta.platforms then
         discord.override {
@@ -25,6 +28,13 @@ args@{
         vesktop
     )
   ];
+
+  programs.zen-browser = {
+    enable = true;
+    nativeMessagingHosts = [
+      pkgs.kdePackages.plasma-browser-integration
+    ];
+  };
 
   systemd.user.sessionVariables = {
     GOLDWARDEN_SOCKET_PATH = "${userHome}/.goldwarden.sock";
