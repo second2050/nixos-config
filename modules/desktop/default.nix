@@ -53,28 +53,31 @@ in
       type = "fcitx5";
       fcitx5 = {
         waylandFrontend = true;
-        addons = with pkgs; [
-          kdePackages.fcitx5-qt
-          fcitx5-mozc-ut
-          fcitx5-gtk
-        ];
+        addons =
+          with pkgs;
+          with kdePackages;
+          [
+            fcitx5-qt
+            fcitx5-mozc-ut
+            fcitx5-gtk
+          ];
       };
     };
 
     # Fonts
     fonts = {
       enableDefaultPackages = true;
-      packages = [
-        pkgs.noto-fonts
-        pkgs.noto-fonts-cjk-sans
-        pkgs.noto-fonts-cjk-serif
-        pkgs.noto-fonts-color-emoji
-        pkgs.cascadia-code
-        pkgs.delugia-code
-        pkgs.comfortaa
-        pkgs.maple-mono.NF-unhinted
-        pkgs.maple-mono.NF-CN-unhinted
-        pkgs.kosugi-maru
+      packages = with pkgs; [
+        noto-fonts
+        noto-fonts-cjk-sans
+        noto-fonts-cjk-serif
+        noto-fonts-color-emoji
+        cascadia-code
+        delugia-code
+        comfortaa
+        maple-mono.NF-unhinted
+        maple-mono.NF-CN-unhinted
+        kosugi-maru
       ];
       fontconfig = {
         enable = true;
@@ -117,9 +120,12 @@ in
     services.printing.enable = true;
 
     # Exclude Default Packages
-    environment.plasma6.excludePackages = with pkgs; [
-      kdePackages.gwenview
-    ];
+    environment.plasma6.excludePackages =
+      with pkgs;
+      with kdePackages;
+      [
+        gwenview
+      ];
 
     # Extra Packages
     programs.kdeconnect.enable = true;
@@ -128,48 +134,53 @@ in
       merkuro = true;
       kmail = true;
     };
-    environment.systemPackages = with pkgs; [
-      # KDE Applications
-      kdePackages.kleopatra
-      kdePackages.koko # Photos
-      kdePackages.partitionmanager
-      kdePackages.yakuake # Drop-Down Terminal
-      haruna # Video Player
-      karp
-      quasselClient # IRC
+    environment.systemPackages =
+      with pkgs;
+      with kdePackages;
+      [
+        # KDE Applications
+        haruna # Video Player
+        karp # KDE PDF Arranger
+        kleopatra # GnuPG Frontend
+        koko # Photos
+        krdc # RDP/VNC client
+        krfb # VNC screen sharing
+        partitionmanager
+        quasselClient # IRC
+        yakuake # Drop-Down Terminal
 
-      # Applets
-      kdePackages.applet-window-buttons6
-      kdePackages.kdecoration
-      applet-window-title6
+        # Applets
+        applet-window-buttons6
+        applet-window-title6
+        kdecoration
 
-      # Themes
-      inputs.darkly-qt.packages.${pkgs.system}.darkly-qt5
-      inputs.darkly-qt.packages.${pkgs.system}.darkly-qt6
+        # Themes
+        inputs.darkly-qt.packages.${pkgs.system}.darkly-qt5
+        inputs.darkly-qt.packages.${pkgs.system}.darkly-qt6
 
-      # KWin Effects + Scripts
-      inputs.kwin-effects-forceblur.packages.${pkgs.system}.default
-      kde-rounded-corners
-      kwin-effects-geometry-change
-      kwin-scripts-temporary-virtual-desktops
+        # KWin Effects + Scripts
+        inputs.kwin-effects-forceblur.packages.${pkgs.system}.default
+        kde-rounded-corners
+        kwin-effects-geometry-change
+        kwin-scripts-temporary-virtual-desktops
 
-      # Spellchecker
-      hunspell
-      hunspellDicts.de_DE
-      hunspellDicts.en_GB-large
-      hunspellDicts.en_US-large
+        # Spellchecker
+        hunspell
+        hunspellDicts.de_DE
+        hunspellDicts.en_GB-large
+        hunspellDicts.en_US-large
 
-      # Misc. Applications
-      contour # Alternative Terminal
-      libreoffice-qt
-      syncthing
-      syncthingtray
-      xorg.xauth
-      (pkgs.writeTextDir "share/sddm/themes/breeze/theme.conf.user" ''
-        [General]
-        background = "${assets.currentWallpaper}"
-      '')
-    ];
+        # Misc. Applications
+        contour # Alternative Terminal
+        libreoffice-qt
+        syncthing
+        syncthingtray
+        xorg.xauth
+        (pkgs.writeTextDir "share/sddm/themes/breeze/theme.conf.user" ''
+          [General]
+          background = "${assets.currentWallpaper}"
+        '')
+      ];
     services.flatpak.enable = true;
 
     # Fancy Boot
