@@ -12,6 +12,7 @@ args@{
 
   home.packages = with pkgs; [
     goldwarden
+    kdePackages.breeze
     logseq
     pinentry-qt
     signal-desktop
@@ -19,7 +20,7 @@ args@{
     wl-clipboard
     youtube-music
     (
-      if builtins.elem stdenv.targetPlatform.isAarch discord.meta.platforms then
+      if builtins.elem stdenv.targetPlatform.system discord.meta.platforms then
         discord.override {
           withOpenASAR = true;
           withVencord = true;
