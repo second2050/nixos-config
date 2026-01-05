@@ -92,9 +92,7 @@ in
     networking.networkmanager = {
       enable = mkDefault true;
       plugins = with pkgs; [
-        networkmanager-l2tp
         networkmanager-openvpn
-        networkmanager-strongswan
       ];
     };
     services.resolved = mkDefault {

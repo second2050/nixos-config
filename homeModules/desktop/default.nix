@@ -14,11 +14,11 @@ args@{
     goldwarden
     kdePackages.breeze
     logseq
+    pear-desktop
     pinentry-qt
     signal-desktop
     usbkvm
     wl-clipboard
-    youtube-music
     (
       if builtins.elem stdenv.targetPlatform.system discord.meta.platforms then
         discord.override {
