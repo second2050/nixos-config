@@ -103,6 +103,13 @@
     mode = "0440";
   };
 
+  specialisation = {
+    fairydust.configuration = {
+      # configuration that uses the indev fairydust branch of the asahi kernel
+      boot.kernelPackages = lib.mkForce pkgs.linux-asahi-fairydust;
+    };
+  };
+
   # Initial NixOS Version, do *not* change.
   # For more information, see `man configuration.nix`
   # or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion
