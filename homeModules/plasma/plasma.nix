@@ -238,21 +238,21 @@
           FakeBlur = true; # fake blur is easier on the gpu
           FakeBlurDisableWhenWindowBehind = true;
           FakeBlurImageSourceDesktopWallpaper = true;
-          BottomCornerRadius = 6;
+          BottomCornerRadius = 11;
           MenuCornerRadius = 6;
-          TopCornerRadius = 6;
+          TopCornerRadius = 11;
           WindowClasses = ''
             zen
             contour
           ''; # these will be force blurred
         };
         Round-Corners = {
-          Size = 6; # ActiveCornerRadius
+          Size = 11; # ActiveCornerRadius
           ActiveOutlineAlpha = 255;
           ActiveOutlineUseCustom = false;
           ActiveOutlineUsePalette = true;
           OutlineThickness = 1.00;
-          InactiveCornerRadius = 6;
+          InactiveCornerRadius = 11;
           InactiveOutlineAlpha = 63;
           InactiveOutlineUseCustom = true;
           InactiveOutlineColor = "255,255,255";
