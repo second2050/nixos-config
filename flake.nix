@@ -218,6 +218,9 @@
       # static assets
       assets = eachSystem (pkgs: import ./assets.nix { inherit pkgs; });
 
+      # templates
+      templates = import ./templates;
+
       # lib
       lib = {
         inherit
