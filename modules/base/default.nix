@@ -97,14 +97,19 @@ in
     };
     services.resolved = mkDefault {
       enable = true;
-      dnssec = "true";
-      dnsovertls = "opportunistic";
-      fallbackDns = [
-        "1.0.0.1#one.one.one.one"
-        "2606:4700:4700::1111#one.one.one.one"
-        "2606:4700:4700::1001#one.one.one.one"
-      ];
-      extraConfig = "DNS=1.1.1.1#one.one.one.one";
+      settings.Resolve = {
+        Cache = "no-negative";
+        DNSSEC = "true";
+        DNSOverTLS = "opportunistic";
+        DNS = [
+          "2620:fe::fe#dns.quad9.net"
+          "9.9.9.9#dns.quad9.net"
+        ];
+        FallbackDNS = [
+          "2620:fe::9#dns.quad9.net"
+          "149.112.112.112#dns.quad9.net"
+        ];
+      };
     };
     services.avahi = mkDefault {
       enable = true;

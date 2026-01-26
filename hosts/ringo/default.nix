@@ -17,10 +17,13 @@
 
   # setup device bootloader and kernel cmdline
   boot = {
-    loader.systemd-boot.enable = true;
+    loader.systemd-boot = {
+      enable = true;
+      consoleMode = lib.mkForce "max"; # override 2022 workaround from nixos-apple-silicon
+    };
     loader.efi.canTouchEfiVariables = false;
     kernelParams = [
-      "apple_dcp.show_notch=1"
+      "appledrm.show_notch=1"
     ];
     extraModprobeConfig = ''
       options hid_apple fnmode=2
