@@ -13,14 +13,6 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
     # third party modules
-    lix = {
-      url = "git+https://git.lix.systems/lix-project/lix.git?ref=release-2.93";
-    };
-    lix-module = {
-      url = "git+https://git.lix.systems/lix-project/nixos-module?ref=release-2.93";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.lix.follows = "lix";
-    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -75,8 +67,8 @@
         );
       mkOsConfig =
         {
-          system ? builtins.throw "system is undefined!",
-          hostModule ? builtins.throw "hostModule is undefined!",
+          system ? throw "system is undefined!",
+          hostModule ? throw "hostModule is undefined!",
           extraModules ? [ ],
         }:
         let
@@ -91,7 +83,6 @@
               ./modules
               self.nixosModules.packages
               evyspkgs.nixosModules.default
-              lix-module.nixosModules.default
               home-manager.nixosModules.home-manager
               flake-programs-sqlite.nixosModules.programs-sqlite
             ]
@@ -100,10 +91,10 @@
         nixpkgs.lib.nixosSystem { inherit system modules specialArgs; };
       mkHomeConfig =
         {
-          system ? builtins.throw "system is undefined!",
+          system ? throw "system is undefined!",
           pkgs ? nixpkgs.legacyPackages.${system},
-          userName ? builtins.throw "username is undefined!",
-          userHome ? builtins.throw "home directory is undefined!",
+          userName ? throw "username is undefined!",
+          userHome ? throw "home directory is undefined!",
           flakeDir ? "${userHome}/.nixos-config",
           extraModules ? [ ],
         }:

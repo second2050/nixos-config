@@ -41,6 +41,9 @@ in
   };
   options.system.nixos.codeName = mkOption { apply = _: "Phym"; };
   config = mkIf (cfg.enable) {
+    # enable lix by default
+    karui.lix.enable = mkDefault true;
+
     # nix configuration
     nix = {
       settings = {

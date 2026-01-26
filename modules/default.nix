@@ -5,6 +5,7 @@
     ./desktop
     ./games
     ./hardware
+    ./lix
     ./refind
     ./vmHost
   ];
