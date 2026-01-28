@@ -50,6 +50,7 @@ in
         experimental-features = mkDefault [
           "nix-command"
           "flakes"
+          "cgroups"
         ];
         trusted-users = [ "@wheel" ];
       };
