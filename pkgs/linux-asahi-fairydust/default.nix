@@ -18,15 +18,15 @@ let
       inherit stdenv lib;
 
       pname = "linux-asahi-fairydust";
-      version = "6.18.5";
+      version = "6.18.7";
       modDirVersion = version;
       extraMeta.branch = "6.18";
 
       src = fetchFromGitHub {
         owner = "AsahiLinux";
         repo = "linux";
-        rev = "fada65930a9b429d646eb2f384deb61896233284"; # branch = "fairydust"
-        hash = "sha256-Fs20sODkF4bsChqn0nHisei1ddXH99DgdHqogZSPvsI=";
+        rev = "b0b5bbf9f67e9063af591e7a1187d37d0f2b8e29"; # branch = "fairydust"
+        hash = "sha256-CWKAyyGuu9jjcwN3Gz98ZjcTLRPQwnpKd32IyD4zsBw=";
       };
 
       kernelPatches = [
