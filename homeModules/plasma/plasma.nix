@@ -220,7 +220,7 @@
       kwinrc = {
         # Additional Effect and Script Config
         Plugins = {
-          forceblurEnabled = true; # Effect-blurplus
+          better_blur_dxEnabled = true;
           temporary-virtual-desktopsEnabled = true;
           kwin4_effect_shapecornersEnabled = true; # Round-Corners
           kwin4_effect_geometry_changeEnabled = true;
@@ -232,12 +232,15 @@
           SlideBackground = true;
           VerticalGap = 0;
         };
-        Effect-blurplus = {
+        Effect-better-blur-dx = {
           BlurMatching = true;
           BlurNonMatching = false;
-          FakeBlur = true; # fake blur is easier on the gpu
-          FakeBlurDisableWhenWindowBehind = true;
-          FakeBlurImageSourceDesktopWallpaper = true;
+          BlurStrength = 5;
+          RefractionCornerRadius = 22;
+          RefractionEdgeSize = 30;
+          RefractionMode = 1; # Concave (Lens)
+          RefractionNormalPow = 22;
+          RefractionStrength = 30;
           BottomCornerRadius = 11;
           MenuCornerRadius = 6;
           TopCornerRadius = 11;
