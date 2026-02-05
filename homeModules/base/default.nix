@@ -20,13 +20,14 @@ in
 
   # Packages
   home.packages = with pkgs; [
+    (if stdenv.targetPlatform.isAarch then difftastic' else difftastic)
     bat
     btop
-    (if stdenv.targetPlatform.isAarch then difftastic' else difftastic)
     git
     jq
     lsd
     mommy
+    ncdu
     pokemon-colorscripts
     python3
     ripgrep
