@@ -10,6 +10,7 @@
 let
   inherit (lib) mkIf mkEnableOption mkOption;
   cfg = config.karui.desktop;
+  system = pkgs.stdenv.hostPlatform.system;
 in
 {
   options.karui.desktop = {
@@ -155,11 +156,11 @@ in
         kdecoration
 
         # Themes
-        inputs.darkly-qt.packages.${pkgs.system}.darkly-qt5
-        inputs.darkly-qt.packages.${pkgs.system}.darkly-qt6
+        inputs.darkly-qt.packages.${system}.darkly-qt5
+        inputs.darkly-qt.packages.${system}.darkly-qt6
 
         # KWin Effects + Scripts
-        inputs.kwin-effects-forceblur.packages.${pkgs.system}.default
+        inputs.kwin-effects-forceblur.packages.${system}.default
         kde-rounded-corners
         kwin-effects-geometry-change
         kwin-scripts-temporary-virtual-desktops

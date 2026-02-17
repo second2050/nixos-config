@@ -2,16 +2,12 @@
   lib,
   pkgs,
   config,
-  inputs,
-  self,
   ...
 }:
 let
   inherit (lib)
-    mkDefault
     mkEnableOption
     mkIf
-    mkOption
     ;
   cfg = config.karui.lix;
 in

@@ -206,7 +206,7 @@ in
     # home-manager
     home-manager.useGlobalPkgs = true;
     home-manager.useUserPackages = true;
-    home-manager.sharedModules = [ inputs.plasma-manager.homeManagerModules.plasma-manager ];
+    home-manager.sharedModules = [ inputs.plasma-manager.homeModules.plasma-manager ];
     home-manager.users.${cfg.user.username} = import "${self}/homeModules/base";
     home-manager.extraSpecialArgs = {
       inherit assets inputs;
