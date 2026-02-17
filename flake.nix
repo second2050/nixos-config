@@ -67,15 +67,11 @@
         );
       mkOsConfig =
         {
-          system ? throw "system is undefined!",
           hostModule ? throw "hostModule is undefined!",
           extraModules ? [ ],
         }:
         let
-          specialArgs = {
-            inherit self inputs system;
-            assets = self.assets.${system};
-          };
+          specialArgs = { inherit self inputs; };
           modules =
             with inputs;
             [
@@ -88,7 +84,7 @@
             ]
             ++ extraModules;
         in
-        nixpkgs.lib.nixosSystem { inherit system modules specialArgs; };
+        nixpkgs.lib.nixosSystem { inherit modules specialArgs; };
       mkHomeConfig =
         {
           system ? throw "system is undefined!",
@@ -108,7 +104,6 @@
               userHome
               flakeDir
               ;
-            assets = self.assets.${pkgs.stdenv.hostPlatform.system};
           };
           modules = [
             ./homeModules/base
@@ -137,14 +132,12 @@
       # system configurations
       nixosConfigurations = {
         ringo = mkOsConfig {
-          system = "aarch64-linux";
           hostModule = "ringo";
           extraModules = [
             inputs.nixos-apple-silicon.nixosModules.default
           ];
         };
         stargazer = mkOsConfig {
-          system = "x86_64-linux";
           hostModule = "stargazer";
           extraModules = with inputs; [
             nixos-hardware.nixosModules.common-cpu-amd-pstate

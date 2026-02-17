@@ -1,5 +1,4 @@
 {
-  assets,
   config,
   inputs,
   lib,
@@ -11,6 +10,7 @@ let
   inherit (lib) mkIf mkEnableOption mkOption;
   cfg = config.karui.desktop;
   system = pkgs.stdenv.hostPlatform.system;
+  assets = self.assets.${system};
 in
 {
   options.karui.desktop = {

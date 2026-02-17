@@ -1,8 +1,12 @@
 {
-  assets,
   pkgs,
+  self,
   ...
 }:
+let
+  system = pkgs.stdenv.hostPlatform.system;
+  assets = self.assets.${system};
+in
 {
   programs.plasma = {
     enable = true;
