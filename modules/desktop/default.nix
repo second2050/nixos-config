@@ -176,7 +176,7 @@ in
         libreoffice-qt
         syncthing
         syncthingtray
-        xorg.xauth
+        xauth
         (pkgs.writeTextDir "share/sddm/themes/breeze/theme.conf.user" ''
           [General]
           background = "${assets.currentWallpaper}"
