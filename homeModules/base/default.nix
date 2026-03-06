@@ -1,17 +1,11 @@
 args@{
   pkgs,
-  inputs,
   userName,
   userHome,
   ...
 }:
 let
-  # packages
-  difftastic' = pkgs.difftastic.overrideAttrs (oldAttrs: {
-    preBuild = (oldAttrs.preBuild or "") + ''
-      export JEMALLOC_SYS_WITH_LG_PAGE=16
-    '';
-  });
+  inherit (pkgs.stdenv.hostPlatform) isLinux;
 in
 {
   # User informations for Home Manager
@@ -20,9 +14,9 @@ in
 
   # Packages
   home.packages = with pkgs; [
-    (if stdenv.targetPlatform.isAarch then difftastic' else difftastic)
     bat
     btop
+    difftastic
     git
     jq
     lsd
@@ -41,14 +35,23 @@ in
     enable = true;
     vimAlias = true;
     viAlias = true;
-    extraPackages = with pkgs; [
-      clang
-      luarocks
-      nodejs
-      tree-sitter
-      xclip
-      wl-clipboard
-    ];
+    extraPackages =
+      with pkgs;
+      [
+        clang
+        luarocks
+        nodejs
+        tree-sitter
+      ]
+      ++ (
+        if isLinux then
+          [
+            xclip
+            wl-clipboard
+          ]
+        else
+          [ ]
+      );
   };
 
   # Environment Variables
@@ -59,5 +62,5 @@ in
   programs.home-manager.enable = true;
 
   # Initial Home Manager Version, do *not* change.
-  home.stateVersion = "24.11"; # Did you read the comment?
+  home.stateVersion = "25.11"; # Did you read the comment?
 }
