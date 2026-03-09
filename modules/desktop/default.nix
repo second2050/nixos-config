@@ -156,6 +156,8 @@ in
         kdecoration
 
         # Themes
+        cobalt-icon-theme
+        eleven-icon-theme
         inputs.darkly-qt.packages.${system}.darkly-qt5
         inputs.darkly-qt.packages.${system}.darkly-qt6
 
