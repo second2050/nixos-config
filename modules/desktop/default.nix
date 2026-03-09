@@ -161,7 +161,15 @@ in
 
         # KWin Effects + Scripts
         inputs.kwin-effects-forceblur.packages.${system}.default
-        kde-rounded-corners
+        (kde-rounded-corners.overrideAttrs (oldAttrs: {
+          version = "0.8.6-2cf9329";
+          src = fetchFromGitHub {
+            owner = "matinlotfali";
+            repo = "KDE-Rounded-Corners";
+            rev = "2cf9329b31b3152e5513f7069c4bb11c765fdc6e";
+            hash = "sha256-mVoLCnpWHC2qDouO97n2cmxiewLCokjnWl1I9tnkIN4=";
+          };
+        }))
         kwin-effects-geometry-change
         kwin-scripts-temporary-virtual-desktops
 
