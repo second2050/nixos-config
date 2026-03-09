@@ -12,6 +12,10 @@ stdenvNoCC.mkDerivation rec {
     stripRoot = false;
     hash = "sha256-YUnIKX5VlgC8vUdGwYPkzupIUxudAsBcf5tpK0tt0n8=";
   };
+  postPatch = ''
+    substituteInPlace plasma6-window-title-applet-${version}/contents/ui/main.qml \
+      --replace-fail "import org.kde.plasma.private.appmenu 1.0 as AppMenuPrivate" ""
+  '';
   installPhase = ''
     runHook preInstall
     mkdir -p "$out/share/plasma/plasmoids/org.kde.windowtitle"
