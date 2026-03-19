@@ -4,7 +4,6 @@
 
 {
   pkgs,
-  inputs,
   lib,
   ...
 }:
@@ -17,6 +16,7 @@
 
   # setup device bootloader and kernel cmdline
   boot = {
+    kernelPackages = lib.mkForce pkgs.linux-asahi-fairydust;
     loader.systemd-boot = {
       enable = true;
       consoleMode = lib.mkForce "max"; # override 2022 workaround from nixos-apple-silicon
@@ -104,13 +104,6 @@
       CHASSIS=laptop
     '';
     mode = "0440";
-  };
-
-  specialisation = {
-    fairydust.configuration = {
-      # configuration that uses the indev fairydust branch of the asahi kernel
-      boot.kernelPackages = lib.mkForce pkgs.linux-asahi-fairydust;
-    };
   };
 
   # Initial NixOS Version, do *not* change.
