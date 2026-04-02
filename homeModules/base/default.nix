@@ -39,6 +39,7 @@ in
       with pkgs;
       [
         clang
+        cmake
         luarocks
         nodejs
         tree-sitter

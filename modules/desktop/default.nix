@@ -182,7 +182,41 @@ in
         hunspellDicts.en_US-large
 
         # Misc. Applications
-        contour # Alternative Terminal
+        (contour.overrideAttrs (prev: {
+          version = "0.6.3-master-ea07fa77";
+          #version = "0.6.3-master-0793b431";
+          src = pkgs.fetchFromGitHub {
+            owner = "contour-terminal";
+            repo = "contour";
+            rev = "603c5892e85ded8b18f554335a25a48bf9642cd7";
+            hash = "sha256-xCKtxXGvOVF/8ilcbWeBgwh1rwSLkQWJ1DxTXtCOYg4=";
+          };
+
+          cmakeFlags = [ "-DCONTOUR_USE_CPM=OFF" ];
+
+          buildInputs = builtins.filter (pkg: pkg.pname != "libunicode") prev.buildInputs ++ [
+            (pkgs.libunicode.overrideAttrs {
+              version = "0.8.0";
+
+              src = pkgs.fetchFromGitHub {
+                owner = "contour-terminal";
+                repo = "libunicode";
+                rev = "v0.8.0";
+                hash = "sha256-lGq7O35gw4zd/TnMX6s/lmqCCWhe4z9MYMjmANdWSnQ=";
+              };
+
+              cmakeFlags = [
+                "-DLIBUNICODE_UCD_DIR=${
+                  pkgs.fetchzip {
+                    url = "https://www.unicode.org/Public/17.0.0/ucd/UCD.zip";
+                    hash = "sha256-k2OFy8xPvn+Bboyr1EsmZNeVDOglvk2kSZ+H17YaX60=";
+                    stripRoot = false;
+                  }
+                }"
+              ];
+            })
+          ];
+        }))
         libreoffice-qt
         syncthing
         syncthingtray
