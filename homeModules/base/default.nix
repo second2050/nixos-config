@@ -40,7 +40,9 @@ in
       [
         clang
         cmake
-        luarocks
+        imagemagick
+        lua51Packages.luarocks
+        lua5_1
         nodejs
         tree-sitter
       ]
