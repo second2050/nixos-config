@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, lib, ... }:
 {
   programs.plasma = {
     input = {
@@ -15,6 +15,7 @@
 
   i18n.inputMethod = {
     enable = true;
+    package = lib.mkForce pkgs.emptyDirectory; # fcitx5 is available as part of the system env.
     type = "fcitx5";
     fcitx5 = {
       settings = {

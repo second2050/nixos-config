@@ -88,6 +88,7 @@ in
           monospace = [ "Maple Mono NF CN" ];
           emoji = [ "Noto Color Emoji" ];
         };
+        includeUserConf = false;
         localConf = ''
           <?xml version="1.0"?>
           <!DOCTYPE fontconfig SYSTEM "urn:fontconfig:fonts.dtd">
