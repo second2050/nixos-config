@@ -167,6 +167,11 @@
             ./homeModules/desktop
           ];
         };
+        "karui@obake" = mkHomeConfig {
+          system = "x86_64-linux";
+          userName = "karui";
+          userHome = "/home/second2050";
+        };
       }
       // eachSystem (
         pkgs:
