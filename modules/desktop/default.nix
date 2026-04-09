@@ -177,6 +177,7 @@ in
         kwin-scripts-temporary-virtual-desktops
 
         # Spellchecker
+        enchant
         hunspell
         hunspellDicts.de_DE
         hunspellDicts.en_GB-large
@@ -184,13 +185,12 @@ in
 
         # Misc. Applications
         (contour.overrideAttrs (prev: {
-          version = "0.6.3-master-ea07fa77";
-          #version = "0.6.3-master-0793b431";
+          version = "0.6.3-master-b3ed2d";
           src = pkgs.fetchFromGitHub {
             owner = "contour-terminal";
             repo = "contour";
-            rev = "603c5892e85ded8b18f554335a25a48bf9642cd7";
-            hash = "sha256-xCKtxXGvOVF/8ilcbWeBgwh1rwSLkQWJ1DxTXtCOYg4=";
+            rev = "b3ed2d2f2cb0cee8953f7ca87108c6d06bca65a6";
+            hash = "sha256-2pYxW9GDY3eon6FDlR8L/j1TX/GretesPgxZ3G1goy8=";
           };
 
           cmakeFlags = [ "-DCONTOUR_USE_CPM=OFF" ];
