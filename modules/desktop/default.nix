@@ -185,26 +185,28 @@ in
 
         # Misc. Applications
         (contour.overrideAttrs (prev: {
-          version = "0.6.3-master-b3ed2d";
+          version = "0.6.3.8249";
           src = pkgs.fetchFromGitHub {
             owner = "contour-terminal";
             repo = "contour";
-            rev = "b3ed2d2f2cb0cee8953f7ca87108c6d06bca65a6";
-            hash = "sha256-2pYxW9GDY3eon6FDlR8L/j1TX/GretesPgxZ3G1goy8=";
+            rev = "v0.6.3.8249";
+            hash = "sha256-+rr1bn4O5v9rXyoIx+ejL+qe5Kf2bFpgWA3DkWRcDYk=";
           };
 
           cmakeFlags = [ "-DCONTOUR_USE_CPM=OFF" ];
 
           buildInputs = builtins.filter (pkg: pkg.pname != "libunicode") prev.buildInputs ++ [
             (pkgs.libunicode.overrideAttrs {
-              version = "0.8.0";
+              version = "0.9.0";
 
               src = pkgs.fetchFromGitHub {
                 owner = "contour-terminal";
                 repo = "libunicode";
-                rev = "v0.8.0";
-                hash = "sha256-lGq7O35gw4zd/TnMX6s/lmqCCWhe4z9MYMjmANdWSnQ=";
+                rev = "v0.9.0";
+                hash = "sha256-EBu8zn5XritudZmBvQmjOmU08XLjhyKI6hVCrnWoR6k=";
               };
+
+              patches = [ ];
 
               cmakeFlags = [
                 "-DLIBUNICODE_UCD_DIR=${
