@@ -1,4 +1,4 @@
-args@{
+{
   pkgs,
   userName,
   userHome,
@@ -22,6 +22,7 @@ in
     lsd
     mommy
     ncdu
+    nix-output-monitor
     pokemon-colorscripts
     python3
     ripgrep
@@ -35,6 +36,8 @@ in
     enable = true;
     vimAlias = true;
     viAlias = true;
+    withRuby = true;
+    withPython3 = true;
     extraPackages =
       with pkgs;
       [
