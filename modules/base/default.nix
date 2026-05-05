@@ -25,6 +25,7 @@ let
     url = "https://raw.githubusercontent.com/leander-j/en_DE/8b172dde948f16cd8ec5966661e2c5b96c7ca983/en_DE";
     hash = "sha256-I/u1I55tkQTv6SoF/1fSAysnhNnMlUX1QPPnJvoovvQ=";
   };
+  system = pkgs.stdenv.hostPlatform.system;
 in
 {
   options.karui.base = {
@@ -203,19 +204,26 @@ in
     };
 
     # home-manager
-    home-manager.useGlobalPkgs = true;
-    home-manager.useUserPackages = true;
-    home-manager.sharedModules = [ inputs.plasma-manager.homeModules.plasma-manager ];
-    home-manager.users.${cfg.user.username} = import "${self}/homeModules/base";
-    home-manager.extraSpecialArgs = {
-      inherit inputs self;
-      userName = cfg.user.username;
-      userHome = config.users.users.${cfg.user.username}.home;
+    home-manager = {
+      useGlobalPkgs = true;
+      useUserPackages = true;
+      sharedModules = [ inputs.plasma-manager.homeModules.plasma-manager ];
+      users.${cfg.user.username} = import "${self}/homeModules/base";
+      extraSpecialArgs = {
+        inherit inputs self;
+        userName = cfg.user.username;
+        userHome = config.users.users.${cfg.user.username}.home;
+      };
     };
 
     # misc. config
-    environment.systemPackages = [ pkgs.p11-kit ];
-    environment.shellAliases = mkForce { }; # disable default shell aliases
+    environment = {
+      systemPackages = [ pkgs.p11-kit ];
+      shellAliases = mkForce { }; # disable default shell aliases
+    };
     services.getty.greetingLine = "[1;96mNixOS ${config.system.nixos.release}[0m on \\m [\\l]"; # first line on getty login
+    programs.command-not-found.dbPath =
+      mkForce
+        inputs.flake-programs-sqlite.packages.${system}.programs-sqlite;
   };
 }

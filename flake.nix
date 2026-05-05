@@ -80,7 +80,6 @@
               self.nixosModules.packages
               evyspkgs.nixosModules.default
               home-manager.nixosModules.home-manager
-              flake-programs-sqlite.nixosModules.programs-sqlite
             ]
             ++ extraModules;
         in
