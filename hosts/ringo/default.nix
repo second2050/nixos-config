@@ -24,6 +24,10 @@
     loader.efi.canTouchEfiVariables = false;
     kernelParams = [
       "appledrm.show_notch=1"
+      "zswap.enabled=1"
+      "zswap.compressor=zstd"
+      "zswap.max_pool_percent=50"
+      "zswap.shrinker_enabled=1"
     ];
     extraModprobeConfig = ''
       options hid_apple fnmode=2
@@ -43,6 +47,16 @@
     graphics.enable = true;
     bluetooth.enable = true;
   };
+
+  # swap configuration
+  # using zswap because of low ram
+  zramSwap.enable = false;
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 16 * 1024;
+    }
+  ];
 
   # enable modules
   karui = {
