@@ -168,8 +168,12 @@ in
       useXkbConfig = false;
     };
 
-    # system services
+    # remote access services
     services.openssh.enable = mkDefault true;
+    programs.mosh = mkDefault {
+      enable = true;
+      withUtempter = true;
+    };
 
     # system applications
     programs.fish.enable = mkDefault true;

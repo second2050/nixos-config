@@ -21,6 +21,7 @@ in
     jq
     lsd
     mommy
+    mosh
     ncdu
     nix-output-monitor
     pokemon-colorscripts

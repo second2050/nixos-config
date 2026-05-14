@@ -141,7 +141,8 @@ in
       with kdePackages;
       [
         # KDE Applications
-        haruna # Video Player
+        cantata # Music Player/MPD Client
+        (haruna.override { yt-dlp = (yt-dlp.override { deno = nodejs; }); }) # Video Player
         karp # KDE PDF Arranger
         kleopatra # GnuPG Frontend
         koko # Photos

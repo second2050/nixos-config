@@ -119,10 +119,11 @@
         default = pkgs.mkShellNoCC {
           name = "nix-configuration";
           packages = with pkgs; [
+            git
+            nh
+            nix-update
             nixfmt
             nixfmt-tree
-            nh
-            git
           ];
         };
       });
