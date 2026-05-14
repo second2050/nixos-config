@@ -39,6 +39,7 @@ in
     viAlias = true;
     withRuby = true;
     withPython3 = true;
+    sideloadInitLua = true;
     extraPackages =
       with pkgs;
       [
