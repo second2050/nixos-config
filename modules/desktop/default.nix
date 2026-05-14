@@ -126,7 +126,8 @@ in
       with pkgs;
       with kdePackages;
       [
-        gwenview
+        elisa # replaced with cantata
+        gwenview # replaced with koko
       ];
 
     # Extra Packages
@@ -142,7 +143,7 @@ in
       [
         # KDE Applications
         cantata # Music Player/MPD Client
-        (haruna.override { yt-dlp = (yt-dlp.override { deno = nodejs; }); }) # Video Player
+        haruna # Video Player
         karp # KDE PDF Arranger
         kleopatra # GnuPG Frontend
         koko # Photos
@@ -165,15 +166,7 @@ in
 
         # KWin Effects + Scripts
         inputs.kwin-effects-forceblur.packages.${system}.default
-        (kde-rounded-corners.overrideAttrs (oldAttrs: {
-          version = "0.8.6-2cf9329";
-          src = fetchFromGitHub {
-            owner = "matinlotfali";
-            repo = "KDE-Rounded-Corners";
-            rev = "2cf9329b31b3152e5513f7069c4bb11c765fdc6e";
-            hash = "sha256-mVoLCnpWHC2qDouO97n2cmxiewLCokjnWl1I9tnkIN4=";
-          };
-        }))
+        kde-rounded-corners
         kwin-effects-geometry-change
         kwin-scripts-temporary-virtual-desktops
 
@@ -185,43 +178,9 @@ in
         hunspellDicts.en_US-large
 
         # Misc. Applications
-        (contour.overrideAttrs (prev: {
-          version = "0.6.3.8249";
-          src = pkgs.fetchFromGitHub {
-            owner = "contour-terminal";
-            repo = "contour";
-            rev = "v0.6.3.8249";
-            hash = "sha256-+rr1bn4O5v9rXyoIx+ejL+qe5Kf2bFpgWA3DkWRcDYk=";
-          };
-
-          cmakeFlags = [ "-DCONTOUR_USE_CPM=OFF" ];
-
-          buildInputs = builtins.filter (pkg: pkg.pname != "libunicode") prev.buildInputs ++ [
-            (pkgs.libunicode.overrideAttrs {
-              version = "0.9.0";
-
-              src = pkgs.fetchFromGitHub {
-                owner = "contour-terminal";
-                repo = "libunicode";
-                rev = "v0.9.0";
-                hash = "sha256-EBu8zn5XritudZmBvQmjOmU08XLjhyKI6hVCrnWoR6k=";
-              };
-
-              patches = [ ];
-
-              cmakeFlags = [
-                "-DLIBUNICODE_UCD_DIR=${
-                  pkgs.fetchzip {
-                    url = "https://www.unicode.org/Public/17.0.0/ucd/UCD.zip";
-                    hash = "sha256-k2OFy8xPvn+Bboyr1EsmZNeVDOglvk2kSZ+H17YaX60=";
-                    stripRoot = false;
-                  }
-                }"
-              ];
-            })
-          ];
-        }))
+        contour
         libreoffice-qt
+        mpd # as local backend for cantata
         syncthing
         syncthingtray
         xauth
