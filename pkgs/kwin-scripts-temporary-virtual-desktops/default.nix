@@ -6,6 +6,7 @@
 }:
 stdenvNoCC.mkDerivation rec {
   name = "kwin-scripts-temporary-virtual-desktops";
+  pname = name;
   meta = {
     description = "KWin script to enable temporary virtual desktops";
     homepage = "https://github.com/Ubiquitine/temporary-virtual-desktops";

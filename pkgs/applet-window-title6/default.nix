@@ -6,6 +6,7 @@
 }:
 stdenvNoCC.mkDerivation rec {
   name = "applet-window-title6";
+  pname = name;
   version = "0.9.0";
   src = fetchzip {
     url = "https://github.com/dhruv8sh/plasma6-window-title-applet/archive/refs/tags/v${version}.tar.gz";

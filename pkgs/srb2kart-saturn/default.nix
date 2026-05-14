@@ -18,13 +18,13 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "srb2kart-saturn";
-  version = "8.3";
+  version = "9.2";
 
   src = fetchFromGitHub {
     owner = "Indev450";
     repo = "SRB2Kart-Saturn";
     rev = "v${finalAttrs.version}";
-    hash = "sha256-5sIHdeenWZjczyYM2q+F8Y1SyLqL+y77yxYDUM3dVA0=";
+    hash = "sha256-k1Ps/9EWOJ5E4JBt1Pjdrotu/zNfsEHR8gI7xmL5Eg4=";
   };
 
   assets = stdenv.mkDerivation {
@@ -101,7 +101,7 @@ stdenv.mkDerivation (finalAttrs: {
     homepage = "https://github.com/Indev450/SRB2Kart-Saturn";
     platforms = platforms.linux;
     license = licenses.gpl2Plus;
-    maintainers = "karui";
+    maintainers = [ "karui" ];
     mainProgram = "srb2kart";
   };
 })
