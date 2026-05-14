@@ -13,7 +13,7 @@ args@{
   home.packages = with pkgs; [
     goldwarden
     kdePackages.breeze
-    (logseq.override { electron = electron_39; })
+    logseq
     pear-desktop
     pinentry-qt
     signal-desktop
