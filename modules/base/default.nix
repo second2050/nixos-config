@@ -97,6 +97,8 @@ in
       enable = mkDefault true;
       plugins = with pkgs; [
         networkmanager-openvpn
+        networkmanager-l2tp
+        networkmanager-strongswan
       ];
     };
     services.resolved = mkDefault {
@@ -119,6 +121,10 @@ in
       enable = true;
       nssmdns4 = true;
       publish.enable = true;
+    };
+    services.strongswan = {
+      enable = true;
+      secrets = [ "ipsec.d/ipsec.nm-l2tp.secrets" ];
     };
     security.pki.certificateFiles = [
       "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"
