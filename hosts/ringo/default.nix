@@ -3,8 +3,10 @@
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
 {
-  pkgs,
+  config,
   lib,
+  pkgs,
+  self,
   ...
 }:
 
@@ -119,6 +121,10 @@
     '';
     mode = "0440";
   };
+
+  home-manager.users.${config.karui.base.user.username}.imports = [
+    "${self}/homeModules/work"
+  ];
 
   # Initial NixOS Version, do *not* change.
   # For more information, see `man configuration.nix`

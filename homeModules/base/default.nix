@@ -28,6 +28,7 @@ in
     python3
     ripgrep
     starship
+    teamtype
     trash-cli
     zellij
   ];
