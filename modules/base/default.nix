@@ -39,7 +39,7 @@ in
       description = "Display name for the main user.";
     };
   };
-  options.system.nixos.codeName = mkOption { apply = _: "Phym"; };
+  options.system.nixos.codeName = mkOption { apply = _: "Neptune"; };
   config = mkIf (cfg.enable) {
     # enable lix by default
     karui.lix.enable = mkDefault true;
