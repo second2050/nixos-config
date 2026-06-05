@@ -82,6 +82,9 @@ in
         };
     };
     nixpkgs.config.allowUnfree = mkDefault true;
+    nixpkgs.config.permittedInsecurePackages = [
+      "electron-39.8.10"
+    ];
 
     # boot configuration
     boot.initrd.systemd.enable = mkDefault true;
