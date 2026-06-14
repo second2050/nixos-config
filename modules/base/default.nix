@@ -26,6 +26,12 @@ let
     hash = "sha256-I/u1I55tkQTv6SoF/1fSAysnhNnMlUX1QPPnJvoovvQ=";
   };
   system = pkgs.stdenv.hostPlatform.system;
+  nixOSVersion = config.system.nixos.release;
+  customCodeNames = {
+    "26.11" = "Neptune";
+    "27.05" = "Plutia";
+    "27.11" = "Uzume";
+  };
 in
 {
   options.karui.base = {
@@ -39,7 +45,9 @@ in
       description = "Display name for the main user.";
     };
   };
-  options.system.nixos.codeName = mkOption { apply = _: "Neptune"; };
+  options.system.nixos.codeName = mkOption {
+    apply = _: customCodeNames.${nixOSVersion} or "Histoire";
+  };
   config = mkIf (cfg.enable) {
     # enable lix by default
     karui.lix.enable = mkDefault true;
