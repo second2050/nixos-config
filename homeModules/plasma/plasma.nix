@@ -8,6 +8,9 @@ let
   assets = self.assets.${system};
 in
 {
+  home.packages = [
+    pkgs.pjsk-kanade-cursor
+  ];
   programs.plasma = {
     enable = true;
     overrideConfig = false;
@@ -15,7 +18,7 @@ in
     workspace = {
       wallpaper = assets.currentWallpaper;
       cursor = {
-        theme = "breeze_cursors";
+        theme = "pjsk-kanade-cursor";
         size = 24;
       };
       colorScheme = "Grey"; # Accent set in extra config.
