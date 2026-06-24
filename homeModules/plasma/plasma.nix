@@ -1,4 +1,5 @@
 {
+  nixosConfig,
   pkgs,
   self,
   ...
@@ -6,6 +7,7 @@
 let
   system = pkgs.stdenv.hostPlatform.system;
   assets = self.assets.${system};
+  wallpaper = nixosConfig.karui.desktop.wallpaper or assets.currentWallpaper;
 in
 {
   home.packages = [
@@ -16,12 +18,12 @@ in
     overrideConfig = false;
 
     workspace = {
-      wallpaper = assets.currentWallpaper;
+      wallpaper = wallpaper;
       cursor = {
         theme = "pjsk-kanade-cursor";
         size = 24;
       };
-      colorScheme = "Grey"; # Accent set in extra config.
+      colorScheme = ""; # Accent set in extra config.
       windowDecorations = {
         library = "org.kde.darkly";
         theme = "Darkly";
@@ -29,7 +31,7 @@ in
     };
 
     kscreenlocker.appearance = {
-      wallpaper = assets.currentWallpaper;
+      wallpaper = wallpaper;
       alwaysShowClock = true;
     };
 

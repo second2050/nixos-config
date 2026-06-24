@@ -26,11 +26,17 @@ in
     programs.xwayland.enable = true;
     services.displayManager = {
       autoLogin.user = mkIf cfg.autoLogin config.karui.base.user.username;
-      sddm = {
+      plasma-login-manager = {
         enable = true;
-        wayland.enable = true;
+        settings = {
+          Users.ReuseSession = true;
+        };
       };
     };
+    environment.etc."plasmalogin.conf".text = ''
+      [Greeter][Wallpaper][org.kde.image][General]
+      Image=file://${config.karui.desktop.wallpaper}
+    '';
     services.desktopManager.plasma6.enable = true;
 
     # KDE Home-Manager configuration
