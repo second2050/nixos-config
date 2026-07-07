@@ -40,9 +40,9 @@
   hardware = {
     asahi = {
       peripheralFirmwareDirectory = pkgs.requireFile {
-        name = "apple-silicon-firmware-ringo";
-        url = "file:///boot/asahi";
-        sha256 = "046ijbphv9lb2sqjzmqdi7gk53v3ws4qbinbpps48dd82inqjd27";
+        name = "apple-silicon-vendorfw-ringo";
+        url = "file:///boot/vendorfw";
+        sha256 = "04a3h5fsbwf0dhsgnr2kpppsxad89gamks0yjg83i6gqdbz2b5di";
         hashMode = "recursive";
       };
     };
