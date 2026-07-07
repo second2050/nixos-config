@@ -93,6 +93,12 @@ in
     nixpkgs.config.permittedInsecurePackages = [
       "electron-39.8.10"
     ];
+    nixpkgs.overlays = [
+      (final: _prev: {
+        # replace insecure pnpm version
+        pnpm_10_29_2 = final.pnpm_10;
+      })
+    ];
 
     # boot configuration
     boot.initrd.systemd.enable = mkDefault true;
