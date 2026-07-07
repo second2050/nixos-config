@@ -46,10 +46,12 @@ in
       [
         clang
         cmake
+        fd
         imagemagick
         lua51Packages.luarocks
         lua5_1
         nodejs
+        ripgrep
         tree-sitter
       ]
       ++ (
