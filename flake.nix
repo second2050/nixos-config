@@ -199,10 +199,17 @@
         };
 
       # overlays
-      overlays.packages = final: prev: import ./pkgs final;
+      overlays.packages = final: prev: import ./pkgs { pkgs = final; };
 
       # packages
-      packages = eachSystemTested (pkgs: import ./pkgs pkgs);
+      legacyPackages = eachSystemTested (pkgs: import ./pkgs { inherit pkgs; });
+      packages = eachSystemTested (
+        pkgs:
+        import ./pkgs {
+          inherit pkgs;
+          kernelPackages = false;
+        }
+      );
 
       # static assets
       assets = eachSystem (pkgs: import ./assets.nix { inherit pkgs; });
