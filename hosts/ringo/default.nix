@@ -83,26 +83,6 @@
     asahi-bless
   ];
 
-  # x86-64 support
-  nix.settings.extra-platforms = [ "x86_64-linux" ];
-  boot.binfmt.registrations."muvm" = {
-    # interpreter = "${pkgs.muvm}/bin/muvm";
-    interpreter = "${pkgs.writeTextFile {
-      name = "muvm-wrapper2";
-      executable = true;
-      text = ''
-        #!${lib.getExe pkgs.fish}
-        set pwd (pwd)
-        exec ${lib.getExe pkgs.muvm} -- ${lib.getExe pkgs.fish} -c "cd $pwd; exec $argv"
-      '';
-    }}";
-    fixBinary = true;
-    wrapInterpreterInShell = false;
-    matchCredentials = false;
-    magicOrExtension = ''\x7fELF\x02\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x3e\x00'';
-    mask = ''\xff\xff\xff\xff\xff\xfe\xfe\x00\xff\xff\xff\xff\xff\xff\xff\xff\xfe\xff\xff\xff'';
-  };
-
   # asahi specific substituter
   nix.settings = {
     extra-substituters = [
