@@ -39,6 +39,7 @@
   # hardware stuff
   hardware = {
     asahi = {
+      enable = true;
       peripheralFirmwareDirectory = pkgs.requireFile {
         name = "apple-silicon-vendorfw-ringo";
         url = "file:///boot/vendorfw";

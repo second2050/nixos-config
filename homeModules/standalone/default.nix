@@ -1,8 +1,9 @@
 {
   flakeDir,
   inputs,
-  pkgs,
   lib,
+  pkgs,
+  self,
   ...
 }:
 let
@@ -42,5 +43,5 @@ in
         };
       };
     };
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs = import "${self}/modules/base/nixpkgs.nix";
 }
