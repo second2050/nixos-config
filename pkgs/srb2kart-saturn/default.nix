@@ -18,13 +18,13 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "srb2kart-saturn";
-  version = "9.2";
+  version = "9.3";
 
   src = fetchFromGitHub {
     owner = "Indev450";
     repo = "SRB2Kart-Saturn";
-    rev = "v${finalAttrs.version}";
-    hash = "sha256-k1Ps/9EWOJ5E4JBt1Pjdrotu/zNfsEHR8gI7xmL5Eg4=";
+    rev = "c3e709231d292a5d02f3f96b230c0546a8d8a858";
+    hash = "sha256-8DvujQD19p5gQFyDQQqYBxuLha9HV5AbjCqFz2T57J8=";
   };
 
   assets = stdenv.mkDerivation {
@@ -62,6 +62,9 @@ stdenv.mkDerivation (finalAttrs: {
     SDL2_mixer
     zlib
   ];
+
+  # Fix build with gcc15 (-std=gnu23)
+  env.NIX_CFLAGS_COMPILE = "-std=gnu17";
 
   cmakeFlags = [
     "-DSRB2_ASSET_DIRECTORY=${finalAttrs.assets}/share/srb2kart-saturn"
@@ -102,6 +105,6 @@ stdenv.mkDerivation (finalAttrs: {
     platforms = platforms.linux;
     license = licenses.gpl2Plus;
     maintainers = [ "karui" ];
-    mainProgram = "srb2kart";
+    mainProgram = finalAttrs.pname;
   };
 })
