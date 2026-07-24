@@ -61,6 +61,12 @@ in
           "cgroups"
         ];
         trusted-users = [ "@wheel" ];
+        extra-substituters = [
+          "https://attic.karui.moe/karui"
+        ];
+        extra-trusted-public-keys = [
+          "karui:8uidONyUZQeIiM7V0zmDXnSvMCLyZmwHvfJfAgFEbYc="
+        ];
       };
       # add my inputs to the system registry
       registry =
