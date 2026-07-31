@@ -12,9 +12,11 @@ jobs:
     strategy:
       matrix:
         packages:
+          - ddctoolbox
+          - goldwarden
+          - intel_fw
           - linux-asahi-fairydust
           - srb2kart-saturn
-          - goldwarden
     steps:
       - uses: actions/checkout@v5
       - run: |
