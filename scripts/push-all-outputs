@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+cache=$1
+package=$2
+outputs=()
+for output in $(nix eval --apply 'builtins.concatStringsSep " "' --raw ".#${package}.outputs"); do
+    outputs+=("$(nix eval --raw ".#${package}.${output}")")
+done
+attic push "${cache}" "${outputs[@]}"

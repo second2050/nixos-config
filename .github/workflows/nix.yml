@@ -36,11 +36,11 @@ jobs:
 
       - uses: DeterminateSystems/magic-nix-cache-action@main
       - name: Build
-        run: nix build .#${{ matrix.packages }}
+        run: nix build ".#${{ matrix.packages }}^*"
       - name: Push to cache
         run: |
           nix run github:zhaofengli/attic#default login karui https://attic.karui.moe ${{ secrets.ATTIC_TOKEN }}
-          nix run github:zhaofengli/attic#default push karui $(nix eval --raw .#${{ matrix.packages }}) -j 2
+          nix shell github:zhaofengli/attic#default --command ./scripts/push-all-outputs karui ${{ matrix.packages }}
 
   build-x86-64:
     runs-on: ubuntu-latest
@@ -69,8 +69,8 @@ jobs:
 
       - uses: DeterminateSystems/magic-nix-cache-action@main
       - name: Build
-        run: nix build .#${{ matrix.packages }}
+        run: nix build ".#${{ matrix.packages }}^*"
       - name: Push to cache
         run: |
           nix run github:zhaofengli/attic#default login karui https://attic.karui.moe ${{ secrets.ATTIC_TOKEN }}
-          nix run github:zhaofengli/attic#default push karui $(nix eval --raw .#${{ matrix.packages }}) -j 2
+          nix shell github:zhaofengli/attic#default --command ./scripts/push-all-outputs karui ${{ matrix.packages }}

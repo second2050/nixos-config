@@ -61,10 +61,10 @@ in
           "cgroups"
         ];
         trusted-users = [ "@wheel" ];
-        extra-substituters = [
+        substituters = [
           "https://attic.karui.moe/karui"
         ];
-        extra-trusted-public-keys = [
+        trusted-public-keys = [
           "karui:8uidONyUZQeIiM7V0zmDXnSvMCLyZmwHvfJfAgFEbYc="
         ];
       };
