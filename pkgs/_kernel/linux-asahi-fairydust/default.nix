@@ -64,10 +64,6 @@ let
       ++ _kernelPatches;
     };
 
-  linux-asahi' = callPackage linux-asahi-pkg { };
-  linux-asahi = linux-asahi' // {
-    # add kernel config to outputs for binary cache workflow
-    outputs = linux-asahi'.outputs ++ [ "configfile" ];
-  };
+  linux-asahi = callPackage linux-asahi-pkg { };
 in
 lib.recurseIntoAttrs (linuxPackagesFor linux-asahi)

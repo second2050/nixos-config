@@ -41,6 +41,7 @@ jobs:
           - goldwarden
           - intel_fw
           - linux-asahi-fairydust
+          - linux-asahi-fairydust.configfile
           - srb2kart-saturn
     steps:
       - uses: actions/checkout@v5
