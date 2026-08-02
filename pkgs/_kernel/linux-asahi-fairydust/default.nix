@@ -20,7 +20,7 @@ let
       pname = "linux-asahi-fairydust";
       version = "7.1.5";
       modDirVersion = version;
-      extraMeta.branch = "7.1";
+      extraMeta.branch = lib.versions.majorMinor version;
 
       src = fetchFromGitHub {
         owner = "AsahiLinux";
@@ -64,6 +64,10 @@ let
       ++ _kernelPatches;
     };
 
-  linux-asahi = callPackage linux-asahi-pkg { };
+  linux-asahi' = callPackage linux-asahi-pkg { };
+  linux-asahi = linux-asahi' // {
+    # add kernel config to outputs for binary cache workflow
+    outputs = linux-asahi'.outputs ++ [ "configfile" ];
+  };
 in
 lib.recurseIntoAttrs (linuxPackagesFor linux-asahi)

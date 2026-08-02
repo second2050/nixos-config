@@ -1,0 +1,36 @@
+name: "update"
+
+on:
+  schedule:
+    - cron: "12 3 * * MON" # 03:12 every Monday
+      timezone: "Europe/Berlin"
+
+permissions:
+  contents: write
+
+jobs:
+  update-lock:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: DeterminateSystems/nix-installer-action@main
+        with:
+          determinate: false
+          planner: linux
+          extra-conf: |
+            fallback = true
+            http-connections = 128
+            max-substitution-jobs = 128
+            substituters = https://attic.karui.moe/karui https://nix-community.cachix.org?priority=41 https://numtide.cachix.org?priority=42 https://cache.nixos.org/
+            trusted-public-keys = karui:8uidONyUZQeIiM7V0zmDXnSvMCLyZmwHvfJfAgFEbYc= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs= numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE=
+      - name: Create next branch
+        run: git switch --force-create next
+      - name: Update flake.lock
+        run: nix flake update
+      - name: Commit changes
+        run: |
+          git config --global user.name 'karui-fully updated'
+          git config --global user.email 'git+gha@second2050.me'
+          git commit -am 'update lock'
+          git push origin HEAD --force-with-lease
+          
