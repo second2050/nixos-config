@@ -4,6 +4,7 @@ on:
   schedule:
     - cron: "12 3 * * MON" # 03:12 every Monday
       timezone: "Europe/Berlin"
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -29,8 +30,10 @@ jobs:
         run: nix flake update
       - name: Commit changes
         run: |
-          git config --global user.name 'karui-fully updated'
-          git config --global user.email 'git+gha@second2050.me'
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git commit -am 'update lock'
           git push origin HEAD --force-with-lease
+      - name: Trigger build
+        run: gh workflow run --ref=next nix.yml
           
