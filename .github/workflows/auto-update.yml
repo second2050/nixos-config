@@ -8,6 +8,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 jobs:
   update-lock:
@@ -33,7 +34,9 @@ jobs:
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git commit -am 'update lock'
-          git push origin HEAD --force-with-lease
+          git push origin HEAD --force
       - name: Trigger build
         run: gh workflow run --ref=next nix.yml
+        env:
+          GH_TOKEN: ${{ github.token }}
           
