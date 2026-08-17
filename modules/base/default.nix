@@ -246,8 +246,5 @@ in
       shellAliases = mkForce { }; # disable default shell aliases
     };
     services.getty.greetingLine = "[1;96mNixOS ${config.system.nixos.release}[0m on \\m [\\l]"; # first line on getty login
-    programs.command-not-found.dbPath =
-      mkForce
-        inputs.flake-programs-sqlite.packages.${system}.programs-sqlite;
   };
 }

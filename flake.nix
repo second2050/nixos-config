@@ -3,7 +3,7 @@
 
   inputs = {
     # nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst";
 
     # hardware modules
     nixos-apple-silicon = {
@@ -37,10 +37,6 @@
     };
     kwin-effects-forceblur = {
       url = "github:xarblu/kwin-effects-better-blur-dx";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    flake-programs-sqlite = {
-      url = "github:wamserma/flake-programs-sqlite";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixgl = {
