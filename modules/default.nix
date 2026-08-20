@@ -7,6 +7,7 @@
     ./hardware
     ./lix
     ./refind
+    ./server
     ./vmHost
   ];
 }

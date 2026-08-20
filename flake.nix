@@ -140,6 +140,9 @@
             nixos-hardware.nixosModules.common-cpu-amd-zenpower
           ];
         };
+        youkai = mkOsConfig {
+          hostModule = "youkai";
+        };
       };
 
       # home configurations

@@ -24,8 +24,10 @@ in
         swtpm.enable = true;
       };
     };
-    environment.systemPackages = with pkgs; [
-      virt-manager
-    ];
+    environment.systemPackages =
+      with pkgs;
+      mkIf config.karui.desktop.enable [
+        virt-manager
+      ];
   };
 }

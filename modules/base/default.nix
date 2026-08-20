@@ -242,7 +242,10 @@ in
 
     # misc. config
     environment = {
-      systemPackages = [ pkgs.p11-kit ];
+      systemPackages = with pkgs; [
+        p11-kit
+        wireguard-tools
+      ];
       shellAliases = mkForce { }; # disable default shell aliases
     };
     services.getty.greetingLine = "[1;96mNixOS ${config.system.nixos.release}[0m on \\m [\\l]"; # first line on getty login
