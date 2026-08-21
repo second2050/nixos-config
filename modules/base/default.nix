@@ -247,7 +247,10 @@ in
         wireguard-tools
       ];
       shellAliases = mkForce { }; # disable default shell aliases
+      variables = {
+        NH_ELEVATION_STRATEGY = "run0"; # set nh to use run0 instead of sudo
+      };
     };
-    services.getty.greetingLine = "[1;96mNixOS ${config.system.nixos.release}[0m on \\m [\\l]"; # first line on getty login
+    services.getty.greetingLine = "[1;96mNixOS ${config.system.nixos.release} (${config.system.nixos.codeName}) [0m on \\m [\\l]"; # first line on getty login
   };
 }
