@@ -34,5 +34,8 @@ in
       useNetworkd = true;
     };
     systemd.network.enable = true;
+    services.openssh.settings = {
+      PasswordAuthentication = false;
+    };
   };
 }

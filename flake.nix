@@ -43,6 +43,10 @@
       url = "github:nix-community/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    attic = {
+      url = "github:zhaofengli/attic";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -142,6 +146,9 @@
         };
         youkai = mkOsConfig {
           hostModule = "youkai";
+          extraModules = [
+            inputs.attic.nixosModules.atticd
+          ];
         };
       };
 

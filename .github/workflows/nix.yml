@@ -16,6 +16,7 @@ jobs:
         systems:
           - ringo
           - stargazer
+          - youkai
     steps:
       - uses: actions/checkout@v5
       - uses: DeterminateSystems/nix-installer-action@main
