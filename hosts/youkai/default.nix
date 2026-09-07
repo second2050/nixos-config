@@ -28,12 +28,19 @@
   # enable modules
   karui = {
     base.enable = true;
-    server.enable = true;
+    server = {
+      enable = true;
+      cockpitAddresses = [
+        "10.20.50.8"
+        "[fd6b:6172:7569:2000::8]"
+      ];
+    };
   };
 
   # networking options
   networking = {
     hostName = "youkai";
+    domain = "karui.moe";
     hostId = "0874c3e4";
     interfaces = {
       ens18 = {
