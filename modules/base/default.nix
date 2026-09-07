@@ -104,7 +104,10 @@ in
     zramSwap.enable = mkDefault true;
 
     # enable usage of run0
-    security.pam.services.systemd-run0 = mkDefault { };
+    security = {
+      pam.services.systemd-run0 = mkDefault { };
+      polkit.enable = true;
+    };
 
     # networking
     networking.networkmanager = {
