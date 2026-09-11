@@ -158,11 +158,17 @@
           system = "aarch64-darwin";
           userName = "second2050";
           userHome = "/Users/second2050";
+          extraModules = [
+            ./homeModules/work
+          ];
         };
         "second2050@rddbn" = mkHomeConfig {
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           userName = "second2050";
           userHome = "/home/second2050";
+          extraModules = [
+            ./homeModules/work
+          ];
         };
         "deck@karuis-deck" = mkHomeConfig {
           system = "x86_64-linux";
