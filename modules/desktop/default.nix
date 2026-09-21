@@ -185,6 +185,7 @@ in
 
         # Misc. Applications
         contour
+        goldwarden
         libreoffice-qt
         mpd # as local backend for cantata
         syncthing
