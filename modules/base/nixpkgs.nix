@@ -24,5 +24,18 @@
         }
       );
     })
+    (final: prev: {
+      kde-rounded-corners = (
+        prev.kde-rounded-corners.overrideAttrs rec {
+          version = "4867a0c849b8bc85a734525bb03a374c626e689a";
+          src = final.fetchFromGitHub {
+            owner = "matinlotfali";
+            repo = "KDE-Rounded-Corners";
+            rev = "${version}";
+            hash = "sha256-yRylCT9scW1Tmw5yIpS7ejTBqx3YMK6GHSB6GiWeKck=";
+          };
+        }
+      );
+    })
   ];
 }
