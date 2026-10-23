@@ -143,10 +143,16 @@ in
       enable = true;
       secrets = [ "ipsec.d/ipsec.nm-l2tp.secrets" ];
     };
-    security.pki.certificateFiles = [
-      "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"
-      ./dn42.crt
-    ];
+    security.pki = {
+      certificateFiles = [
+        "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"
+        ./dn42.crt
+      ];
+      caCertificateBlacklist = [
+        "Comodo AAA Services root"
+        "emSign ECC Root CA - G3"
+      ];
+    };
 
     # time, date and i18n
     time.timeZone = mkDefault "Europe/Berlin";
