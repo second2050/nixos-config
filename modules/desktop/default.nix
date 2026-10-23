@@ -188,6 +188,7 @@ in
         goldwarden
         libreoffice-qt
         mpd # as local backend for cantata
+        pinentry-qt
         syncthing
         syncthingtray
         xauth

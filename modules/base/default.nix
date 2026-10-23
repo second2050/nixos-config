@@ -249,9 +249,13 @@ in
       };
     };
 
+    # smartcard support
+    services.pcscd.enable = true;
+
     # misc. config
     environment = {
       systemPackages = with pkgs; [
+        gnupg
         p11-kit
         wireguard-tools
       ];
