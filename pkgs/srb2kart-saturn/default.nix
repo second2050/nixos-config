@@ -18,7 +18,7 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "srb2kart-saturn";
-  version = "9.3";
+  version = "10.1";
 
   src = fetchFromGitHub {
     owner = "Indev450";

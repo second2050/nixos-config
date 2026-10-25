@@ -97,9 +97,6 @@ in
     };
     nixpkgs = import ./nixpkgs.nix;
 
-    # boot configuration
-    boot.initrd.systemd.enable = mkDefault true;
-
     # enable zram
     zramSwap.enable = mkDefault true;
 
@@ -137,7 +134,7 @@ in
     services.avahi = mkDefault {
       enable = true;
       nssmdns4 = true;
-      publish.enable = true;
+      settings.publish."disable-publishing" = false;
     };
     services.strongswan = {
       enable = true;
@@ -147,10 +144,6 @@ in
       certificateFiles = [
         "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"
         ./dn42.crt
-      ];
-      caCertificateBlacklist = [
-        "Comodo AAA Services root"
-        "emSign ECC Root CA - G3"
       ];
     };
 

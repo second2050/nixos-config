@@ -12,11 +12,11 @@ stdenvNoCC.mkDerivation rec {
     homepage = "https://github.com/Ubiquitine/temporary-virtual-desktops";
     platforms = lib.platforms.linux;
   };
-  version = "0.4.0";
+  version = "0.5.0";
   src = fetchgit {
     url = "https://github.com/Ubiquitine/temporary-virtual-desktops.git";
     rev = "refs/tags/v${version}";
-    hash = "sha256-PU3/FRa38/4bFMNSc7uhSYlHPqaZ9HMbjnTU9Z6O2JI=";
+    hash = "sha256-9MpT4mFHdjFD4ZqD808CRzf8C6IPkuR0YVcTbgp2DA4=";
   };
   installPhase = ''
     runHook preInstall
