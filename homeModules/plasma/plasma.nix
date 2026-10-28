@@ -30,6 +30,19 @@ in
       };
     };
 
+    desktop = {
+      icons = {
+        alignment = "left";
+        arrangement = "topToBottom";
+        lockInPlace = true;
+        sorting = {
+          descending = false;
+          foldersFirst = true;
+          mode = "name";
+        };
+      };
+    };
+
     kscreenlocker.appearance = {
       wallpaper = wallpaper;
       alwaysShowClock = true;
@@ -153,14 +166,37 @@ in
           "org.kde.plasma.marginsseparator"
           "org.kde.plasma.kimpanel"
           {
-            systemTray.items = {
-              shown = [
-                "org.kde.plasma.battery"
-                "org.kde.plasma.bluetooth"
-                "org.kde.plasma.networkmanagement"
-                "org.kde.plasma.volume"
-                "martchus.syncthingplasmoid"
-              ];
+            systemTray = {
+              icons.scaleToFit = true;
+              items = {
+                shown = [
+                  "martchus.syncthingplasmoid"
+                  "org.kde.plasma.battery"
+                  "org.kde.plasma.bluetooth"
+                  "org.kde.plasma.networkmanagement"
+                  "org.kde.plasma.volume"
+                ];
+                extra = [
+                  "martchus.syncthingplasmoid"
+                  "org.kde.kdeconnect"
+                  "org.kde.kscreen"
+                  "org.kde.plasma.battery"
+                  "org.kde.plasma.bluetooth"
+                  "org.kde.plasma.brightness"
+                  "org.kde.plasma.cameraindicator"
+                  # "org.kde.plasma.clipboard"
+                  "org.kde.plasma.devicenotifier"
+                  "org.kde.plasma.dwellclicker"
+                  "org.kde.plasma.keyboardindicator"
+                  "org.kde.plasma.keyboardlayout"
+                  "org.kde.plasma.manage-inputmethod"
+                  "org.kde.plasma.mediacontroller"
+                  "org.kde.plasma.networkmanagement"
+                  "org.kde.plasma.notifications"
+                  "org.kde.plasma.printmanager"
+                  "org.kde.plasma.volume"
+                ];
+              };
             };
           }
           {
