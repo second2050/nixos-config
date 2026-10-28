@@ -25,6 +25,10 @@ let
     url = "https://raw.githubusercontent.com/leander-j/en_DE/8b172dde948f16cd8ec5966661e2c5b96c7ca983/en_DE";
     hash = "sha256-I/u1I55tkQTv6SoF/1fSAysnhNnMlUX1QPPnJvoovvQ=";
   };
+  dfn_eduroam_root = pkgs.fetchurl {
+    url = "https://pki.pca.dfn.de/eduroam-ca/pub/cacert/chain.txt";
+    hash = "sha256-m9fyuDryJiQJCNEwbe0GI4J7V6Zpvb5AOyDnb6bnTxk=";
+  };
   system = pkgs.stdenv.hostPlatform.system;
   nixOSVersion = config.system.nixos.release;
   customCodeNames = {
@@ -145,6 +149,10 @@ in
         "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"
         ./dn42.crt
       ];
+    };
+    environment.etc."NetworkManager/certs/dfn-eduroam.crt" = {
+      source = dfn_eduroam_root;
+      mode = "0666";
     };
 
     # time, date and i18n
