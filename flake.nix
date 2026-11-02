@@ -47,6 +47,8 @@
       url = "github:zhaofengli/attic";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    tangled.url = "git+https://tangled.org/did:plc:j5hmlfdrwkvtxm7cjmu7j2is";
+    tranquil.url = "git+https://tangled.org/tranquil.farm/tranquil-pds";
   };
 
   outputs =
@@ -146,8 +148,11 @@
         };
         youkai = mkOsConfig {
           hostModule = "youkai";
-          extraModules = [
-            inputs.attic.nixosModules.atticd
+          extraModules = with inputs; [
+            attic.nixosModules.atticd
+            tangled.nixosModules.knot-rs
+            tangled.nixosModules.spindle
+            tranquil.nixosModules.default
           ];
         };
       };

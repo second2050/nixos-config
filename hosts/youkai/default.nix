@@ -80,6 +80,11 @@
     clean.enable = true;
     flake = "github:second2050/nixos-config";
   };
+  nix.settings = {
+    substituters = [ "https://tranquil.cachix.org" ];
+    trusted-public-keys = [ "tranquil.cachix.org-1:PoO+mGL6a6LcJiPakMDHN4E218/ei/7v2sxeDtNkSRg=" ];
+  };
+  services.qemuGuest.enable = true;
 
   # Initial NixOS Version, do *not* change.
   # For more information, see `man configuration.nix`
