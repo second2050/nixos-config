@@ -5,6 +5,9 @@
       "electron-39.8.10" # logseq
       "electron-40.10.5" # vesktop
     ];
+    problems.handlers = {
+      "gtk+".broken = "warn";
+    };
   };
   overlays = [
     (final: _prev: {
