@@ -26,8 +26,6 @@
           };
         }
       );
-    })
-    (final: prev: {
       kde-rounded-corners = (
         prev.kde-rounded-corners.overrideAttrs rec {
           version = "4867a0c849b8bc85a734525bb03a374c626e689a";
@@ -36,6 +34,36 @@
             repo = "KDE-Rounded-Corners";
             rev = "${version}";
             hash = "sha256-yRylCT9scW1Tmw5yIpS7ejTBqx3YMK6GHSB6GiWeKck=";
+          };
+        }
+      );
+      contour = (
+        prev.contour.overrideAttrs rec {
+          version = "0.9.0" + "-" + builtins.substring 0 7 src.rev;
+          src = final.fetchFromGitHub {
+            owner = "contour-terminal";
+            repo = "contour";
+            rev = "5a6a3965e85ba5c92a0e2677dc939606c9eeb41f";
+            hash = "sha256-iz4eJDDglQz77VP6unuCr5TF8fJCX8grdWeZ3eIZ1Jc=";
+          };
+          patches = [ ];
+          cmakeFlags = prev.contour.cmakeFlags ++ [
+            (final.lib.cmakeBool "CONTOUR_EXTENSIONS" false)
+            (final.lib.cmakeFeature "CONTOUR_NERD_FONT_SYMBOLS" "OFF")
+          ];
+          buildInputs = prev.contour.buildInputs ++ [
+            final.glaze
+          ];
+        }
+      );
+      libunicode = (
+        prev.libunicode.overrideAttrs rec {
+          version = "0.9.5";
+          src = final.fetchFromGitHub {
+            owner = "contour-terminal";
+            repo = "libunicode";
+            rev = "v${version}";
+            hash = "sha256-C4W5iif5TNMFyfG/3czqo/uzKjuSi+gGmljjzbX6ic8=";
           };
         }
       );
