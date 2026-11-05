@@ -43,8 +43,8 @@
           src = final.fetchFromGitHub {
             owner = "contour-terminal";
             repo = "contour";
-            rev = "5a6a3965e85ba5c92a0e2677dc939606c9eeb41f";
-            hash = "sha256-iz4eJDDglQz77VP6unuCr5TF8fJCX8grdWeZ3eIZ1Jc=";
+            rev = "23c72bc874d3d86f80ccde98bfb22710c14ad056";
+            hash = "sha256-VFrG6wGk3A9Lw6xxwuPw1u1GmC0bPy+ZfcVjnnYAKoM=";
           };
           patches = [ ];
           cmakeFlags = prev.contour.cmakeFlags ++ [
@@ -53,6 +53,13 @@
           ];
           buildInputs = prev.contour.buildInputs ++ [
             final.glaze
+          ];
+        }
+      );
+      contour-daemon = (
+        final.contour.overrideAttrs {
+          cmakeFlags = final.contour.cmakeFlags ++ [
+            (final.lib.cmakeBool "CONTOUR_FRONTEND_GUI" false)
           ];
         }
       );
