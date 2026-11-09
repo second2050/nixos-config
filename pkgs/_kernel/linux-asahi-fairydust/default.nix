@@ -18,15 +18,15 @@ let
       inherit stdenv lib;
 
       pname = "linux-asahi-fairydust";
-      version = "7.2.12";
+      version = "7.2.15";
       modDirVersion = version;
       extraMeta.branch = lib.versions.majorMinor version;
 
       src = fetchFromGitHub {
         owner = "AsahiLinux";
         repo = "linux";
-        rev = "f19ef6bf2bf607ffb39dc3250e0986b1fc8aa956"; # branch = "fairydust"
-        hash = "sha256-CZeqt8a+rycws3l+pk1Faym/rasmjugHuZdkRA/DZdk=";
+        rev = "432e09dca5d88e145eba6ff6080cd77aa5b8ccf8"; # branch = "fairydust"
+        hash = "sha256-oB40IG6UgwgklAO8J09KY8/FPzF5nklvKvZe8A2/2Pg=";
       };
 
       kernelPatches = [
@@ -57,6 +57,9 @@ let
             APPLE_RTKIT_HELPER = yes;
             RUST_APPLE_RTKIT = yes;
             RUST_FW_LOADER_ABSTRACTIONS = yes;
+
+            # Defaults to 'n', but needed to prevent bluetooth stuttering
+            BT_BRCMEXT = yes;
           };
           features.rust = true;
         }
