@@ -15,36 +15,14 @@
       pnpm_10_29_2 = final.pnpm_10;
     })
     (final: prev: {
-      kara = (
-        prev.kara.overrideAttrs rec {
-          version = "64a843c82cfca7e278727aede3801a04dd95556c";
-          src = final.fetchFromGitHub {
-            owner = "dhruv8sh";
-            repo = "kara";
-            rev = "${version}";
-            hash = "sha256-UZ3D4FtDuF4wT2EmnbioyHu19wVNYl0mQNZly5b4Mik=";
-          };
-        }
-      );
-      kde-rounded-corners = (
-        prev.kde-rounded-corners.overrideAttrs rec {
-          version = "4867a0c849b8bc85a734525bb03a374c626e689a";
-          src = final.fetchFromGitHub {
-            owner = "matinlotfali";
-            repo = "KDE-Rounded-Corners";
-            rev = "${version}";
-            hash = "sha256-yRylCT9scW1Tmw5yIpS7ejTBqx3YMK6GHSB6GiWeKck=";
-          };
-        }
-      );
       contour = (
         prev.contour.overrideAttrs rec {
-          version = "0.9.0" + "-" + builtins.substring 0 7 src.rev;
+          version = "master" + "-" + builtins.substring 0 7 src.rev;
           src = final.fetchFromGitHub {
             owner = "contour-terminal";
             repo = "contour";
-            rev = "23c72bc874d3d86f80ccde98bfb22710c14ad056";
-            hash = "sha256-VFrG6wGk3A9Lw6xxwuPw1u1GmC0bPy+ZfcVjnnYAKoM=";
+            rev = "915b2689fa131b03173f3b086e0345257813d673";
+            hash = "sha256-mb2+fPD3dPNCcWI7usKz6y5InSIM4r3cFOMMmbouf2E=";
           };
           patches = [ ];
           cmakeFlags = prev.contour.cmakeFlags ++ [
