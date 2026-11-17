@@ -21,13 +21,14 @@
           src = final.fetchFromGitHub {
             owner = "contour-terminal";
             repo = "contour";
-            rev = "915b2689fa131b03173f3b086e0345257813d673";
-            hash = "sha256-mb2+fPD3dPNCcWI7usKz6y5InSIM4r3cFOMMmbouf2E=";
+            rev = "3c9e024cdc599916cdccb8cb2e965fbcc4c3325c";
+            hash = "sha256-2l4shEZdmoITmTSDym7Wt+HTCM5szURa27z3xBHt1yA=";
           };
           patches = [ ];
           cmakeFlags = prev.contour.cmakeFlags ++ [
             (final.lib.cmakeBool "CONTOUR_EXTENSIONS" false)
             (final.lib.cmakeFeature "CONTOUR_NERD_FONT_SYMBOLS" "OFF")
+            (final.lib.cmakeFeature "CONTOUR_EMOJI_FONT" "OFF")
           ];
           buildInputs = prev.contour.buildInputs ++ [
             final.glaze
