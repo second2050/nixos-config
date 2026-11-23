@@ -47,11 +47,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1794888604,
-        "narHash": "sha256-J1NdjNXOY18ohairC/y/nKH6Hbkp5/9pOiES3d2sN+0=",
+        "lastModified": 1795395202,
+        "narHash": "sha256-oklmktwOGpF7ciV78yjddf0RiCjTlZ8cfwtbfNQs8Hs=",
         "owner": "Bali10050",
         "repo": "Darkly",
-        "rev": "013480dc50e398d551ef4b07e869b18884718dc6",
+        "rev": "ba71195f808f3432061c62466c63d3a77c28c756",
         "type": "github"
       },
       "original": {
@@ -256,11 +256,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1794897420,
-        "narHash": "sha256-hMI9Xg+lxS8kbnxIxL/jPQn688dstoxQAcMEbCb1ax0=",
+        "lastModified": 1795366757,
+        "narHash": "sha256-Tp4Kh4R7ID1f2mMCDlb2PiFQ/DZZsnXB2u2juWN+TT4=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "5b76c5b8eec25fdbce4f43309b3ee10584374a26",
+        "rev": "3b8140d21fa0a70b1b38c2ed29853dfe686234a6",
         "type": "github"
       },
       "original": {
@@ -304,14 +304,14 @@
     "ibm-plex-mono-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1731402378,
+        "lastModified": 1731402384,
         "narHash": "sha256-OwUmrPfEehLDz0fl2ChYLK8FQM2p0G1+EMrGsYEq+6g=",
         "type": "tarball",
-        "url": "https://github.com/IBM/plex/releases/download/@ibm/plex-mono@1.1.0/ibm-plex-mono.zip"
+        "url": "https://github.com/IBM/plex/releases/download/@ibm%2Fplex-mono@1.1.0/ibm-plex-mono.zip"
       },
       "original": {
         "type": "tarball",
-        "url": "https://github.com/IBM/plex/releases/download/@ibm/plex-mono@1.1.0/ibm-plex-mono.zip"
+        "url": "https://github.com/IBM/plex/releases/download/@ibm%2Fplex-mono@1.1.0/ibm-plex-mono.zip"
       }
     },
     "indigo": {
@@ -445,11 +445,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1794910092,
-        "narHash": "sha256-acu4eioYHfOOUAhWL9765/h/2f2/PGmVmZmiZ7YPKZQ=",
+        "lastModified": 1795385658,
+        "narHash": "sha256-boPmaYTtheIPdmcRIzPCkvdo7OzBdFMPR7RMGVj3us4=",
         "owner": "nix-community",
         "repo": "nixos-apple-silicon",
-        "rev": "ce7d0925860cf29d686b24ea5798f3a02676b4f7",
+        "rev": "22142b67aff1bf0ada5c384974f05524f3980b14",
         "type": "github"
       },
       "original": {
@@ -463,11 +463,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1794906521,
-        "narHash": "sha256-B3ox9O5jQ7/RU2IECjP6MtA0BRqL9+yunGJRow0c1gA=",
+        "lastModified": 1795018746,
+        "narHash": "sha256-glQAHvZGgBVjzGIWgIZYSf3X10gvtO2LPR4rtyP/Soc=",
         "owner": "NixOS",
         "repo": "nixos-hardware",
-        "rev": "d9da8426d86bd7e937226f5ecef1df1504ead2e8",
+        "rev": "33475966110df258f52d05ec4d4cd6394637cbb9",
         "type": "github"
       },
       "original": {
@@ -523,11 +523,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1794537146,
-        "narHash": "sha256-bTKSclXJAmo9qdxPedTBHUGr8awPr4BrbOoOutJsYIc=",
-        "rev": "d5cc6833999746cffdfe0598f7bc801a57b887a9",
+        "lastModified": 1795234589,
+        "narHash": "sha256-pAEASBc6wof0S58XcSEdZoQ2iFQDkCnZwH+wFLrkd1Q=",
+        "rev": "2786a2a72088ecf32aea5b3ec52099e6a7cff78f",
         "type": "tarball",
-        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1119549.d5cc68339997/nixexprs.tar.zst?lastModified=1794537146&rev=d5cc6833999746cffdfe0598f7bc801a57b887a9"
+        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1125864.2786a2a72088/nixexprs.tar.zst"
       },
       "original": {
         "type": "tarball",
@@ -741,11 +741,11 @@
         "timeless-fonts-src": "timeless-fonts-src"
       },
       "locked": {
-        "lastModified": 1794861956,
-        "narHash": "sha256-ePlVvnkbT6HR3EwMSo6qcvwtxj1PLtiwol8qNK4n80s=",
+        "lastModified": 1795428859,
+        "narHash": "sha256-V7rfT3TQB2mRoCv9whkOpj4mCR7eTjOCKVoFdj3yOhQ=",
         "ref": "refs/heads/master",
-        "rev": "1e9770c93bf6d8a14fa4bbb61a57712d7e448ee7",
-        "revCount": 6554,
+        "rev": "dc0dabd366879d4922841e364a8183fe33ab1744",
+        "revCount": 6694,
         "type": "git",
         "url": "https://tangled.org/did:plc:j5hmlfdrwkvtxm7cjmu7j2is"
       },
@@ -772,11 +772,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1794780464,
-        "narHash": "sha256-CDyNXLXyz/4AEYUgNu1r0H6fGcjfTdKH1psvVwuT+F8=",
+        "lastModified": 1795380485,
+        "narHash": "sha256-G+8jFPbBzXLE40sC8oxfSUVU1T8aFlb6GJJ+nGvs1iY=",
         "ref": "refs/heads/main",
-        "rev": "b95f999e639fbf392ffe9c21a84a38b21704536c",
-        "revCount": 694,
+        "rev": "41b458b5a31127b8ec9481c15156006d39b32d04",
+        "revCount": 721,
         "type": "git",
         "url": "https://tangled.org/tranquil.farm/tranquil-pds"
       },
@@ -849,11 +849,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1794898407,
-        "narHash": "sha256-u3qknsQ63fQ0GDO65fLsZHFt7G5c2SWZcjajkV+BwjM=",
+        "lastModified": 1795333741,
+        "narHash": "sha256-xJaT+L8DeMR0TJjAOlrjGqaRG2AjZrjivQfCtiLRtlY=",
         "owner": "0xc000022070",
         "repo": "zen-browser-flake",
-        "rev": "54310da1c2e1d4bcd413c6914a0d274afbd4f30b",
+        "rev": "81376950ac382a96b965f9d6f8bf60354ad99c2f",
         "type": "github"
       },
       "original": {
