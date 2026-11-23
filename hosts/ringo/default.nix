@@ -46,9 +46,18 @@
         sha256 = "04a3h5fsbwf0dhsgnr2kpppsxad89gamks0yjg83i6gqdbz2b5di";
         hashMode = "recursive";
       };
+      avd = {
+        enable = true;
+        codecs = [ "all" ];
+        vaapi-support = true;
+      };
     };
     graphics.enable = true;
     bluetooth.enable = true;
+  };
+  environment.variables = {
+    # firefox cannot access the vaapi driver inside the sandbox
+    MOZ_DISABLE_RDD_SANDBOX = "1";
   };
 
   # swap configuration
