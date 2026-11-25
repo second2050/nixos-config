@@ -116,6 +116,12 @@
     "${self}/homeModules/work"
   ];
 
+  # workaround flutter aarch64-linux bugs
+  systemd.tmpfiles.rules = [
+    "d /usr/share 0755 root root -"
+    "L+ /usr/share/fonts - - - - /run/current-system/sw/share/X11/fonts"
+  ];
+
   # Initial NixOS Version, do *not* change.
   # For more information, see `man configuration.nix`
   # or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion
