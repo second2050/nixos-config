@@ -21,8 +21,8 @@
           src = final.fetchFromGitHub {
             owner = "contour-terminal";
             repo = "contour";
-            rev = "3c9e024cdc599916cdccb8cb2e965fbcc4c3325c";
-            hash = "sha256-2l4shEZdmoITmTSDym7Wt+HTCM5szURa27z3xBHt1yA=";
+            rev = "8c3afaa0c902ab2ea8f979c0060ffc26342c5400";
+            hash = "sha256-0gsuhxiMY1XMWwcg0F9NSFOd3ZaOPSxiHJUZk3S+v6k=";
           };
           patches = [ ];
           cmakeFlags = prev.contour.cmakeFlags ++ [
