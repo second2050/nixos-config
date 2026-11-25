@@ -49,12 +49,21 @@
     };
     tangled.url = "git+https://tangled.org/did:plc:j5hmlfdrwkvtxm7cjmu7j2is";
     tranquil.url = "git+https://tangled.org/tranquil.farm/tranquil-pds";
+    nix-darwin = {
+      url = "github:nix-darwin/nix-darwin/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-rosetta-builder = {
+      url = "github:cpick/nix-rosetta-builder";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
     {
       self,
       nixpkgs,
+      nix-darwin,
       home-manager,
       ...
     }@inputs:
@@ -86,6 +95,24 @@
             ++ extraModules;
         in
         nixpkgs.lib.nixosSystem { inherit modules specialArgs; };
+      mkDarwinConfig =
+        {
+          hostModule ? throw "hostModule is undefined!",
+          extraModules ? [ ],
+        }:
+        let
+          specialArgs = { inherit self inputs; };
+          modules =
+            with inputs;
+            [
+              ./hosts/${hostModule}
+              ./darwinModules
+              self.darwinModules.packages
+              home-manager.darwinModules.home-manager
+            ]
+            ++ extraModules;
+        in
+        nix-darwin.lib.darwinSystem { inherit modules specialArgs; };
       mkHomeConfig =
         {
           system ? throw "system is undefined!",
@@ -157,6 +184,16 @@
         };
       };
 
+      # darwin configurations
+      darwinConfigurations = {
+        onryo = mkDarwinConfig {
+          hostModule = "onryo";
+          extraModules = [
+            inputs.nix-rosetta-builder.darwinModules.default
+          ];
+        };
+      };
+
       # home configurations
       homeConfigurations = {
         "second2050@airhead" = mkHomeConfig {
@@ -201,6 +238,13 @@
 
       # exported modules
       nixosModules.packages =
+        { ... }:
+        {
+          config.nixpkgs.overlays = [
+            self.overlays.packages
+          ];
+        };
+      darwinModules.packages =
         { ... }:
         {
           config.nixpkgs.overlays = [
