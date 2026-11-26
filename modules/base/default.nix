@@ -71,7 +71,39 @@ in
         trusted-public-keys = [
           "karui:8uidONyUZQeIiM7V0zmDXnSvMCLyZmwHvfJfAgFEbYc="
         ];
+        builders-use-substitutes = true;
       };
+      buildMachines = [
+        {
+          hostName = "onryo-rosetta-builder";
+          systems = [
+            "aarch64-linux"
+            "x86_64-linux"
+          ];
+          maxJobs = 8;
+          supportedFeatures = [
+            "benchmark"
+            "big-parallel"
+            "kvm"
+            "nixos-test"
+          ];
+        }
+        {
+          hostName = "onryo.home.arpa";
+          systems = [
+            "aarch64-darwin"
+            "x86_64-darwin"
+          ];
+          maxJobs = 8;
+          sshUser = "karui";
+          supportedFeatures = [
+            "apple-virt"
+            "benchmark"
+            "big-parallel"
+          ];
+        }
+      ];
+      distributedBuilds = true;
       # add my inputs to the system registry
       registry =
         genAttrs (filter (n: n != "self") (builtins.attrNames inputs)) (input: {
